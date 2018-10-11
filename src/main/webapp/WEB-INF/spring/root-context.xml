@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@192.168.14.22:1521:orcl" />
+		<property name="username" value="kitri" />
+		<property name="password" value="kitri" />
+	</bean>
+
+	<bean id="memberDao" class="com.animalshelter.member.dao.MemberDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="memberService"
+		class="com.animalshelter.member.service.MemberServiceImpl">
+		<property name="memberDao" ref="memberDao" />
+	</bean>
+</beans>
