@@ -39,8 +39,11 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
         <a class="nav-link" href="${root}/register.animal">회원가입</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">아이디/패스워드 찾기</a>
-      </li>    
+        <a class="nav-link" href="${root}/idFind.animal">아이디 찾기</a>
+      </li> 
+      <li class="nav-item">
+      <a class="nav-link" href="${root}/pwdFind.animal">비밀번호 찾기</a>
+      </li>   
     </ul>
 </nav>
 <!-- img : logo -->
@@ -50,26 +53,26 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
 <!--  -->
 <ul class="nav nav-tabs justify-content-center">
      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">회원가입</a>
+        <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">봉사활동</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">봉사소개</a>
-      <a class="dropdown-item" href="#">봉사신청</a>
+      <a class="dropdown-item" href="${root}/volunteerDetail.animal">봉사소개</a>
+      <a class="dropdown-item" href="${root}/volunteerReg.animal">봉사신청</a>
     </div>
   </li> 
   
        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">후원</a>
+        <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">유기동물</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">후원소개</a>
-      <a class="dropdown-item" href="#">후원신청</a>
+      <a class="dropdown-item" href="${root}/abandonedNotice.animal">안내</a>
+      <a class="dropdown-item" href="${root}/abandoned.animal">유기동물확인</a>
     </div>
   </li> 
   
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">실종동물</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">실종동물소개</a>
-      <a class="dropdown-item" href="#">실종동물등록</a>
+      <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
+      <a class="dropdown-item" href="${root}/missingReg.animal">실종동물등록</a>
       <a class="dropdown-item" href="#">실종동물찾기</a>
     </div>
   </li> 
@@ -80,6 +83,13 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
       <a class="dropdown-item" href="#">분양소개</a>
       <a class="dropdown-item" href="#">분양등록</a>
       <a class="dropdown-item" href="#">개인분양</a>
+    </div>
+  </li> 
+  <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">후원</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="${root}/donation.animal">후원소개</a>
+      <a class="dropdown-item" href="${root}/donationReg.animal">후원신청</a>
     </div>
   </li> 
   </ul>

@@ -21,7 +21,7 @@ public class MemberController {
 		return "login/login";
 	}
 
-	@RequestMapping(value = "abandoned.animal", method = RequestMethod.GET)
+	@RequestMapping(value = "/abandoned.animal", method = RequestMethod.GET)
 	public String showAbandonedAnimal() {
 		return "login/login";
 	}
