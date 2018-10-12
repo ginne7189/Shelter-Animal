@@ -3,7 +3,6 @@ package com.animalshelter.member.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.animalshelter.member.model.MemberDetailDto;
 import com.animalshelter.member.model.MemberDto;
 
 public interface MemberDao {

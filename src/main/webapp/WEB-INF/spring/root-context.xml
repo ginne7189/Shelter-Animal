@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource"
+	<bean id="ds"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
@@ -15,12 +15,16 @@
 	</bean>
 	
 	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="ds"></property>
-		<property name="configLocation" value="com/kitri/config/mybatis/Configuration.xml"></property>
+		<property name="dataSource" ref="ds"/>
+		<property name="configLocation" value="classpath:com/animalshelter/config/mybatis/Configuration.xml"/>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/animalshelter/config/mybatis/user.xml</value>
+			</list>
+		</property>
 	</bean>
 
-	<bean id="memberService"
-		class="com.animalshelter.member.service.MemberServiceImpl">
-		<property name="memberDao" ref="memberDao" />
+	<bean id="ss" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="ssfb"/>
 	</bean>
 </beans>

@@ -11,10 +11,6 @@ public class MemberController {
 
 	private MemberService memberService;
 
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
-
 	@RequestMapping(value = "register.animal", method = RequestMethod.GET)
 	public String register() {
 		return "register/register_basic";
