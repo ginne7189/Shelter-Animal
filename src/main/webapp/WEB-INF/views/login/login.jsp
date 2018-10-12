@@ -43,6 +43,7 @@ A:hover {
 </style>
 </head>
 <body>
+<%@include file="../common/header.jsp"%>
 <div class="container-fluid">
 	<div class="login" align="center">
 		<h1>로그인</h1>

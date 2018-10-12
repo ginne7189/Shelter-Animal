@@ -124,6 +124,7 @@ text-align:center;
 </script>
 </head>
 <body>
+	<%@include file="../common/header.jsp"%>
    <div class="container-fluid hm_register">
       <br>
       <div style="text-align:center"><h2><b>회원가입</b></h2>

@@ -8,18 +8,12 @@
 <head>
 <title>Insert title here</title>
 <meta charset="UTF-8">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-      $(document).ready(function(){
-         $("#content").load("WEB-INF/views/main.jsp"); // not working T.T
-      });
-</script>    
 </head>
 <body>
 <%@include file="WEB-INF/views/common/header.jsp"%>
-<%@include file="WEB-INF/views/main.jsp"%>
 <!-- content -->
+<%@include file="WEB-INF/views/main.jsp"%>
+<%@include file="WEB-INF/views/common/footer.jsp"%>
 <div id="content"></div>
 </body>
 </html>

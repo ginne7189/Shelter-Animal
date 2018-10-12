@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String header=request.getContextPath(); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +33,10 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
 <nav class="navbar navbar-expand-sm bg-yellow navbar-yellow" style="height:44px;">
     <ul class="navbar-nav" style=" position: absolute;right: 3%;">
       <li class="nav-item">
-        <a class="nav-link" href="#">로그인</a>
+        <a class="nav-link" href="${root}/login.animal">로그인</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">회원가입</a>
+        <a class="nav-link" href="${root}/register.animal">회원가입</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">아이디/패스워드 찾기</a>

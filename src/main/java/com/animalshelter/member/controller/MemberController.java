@@ -20,7 +20,7 @@ public class MemberController {
 		return "register/register_basic";
 	}
 
-	@RequestMapping(value = "login.animal", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.animal", method = RequestMethod.GET)
 	public String login() {
 		return "login/login";
 	}
