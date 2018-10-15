@@ -147,4 +147,19 @@ public class MemberController {
 	    session.invalidate();
 		return "../../index";
 	}
+	
+	@RequestMapping(value = "/pwdFind.animal", method = RequestMethod.GET)
+	public String pwdFind() {		
+		return "login/pwdFind";
+	}
+	
+	@RequestMapping(value = "/pwdRequest.animal", method = RequestMethod.GET)
+	public String requestSetPwd(@RequestParam("email") String userEmail) {	
+		MemberDto memberDto = null;
+		memberDto = memberService.getMemberInfo(userEmail);
+		
+		
+		
+		return "login/pwdFind";
+	}
 }

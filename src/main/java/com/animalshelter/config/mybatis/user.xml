@@ -6,7 +6,7 @@
 <mapper namespace="com.animalshelter.member.dao.MemberDao">
 	<insert id="register"
 		parameterType="MemberDto">
-		insert into member (email, pwd, salt, name, tel, register_date, user_code, valid)
+		insert into member (email, pwd, salt, name, tel, registerdate, usercode, valid)
 		values
 		(#{email}, #{pwd}, #{salt}, #{name}, #{tel}, sysdate, '1000', 'X')
 	</insert>
@@ -36,7 +36,7 @@
 	
 	<select id="getMemberInfo" parameterType="String"
 		resultType="MemberDto">
-		SELECT email, name, register_date, user_code, tel FROM member WHERE email = #{email}
+		SELECT email, salt, name, registerdate, usercode, tel FROM member WHERE email = #{email}
 	</select> 
 
 </mapper>
