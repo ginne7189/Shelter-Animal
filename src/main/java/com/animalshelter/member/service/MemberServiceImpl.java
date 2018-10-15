@@ -45,4 +45,9 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDto getLoginInfo(String email) {		
 		return sqlSession.getMapper(MemberDao.class).getLoginInfo(email);
 	}
+
+	@Override
+	public MemberDto getMemberInfo(String email) {
+		return sqlSession.getMapper(MemberDao.class).getMemberInfo(email);
+	}
 }

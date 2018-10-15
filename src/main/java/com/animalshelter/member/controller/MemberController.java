@@ -3,6 +3,7 @@ package com.animalshelter.member.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,7 +82,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.animal", method = RequestMethod.POST)
 	public String login(@RequestParam("email") String email, @RequestParam("pwd") String pwd,
-			HttpServletRequest request) {
+			HttpServletRequest request, HttpSession session) {
 		int cnt = memberService.isRegistered(email);
 		if (cnt == 0) {
 			// 존재하지 않는 회원입니다.
@@ -98,6 +99,9 @@ public class MemberController {
 				String newHashPwd = security.getHash(pwd, salt);
 				if (hashPwd.equals(newHashPwd)) {
 					// 로그인 성공
+					memberDto = memberService.getMemberInfo(email);
+					session.setAttribute("user", memberDto.getName());
+					session.setAttribute("email", memberDto.getEmail());
 					return "../../index";
 				} else {
 					// 아이디 또는 비밀번호를 확인해주세요.
@@ -136,4 +140,11 @@ public class MemberController {
 		}		
 		return "register/notvalid";
 	}	
+	
+	@RequestMapping(value = "/logout.animal", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		// 기존의 세션 데이터를 모두 삭제
+	    session.invalidate();
+		return "../../index";
+	}
 }

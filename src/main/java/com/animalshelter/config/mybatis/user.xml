@@ -33,6 +33,11 @@
 		resultType="MemberDto">
 		SELECT pwd, salt, valid FROM member WHERE email = #{email}
 	</select> 
+	
+	<select id="getMemberInfo" parameterType="String"
+		resultType="MemberDto">
+		SELECT email, name, register_date, user_code, tel FROM member WHERE email = #{email}
+	</select> 
 
 </mapper>
 

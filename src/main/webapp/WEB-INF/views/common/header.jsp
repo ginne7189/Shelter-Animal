@@ -32,6 +32,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
 <!-- header1 -->
 <nav class="navbar navbar-expand-sm bg-yellow navbar-yellow" style="height:44px;">
     <ul class="navbar-nav" style=" position: absolute;right: 3%;">
+    <c:if test="${empty sessionScope.user}" > 
       <li class="nav-item">
         <a class="nav-link" href="${root}/login.animal">로그인</a>
       </li>
@@ -39,11 +40,17 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
         <a class="nav-link" href="${root}/register.animal">회원가입</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${root}/idFind.animal">아이디 찾기</a>
-      </li> 
-      <li class="nav-item">
       <a class="nav-link" href="${root}/pwdFind.animal">비밀번호 찾기</a>
-      </li>   
+      </li>
+      </c:if>
+      <c:if test="${not empty sessionScope.user }"> 
+      <li class="nav-item">
+      		<a class="nav-link" href="${root}/mypage.animal">${sessionScope.user }님</a> 
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="${root}/logout.animal">로그아웃</a>
+      </li>
+</c:if> 
     </ul>
 </nav>
 <!-- img : logo -->

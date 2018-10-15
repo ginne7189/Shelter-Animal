@@ -11,4 +11,5 @@ public interface MemberService {
 	//MemberDetailDto getUser(String email);
 	int isRegistered(String email);
 	MemberDto getLoginInfo(String email);
+	MemberDto getMemberInfo(String email);
 }
