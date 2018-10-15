@@ -9,9 +9,9 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@192.168.14.22:1521:orcl" />
-		<property name="username" value="kitri" />
-		<property name="password" value="kitri" />
+			value="jdbc:oracle:thin:@183.101.196.136:1521:xe" />
+		<property name="username" value="shoppingbag" />
+		<property name="password" value="shoppingbag" />
 	</bean>
 	
 	<bean id="ssfb" class="org.mybatis.spring.SqlSessionFactoryBean">

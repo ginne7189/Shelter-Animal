@@ -11,7 +11,7 @@
 		(#{email}, #{pwd}, #{salt}, #{name}, #{tel}, sysdate, '1000', 'X')
 	</insert>
  
-	<select id="registerCheck" parameterType="String"
+	<select id="registerComplete" parameterType="String"
 		resultType="MemberDto">
 		select email, name, tel, salt
 		from member

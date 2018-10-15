@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String root = request.getContextPath();
-	Cookie cookie[] = request.getCookies();
-
-	response.setHeader("Cache-Control", "no-store");
-	response.setHeader("Pragma", "no-cache");
-	response.setDateHeader("Expires", 0);
-	if (request.getProtocol().equals("HTTP/1.1")) {
-		response.setHeader("Cache-Control", "no-cache");
-	}	
-%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +38,8 @@ A:hover {
 <div class="container-fluid">
 	<div class="login" align="center">
 		<h1>로그인</h1>
-		<form name="login_form" method="post" action="<%=root%>/member">
+		<form name="login_form" method="post" action="${root }/login.animal">
+		
 				<input type="hidden" name="act" value="login">
 		<input type="text" class="form-control" id="email" name="email" size="54" placeholder="E-mail"><br>
 		<input type="password" class="form-control" id="pwd" name="pwd" size="54" placeholder="비밀번호"
@@ -61,7 +53,7 @@ A:hover {
 			String str = (String)request.getAttribute("str");
 			if(str!=null && str!=""){
 				%>
-				<%=str %>
+				<h5 style="color: red;"><%=str %></h5>
 				<%
 			}
 			%>
@@ -72,12 +64,12 @@ A:hover {
 		<div class="main">
 			<div style="font-size:16px;">
 				<p>
-					<a href="<%=root%>/register/register_basic.jsp" style="color:black"><b>회원가입</b></a>
+					<a href="${root }/register.animal" style="color:black"><b>회원가입</b></a>
 				</p>
 			</div>
 			<div style="font-size:16px;">
 				<p>
-					<a href="<%=root%>/login/idsearch.jsp" style="color:black"><b>아이디 찾기</b></a>
+					<a href="${root }/idsearch.animal" style="color:black"><b>아이디 찾기</b></a>
 				</p>
 			</div>
 			<div style="font-size:16px;">

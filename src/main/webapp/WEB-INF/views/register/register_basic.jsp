@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <%
-	String root = request.getContextPath();
    String t1width = "30%";
    String t2width = "70%";
    String adviseHeight = "10px";
@@ -13,7 +14,7 @@
 <title>Register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=root %>/js/httpRequest.js"></script>
+<script type="text/javascript" src="${root}/resources/js/httpRequest.js"></script>
 <style type="text/css">
 .f_size{
 font-size:18px;
@@ -82,7 +83,7 @@ text-align:center;
 	    if(userEmail.indexOf("@")==-1){
 	    	return;
 	    }
-	    var url = "<%=root%>/register/emailexist.jsp?email=" + userEmail;
+	    var url = "${root}/emailChk.animal?email=" + userEmail;
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				document.getElementById("email_check").style.color = "red";
@@ -129,7 +130,7 @@ text-align:center;
       <br>
       <div style="text-align:center"><h2><b>회원가입</b></h2>
       <font color="#D5D5D5">―――――――――――――――――――――――――――――――――――――――</font><br><br></div>
-      <form name="register_form" method="post" action="<%=root%>/member" id="register_form"
+      <form name="register_form" method="post" action="${root }/register.animal" id="register_form"
          onsubmit="return checkRegister()">
          <input type="hidden" name="act" value="register_basic">
          <table style="margin-left:auto; margin-right:auto; cellspacing:20">
@@ -170,7 +171,7 @@ text-align:center;
                         <div class="f_size">PW 확인</div>
                      </div></td>
                   <td>
-                  <input class="form-control" type="password" id="pwdChk" name="pwd" value="" maxlength="16" size="54"
+                  <input class="form-control" type="password" id="pwdChk" name="pwdChk" value="" maxlength="16" size="54"
                      placeholder="비밀번호 확인" required maxlength="16" onkeyup="javascript:pwdSameChk()"
                   style="width:320px; height:45px;">
                   </td>
