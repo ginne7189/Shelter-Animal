@@ -1,5 +1,7 @@
 package com.animalshelter.member.service;
 
+import java.util.Map;
+
 import com.animalshelter.member.model.MemberDto;
 
 public interface MemberService {
@@ -12,4 +14,8 @@ public interface MemberService {
 	int isRegistered(String email);
 	MemberDto getLoginInfo(String email);
 	MemberDto getMemberInfo(String email);
+	int pwdReset(Map<String, String> map);
+	int resetPwd(Map<String, String> map);
+	int afterReset(String email);
+	String doReset(String secretCode);
 }

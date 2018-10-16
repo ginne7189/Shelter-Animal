@@ -16,8 +16,8 @@ import javax.mail.internet.MimeMessage;
 public class SMTPMailSender extends Thread {
 	private String protocol = "smtp";
 	private String type = "text/html; charset=UTF-8";
-	private String userName = "animalhouse@nipa0711.net"; // 구글메일계정
-	private String password = "@nima1h0use"; // 구글메일계정
+	private String userName = "animalshelter@nipa0711.net"; // 구글메일계정
+	private String password = "@nima15he1ter"; // 구글메일계정
 	private String host = "smtp.gmail.com";
 	private int port = 587; // 25
 	private boolean starttlsEnable = true;

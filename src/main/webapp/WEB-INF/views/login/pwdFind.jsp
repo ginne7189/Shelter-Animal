@@ -26,7 +26,9 @@
 				if (result == "ok") {
 					showTxt = "등록되지 않은 이메일 입니다.";
 				} else {
-					window.location.replace("http://192.168.14.12/animalshelter/pwdRequest.animal?email="+userEmail);
+					window.location
+							.replace("http://192.168.14.12/animalshelter/pwdRequest.animal?email="
+									+ userEmail);
 				}
 				document.getElementById("email_check").innerHTML = showTxt;
 			}
@@ -53,10 +55,11 @@
 </head>
 <body>
 	<%@include file="../common/header.jsp"%>
-	회원가입시 입력한 이메일을 입력해주세요.
-	<br>
-	<input type="text" id="email" name="email">
-	<input type="button" id="btn" value="전송"><br>
-	<p class="register_advise email_check" id="email_check" style="text-align:center;"></p>
+	<div align="center">
+		회원가입시 입력한 이메일을 입력해주세요. <br> 
+		<input type="text" id="email" name="email"> <input type="button" id="btn" value="전송"><br>
+		<p class="register_advise email_check" id="email_check"
+			style="text-align: center;"></p>
+	</div>
 </body>
 </html>

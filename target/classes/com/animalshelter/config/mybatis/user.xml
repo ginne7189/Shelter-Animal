@@ -38,6 +38,23 @@
 		resultType="MemberDto">
 		SELECT email, salt, name, registerdate, usercode, tel FROM member WHERE email = #{email}
 	</select> 
+	
+	<insert id="pwdReset" parameterType="java.util.Map" >
+		insert into pwdreset (email, SECRETCODE) values (#{userEmail}, #{secretCode})
+	</insert>
+	
+	<select id="doReset" parameterType="String"
+		resultType="String">
+		SELECT email FROM pwdreset WHERE secretCode = #{secretCode}
+	</select> 
+	
+	<update id="resetPwd" parameterType="java.util.Map">
+		update member set pwd=#{pwd}, salt=#{salt} where email=#{email}
+	</update>
+	
+	<update id="afterReset" parameterType="String">
+		delete from pwdreset where email = #{userEmail}
+	</update>
 
 </mapper>
 

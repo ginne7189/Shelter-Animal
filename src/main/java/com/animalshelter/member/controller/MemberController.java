@@ -1,6 +1,7 @@
 package com.animalshelter.member.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,16 +38,17 @@ public class MemberController {
 			String hashPwd = security.getHash(memberDto.getPwd(), salt); // 64자리 반환 SHA-256
 			memberDto.setPwd(hashPwd);
 			memberDto.setSalt(salt);
-			
+
 			int cnt = memberService.register(memberDto);
 			if (cnt != 0) {
 				//////////////////////// send email
 				String subject = memberDto.getName() + "님, Animal Shelter 에 가입하신걸 축하드립니다.";
 				String contents = "가입을 하신 적이 없으시다면, master@nipa0711.net 으로 문의해주세요.<br>";
 				contents += "본 이메일은 발신전용 이메일입니다.<br>";
-				String secretCode = security.getHash(memberDto.getEmail() + memberDto.getName() + memberDto.getTel(), salt);
-				contents += "<a href=\"http://192.168.14.12/animalshelter/register_complete.animal?email=" + memberDto.getEmail()
-						+ "&secretCode=" + secretCode + "\">인증하기</a>";
+				String secretCode = security.getHash(memberDto.getEmail() + memberDto.getName() + memberDto.getTel(),
+						salt);
+				contents += "<a href=\"http://192.168.14.12/animalshelter/register_complete.animal?email="
+						+ memberDto.getEmail() + "&secretCode=" + secretCode + "\">인증하기</a>";
 				String from = "animalhouse@nipa0711.net";
 				String fromName = "AnimalShelter";
 
@@ -118,14 +120,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/register_complete.animal", method = RequestMethod.GET)
-	public String register_complete(@RequestParam("email") String userEmail, @RequestParam("secretCode") String userSecretCode) {
+	public String register_complete(@RequestParam("email") String userEmail,
+			@RequestParam("secretCode") String userSecretCode) {
 		Security security = new Security();
 		MemberDto memberDto = null;
 		memberDto = memberService.registerComplete(userEmail);
-		
-		if (memberDto == null) {
-			
-		} else {
+
+		if (memberDto != null) {
 			String secretCodeChk = security.getHash(memberDto.getEmail() + memberDto.getName() + memberDto.getTel(),
 					memberDto.getSalt());
 			if (secretCodeChk.equals(userSecretCode)) {
@@ -134,32 +135,77 @@ public class MemberController {
 				if (cnt != 0) {
 					return "/register/registerok";
 				}
-			} else {
-				// 거절
 			}
-		}		
+		}
 		return "register/notvalid";
-	}	
-	
+	}
+
 	@RequestMapping(value = "/logout.animal", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		// 기존의 세션 데이터를 모두 삭제
-	    session.invalidate();
+		session.invalidate();
 		return "../../index";
 	}
-	
+
 	@RequestMapping(value = "/pwdFind.animal", method = RequestMethod.GET)
-	public String pwdFind() {		
+	public String pwdFind() {
 		return "login/pwdFind";
 	}
-	
+
 	@RequestMapping(value = "/pwdRequest.animal", method = RequestMethod.GET)
-	public String requestSetPwd(@RequestParam("email") String userEmail) {	
-		MemberDto memberDto = null;
+	public String requestSetPwd(@RequestParam("email") String userEmail, MemberDto memberDto) {
 		memberDto = memberService.getMemberInfo(userEmail);
-		
-		
-		
-		return "login/pwdFind";
+		Security security = new Security();
+		String secretCode = security.generateSalt();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userEmail", userEmail);
+		map.put("secretCode", secretCode);
+		int cnt = memberService.pwdReset(map);
+
+		if (cnt == 1) {
+			String subject = memberDto.getName() + "님, 비밀번호 변경 안내";
+			String contents = "아래의 링크를 눌러서, 비밀번호를 변경해주세요.<br>";
+			contents += "본 이메일은 발신전용 이메일입니다.<br>";
+			contents += "<a href=\"http://192.168.14.12/animalshelter/pwdReset.animal?secretCode=" + secretCode
+					+ "\">비밀번호 변경하기</a>";
+			String from = "animalhouse@nipa0711.net";
+			String fromName = "AnimalShelter";
+
+			HashMap<String, String> mail = new HashMap<String, String>();
+			mail.put("email", memberDto.getEmail());
+			mail.put("name", memberDto.getName());
+
+			SMTPMailSender smtp = new SMTPMailSender(subject, contents, from, fromName, mail);
+			smtp.start();
+		}
+
+		return "login/pwdResetNotice";
+	}
+
+	@RequestMapping(value = "/pwdReset.animal", method = RequestMethod.GET)
+	public String pwdReset(@RequestParam("secretCode") String secretCode, HttpServletRequest request) {
+		String email = memberService.doReset(secretCode);
+		request.setAttribute("email", email);
+		return "login/pwdReset";
+	}
+
+	@RequestMapping(value = "/pwdReset.animal", method = RequestMethod.POST)
+	public String pwdReset(@RequestParam("pwd") String pwd, @RequestParam("email") String email) {
+		Security security = new Security();
+		String salt = security.generateSalt();
+		String hashPwd = security.getHash(pwd, salt); // 64자리 반환 SHA-256
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("pwd", hashPwd);
+		map.put("salt", salt);
+
+		int cnt = memberService.resetPwd(map);
+
+		if (cnt == 1) {
+			memberService.afterReset(email);
+		}
+
+		return "login/login";
 	}
 }

@@ -20,4 +20,8 @@ public interface MemberDao {
 	int isRegistered(String email);
 	MemberDto getLoginInfo(String email);
 	MemberDto getMemberInfo(String email);
+	int pwdReset(Map<String, String> map);
+	int resetPwd(Map<String, String> map);
+	int afterReset(String email);
+	String doReset(String secretCode);
 }

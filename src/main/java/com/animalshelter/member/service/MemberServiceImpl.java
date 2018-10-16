@@ -1,5 +1,7 @@
 package com.animalshelter.member.service;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +51,25 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDto getMemberInfo(String email) {
 		return sqlSession.getMapper(MemberDao.class).getMemberInfo(email);
+	}
+
+	@Override
+	public int pwdReset(Map<String, String> map) {
+		return sqlSession.getMapper(MemberDao.class).pwdReset(map);
+	}
+
+	@Override
+	public int afterReset(String email) {
+		return sqlSession.getMapper(MemberDao.class).afterReset(email);
+	}
+
+	@Override
+	public String doReset(String secretCode) {
+		return sqlSession.getMapper(MemberDao.class).doReset(secretCode);
+	}
+
+	@Override
+	public int resetPwd(Map<String, String> map) {
+		return sqlSession.getMapper(MemberDao.class).resetPwd(map);
 	}
 }
