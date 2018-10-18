@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<%@include file="../common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +34,13 @@ A:hover {
 </head>
 <body>
 <%@include file="../common/header.jsp"%>
-<div class="container-fluid">
+<div style="width: 600px; margin: 0 auto;">
+<div class="container">
 	<div class="login" align="center">
-		<h1>로그인</h1>
+	<br>
+      <div style="text-align:center"><h2><b>로그인</b></h2>
+      <font color="#D5D5D5">―――――――――――――――――――――――――――――――――――――――</font><br><br></div>
 		<form name="login_form" method="post" action="${root }/login.animal">
-		
-				<input type="hidden" name="act" value="login">
 		<input type="text" class="form-control" id="email" name="email" size="54" placeholder="E-mail"><br>
 		<input type="password" class="form-control" id="pwd" name="pwd" size="54" placeholder="비밀번호"
 			style="border: 1px solid gray;"><br>
@@ -69,11 +69,8 @@ A:hover {
 			</div>
 			<div style="font-size:16px;">
 				<p>
-					<a href="${root }/idsearch.animal" style="color:black"><b>아이디 찾기</b></a>
+					<a href="${root }/pwdFind.animal" style="color:black"><b>비밀번호 찾기</b></a>
 				</p>
-			</div>
-			<div style="font-size:16px;">
-				<p><b>비밀번호 찾기</b></p>
 			</div>
 		</div>
 		<br>
@@ -97,8 +94,10 @@ A:hover {
 		</table>
 	</div>
 </div>
-	<div id="fb-root"></div>
-	<!-- Facebook login start -->
+</div>
+
+	<!-- <div id="fb-root"></div>
+	Facebook login start
 	<script>
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -110,7 +109,7 @@ A:hover {
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-	<!-- Facebook login end -->
+	Facebook login end -->
 	<!-- Google login start -->
 	<script>
 		function onSignIn(googleUser) {

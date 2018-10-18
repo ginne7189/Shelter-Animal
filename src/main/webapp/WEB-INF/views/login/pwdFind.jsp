@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<%@include file="../common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>비밀번호 변경</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="${root}/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
 	function emailCheck(userEmail) {
 		var xmlhttp = new XMLHttpRequest();
@@ -27,7 +23,7 @@
 					showTxt = "등록되지 않은 이메일 입니다.";
 				} else {
 					window.location
-							.replace("http://192.168.14.12/animalshelter/pwdRequest.animal?email="
+							.replace("http://${myIP}/animalshelter/pwdRequest.animal?email="
 									+ userEmail);
 				}
 				document.getElementById("email_check").innerHTML = showTxt;

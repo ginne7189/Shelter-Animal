@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@include file="../common/common.jsp"%>
 <%
 String root = request.getContextPath();
    String t1width = "30%";
@@ -11,8 +12,6 @@ String root = request.getContextPath();
 <head>
 <meta charset="UTF-8">
 <title>Register</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <style type="text/css">
 .f_size{
 font-size:18px;

@@ -15,7 +15,7 @@
 		</table>
 	</div>
 	<div class="col-md-2" align="right">
-		<b>copyright.</b> team animal
+		<b>copyright.</b> team animalshelter
 	</div>
 </div>
 

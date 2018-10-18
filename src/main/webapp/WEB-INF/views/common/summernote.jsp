@@ -131,4 +131,3 @@ window.onresize = funLoad;
 <!---------------  여기부터 footer 및 좌우여백  ------------------>
 </div>
 <div class="col-sm-1"></div>
-</div>

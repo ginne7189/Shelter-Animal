@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<%@include file="../common/common.jsp"%>
 <%
    String t1width = "30%";
    String t2width = "70%";
@@ -12,9 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Register</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${root}/resources/js/httpRequest.js"></script>
 <style type="text/css">
 .f_size{
 font-size:18px;
@@ -205,8 +201,8 @@ text-align:center;
                      ></td>
                </tr>
          </table>
-         <div style="text-align:center"><font color="#D5D5D5">―――――――――――――――――――――――――――――――――――――――</font><br><br>
-         <button class="form-control" type="submit" name="btn_register" style="margin-left:60px; width:450px; height:50px;"><font size="5"><b>회원가입</b></font></button></div>
+         <div style="text-align:center;"><font color="#D5D5D5">―――――――――――――――――――――――――――――――――――――――</font><br><br>
+         <button class="form-control" type="submit" name="btn_register" style="margin-left:60px; width:450px; height:50px; margin:0 auto;"><font size="5"><b>회원가입</b></font></button></div>
       </form>
    </div>
 </body>
