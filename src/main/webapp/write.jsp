@@ -8,9 +8,9 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <!-- jquery 달력(jQuery UI CSS파일 jQuery, jQuery 기본 js파일, jQuery UI 라이브러리 js파일)-->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -54,43 +54,48 @@ h1:after{
     transition-duration: 0.4s;
     cursor: pointer;
 }
-.button {
+button {
     background-color: #008CBA; 
     border: none;
     color: white;
     padding: 16px 32px;
-    text-align: center;
+    text-align: right;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin-right : 100px;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     cursor: pointer;
 }
-
+.col-sm-3, .col-sm-9{
+	margin-bottom: 50px;
+}
+#datepicker{
+z-index:-1;
+}
 </style>
 <script>
-
+$(document).ready(function(){
+    $( "#datepicker" ).datepicker({
+   	 dateFormat: 'yy-mm-dd'
+  } );
+} );
 function emptycheck(){
 	if($('#summernote').summernote('isEmpty')){
 		alert("내용을 입력하세요");
 	}
-
 }
 function funLoad(){
 	var Cheight = $(window).height();
 	$('#container').css({'height':Cheight+'px'});
 	
 }
-window.onload = funLoad;
-window.onresize = funLoad;
+// window.onload = funLoad;
+// window.onresize = funLoad;
 
 //script구문 내부에 해당 메소드를 입력합니다.
-$( function() {
-    $( "#datepicker" ).datepicker();
-   	 dateFormat: 'yy-mm-dd'
-  } );
+
 </script>
 </head>
 <body style="background-color:#EEEEEE;padding:0px; margin:0px;">
@@ -109,42 +114,32 @@ $( function() {
 		       
 	<div style="margin-top:10%">
 	  <h3>실종정보</h3>	 
-<form class="form" name="user_word" method="post">
-   					 	<div class="row" style="margin:10px 10px 5px 10px ">
-   					 		
-   					 		<div class="col-sm-6">
-									제목 : <input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="제목을 입력하세요" required></br>
-									날짜 : <input type="text" class="form-control" name="bwsubject" placeholder="분실날짜를 입력하세요" id="datepicker" required><br>
-									이름 : <input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지이름을 입력하세요" required><br>
-									종류 : <input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지종류를 입력하세요" required><br>
-									나이 : <input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지나이를 입력하세요" required><br>
-
-							</div>
-							</div>							
-							<div class="row" style="margin:20px 10px 0px 10px ">
-							<div class="col-sm-12" >
+		<form class="form" name="user_word" method="post">
+   					 	<div class="col-sm-12" >
+<!--    					 		<div class="col-sm-12" style="margin-bottom: 30px;"> -->
+								<div class="col-sm-3">제목:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="제목을 입력하세요" required></div>
+								<div class="col-sm-3">날짜:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="분실날짜를 입력하세요" id="datepicker" required></div>
+								<div class="col-sm-3">이름:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지이름을 입력하세요" required></div>
+								<div class="col-sm-3">종류:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지종류를 입력하세요" required></div>
+								<div class="col-sm-3">나이:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지나이를 입력하세요" required></div>
+						</div>
+						<div class="col-sm-12" style="margin:10px 10px 5px 10px ">
 							<textarea class="form-control" placeholder="내용을 입력하세요" id="summernote" name="editordata"></textarea><br>
 							<script>
 								$('#summernote').summernote({
 								  height: 400,                 // set editor height
 								  minHeight: null,             // set minimum height of editor
 								  maxHeight: null,             // set maximum height of editor
-								  focus: true                  // set focus to editable area after initializing summernote
-								});  
+								  focus: true,                 // set focus to editable area after initializing summernote
+								});
 							</script>					
-							</div>
-						</div>
-						
-						<div class="row" style="text-align:center">
 							
-							<div class="input-group-btn">
-							<button type="button" class="btn btn-default" style="margin:10px 0 " onclick="javascript:emptycheck();">글쓰기</button>
-							</div>
+							<button type="submit" class="w3-button w3-block w3-black">Send</button>
 						</div>
-						</form>
+			</form>
 	
 	    </div>
-	    <!-- -->
+
 		<hr>
 		<h3 style="margin-top:20px;"></h3>
 		</div>
@@ -152,6 +147,8 @@ $( function() {
   </body>
   <div class="jumbotron text-center" style="margin-bottom:0"> 
   <p>footer</p>
+  
+
  </div>
 
 </html>

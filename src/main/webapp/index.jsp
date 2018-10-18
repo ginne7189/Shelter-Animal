@@ -12,6 +12,7 @@
 <!-- content -->
 <%@include file="WEB-INF/views/main.jsp"%>
 <%@include file="WEB-INF/views/common/footer.jsp"%>
+
 <div id="content"></div>
 </body>
 </html>
