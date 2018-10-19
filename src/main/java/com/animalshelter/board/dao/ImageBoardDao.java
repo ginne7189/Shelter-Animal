@@ -1,5 +1,5 @@
 package com.animalshelter.board.dao;
 
-public class ImageBoardDao {
+public interface ImageBoardDao {
 
 }
