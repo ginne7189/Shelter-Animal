@@ -8,7 +8,7 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id"
 	content="913701006072-m83o6h66ff1f5cu966hva2k0p57g3s4e.apps.googleusercontent.com">
-<title>login</title>
+<title>로그인</title>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <style type="text/css">
 A:link {
