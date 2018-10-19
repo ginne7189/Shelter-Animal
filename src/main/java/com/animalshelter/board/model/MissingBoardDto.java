@@ -7,9 +7,9 @@ public class MissingBoardDto {
 	private String location;
 	private String missingdate;
 	private String kind;
-	private int weight;
-	private String feature;
+	private String size;
 	private int age;
+	
 	public int getSeq() {
 		return seq;
 	}
@@ -40,23 +40,17 @@ public class MissingBoardDto {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-	public String getFeature() {
-		return feature;
-	}
-	public void setFeature(String feature) {
-		this.feature = feature;
-	}
 	public int getAge() {
 		return age;
 	}
 	public void setAge(int age) {
 		this.age = age;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
 	}
 	
 	

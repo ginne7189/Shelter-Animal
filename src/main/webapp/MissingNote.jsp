@@ -117,14 +117,14 @@ function funLoad(){
 		<form class="form" name="user_word" method="post">
    					 	<div class="col-sm-12" >
 <!--    					 		<div class="col-sm-12" style="margin-bottom: 30px;"> -->
-								<div class="col-sm-3">제목:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="제목을 입력하세요" required></div>
-								<div class="col-sm-3">날짜:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="분실날짜를 입력하세요" id="datepicker" required></div>
-								<div class="col-sm-3">이름:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지이름을 입력하세요" required></div>
-								<div class="col-sm-3">종류:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지종류를 입력하세요" required></div>
-								<div class="col-sm-3">나이:</div><div class="col-sm-9"><input type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지나이를 입력하세요" required></div>
+								<div class="col-sm-3">제목:</div><div class="col-sm-9"><input id="subject" type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="제목을 입력하세요" required></div>
+								<div class="col-sm-3">날짜:</div><div class="col-sm-9"><input id="missingdate" type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="분실날짜를 입력하세요" id="datepicker" required></div>
+								<div class="col-sm-3">이름:</div><div class="col-sm-9"><input id="name" type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지이름을 입력하세요" required></div>
+								<div class="col-sm-3">종류:</div><div class="col-sm-9"><input id="kind" type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지종류를 입력하세요" required></div>
+								<div class="col-sm-3">나이:</div><div class="col-sm-9"><input id="age" type="text" class="form-control" name="bwsubject" style="border-radius:5px;width:80%" placeholder="강아지나이를 입력하세요" required></div>
 						</div>
 						<div class="col-sm-12" style="margin:10px 10px 5px 10px ">
-							<textarea class="form-control" placeholder="내용을 입력하세요" id="summernote" name="editordata"></textarea><br>
+							<textarea id="summernote" class="form-control" placeholder="내용을 입력하세요" name="editordata"></textarea><br>
 							<script>
 								$('#summernote').summernote({
 								  height: 400,                 // set editor height
