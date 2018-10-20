@@ -9,8 +9,8 @@
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <!-- jquery 달력(jQuery UI CSS파일 jQuery, jQuery 기본 js파일, jQuery UI 라이브러리 js파일)-->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -95,7 +95,7 @@ $( function() {
 </head>
 <body style="background-color:#EEEEEE;padding:0px; margin:0px;">
 <%-- <%@include file="../common/sidebar.jsp" %> --%>
-<%@include file="WEB-INF/views/common/header.jsp"%>
+<%-- <%@include file="WEB-INF/views/common/header.jsp"%> --%>
 <!-- content -->
 	<div class="" style="text-align: center;">
 	    <h2>실종 동물 등록</h2>

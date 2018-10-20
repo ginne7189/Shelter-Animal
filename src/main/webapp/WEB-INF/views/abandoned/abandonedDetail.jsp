@@ -79,7 +79,17 @@ if(list!=null){
 	      </tr>
 	      <tr>
 	        <td>성별</td>
-	        <td><%=list.get(index).getSexCd() %></td>
+	        <%
+	        String sex = list.get(index).getSexCd();
+	        if(sex.equals("Q")){
+	        	sex = "모름";
+	        }else if(sex.equals("F")){
+	        	sex="암컷";
+	        }else{
+	        	sex="수컷";
+	        }
+	        %>
+	        <td><%=sex %></td>
 	      </tr>
 	      <tr>
 	      <td>중성화여부</td>
@@ -174,7 +184,8 @@ if(list!=null){
 	<% 
 }else{
 	%>
-	Fuck!
+	<h3>Fuck!</h3>
+	<h4>We have problem!</h4>
 	<%
 }
 %>
