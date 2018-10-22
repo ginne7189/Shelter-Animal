@@ -21,7 +21,6 @@
 			<list>
 				<value>classpath:com/animalshelter/config/mybatis/user.xml</value>
 				<value>classpath:com/animalshelter/config/mybatis/admin.xml</value>
-				<value>classpath:com/animalshelter/config/mybatis/board.xml</value>
 			</list>
 		</property>
 	</bean>

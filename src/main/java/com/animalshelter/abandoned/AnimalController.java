@@ -130,7 +130,7 @@ public class AnimalController {
 			out.print("<div class=\"col\">");
 			out.println("<ul class=\"pagination\">"); // justify-content-center
 			out.println("<li class=\"page-item\">");
-			out.println("    <a class=\"page-link\" href=\"javascript:recentAnimal(1)\" aria-label=\"Previous\">");
+			out.println("    <a class=\"page-link\" href=\"javascript:continueView(1)\" aria-label=\"Previous\">");
 			out.println("        <span aria-hidden=\"true\">&laquo;</span>");
 			out.println("       <span class=\"sr-only\">Previous</span>");
 			out.println("      </a>");
@@ -139,7 +139,7 @@ public class AnimalController {
 				for (int i = 1; i <= 10; i++) {
 					int pg = i;
 					out.println("   <li class=\"page-item\">");
-					out.print("      <a class=\"page-link\" href=\"javascript:recentAnimal(" + pg + ")\"");
+					out.print("      <a class=\"page-link\" href=\"javascript:continueView(" + pg + ")\"");
 					if (i == cnt) {
 						out.print("style=\"font-weight: bold;\">");
 					} else {
@@ -153,20 +153,20 @@ public class AnimalController {
 					int pg = cnt - i;
 					if (pg <= end) {
 						out.println("   <li class=\"page-item\">");
-						out.print("<a class=\"page-link\" href=\"javascript:recentAnimal(" + pg + ")\">" + pg
+						out.print("<a class=\"page-link\" href=\"javascript:continueView(" + pg + ")\">" + pg
 								+ "</a>");
 						out.println("    </li>     ");
 					}
 				}
 				out.println("   <li class=\"page-item\">");
-				out.print("<a class=\"page-link\" style=\"font-weight: bold;\" href=\"javascript:recentAnimal("
+				out.print("<a class=\"page-link\" style=\"font-weight: bold;\" href=\"javascript:continueView("
 						+ cnt + ")\">" + cnt + "</a>");
 				out.println("    </li>     ");
 				for (int i = 1; i <= 5; i++) {
 					int pg = i + cnt;
 					if (pg <= end) {
 						out.println("   <li class=\"page-item\">");
-						out.print("<a class=\"page-link\" href=\"javascript:recentAnimal(" + pg + ")\">" + pg
+						out.print("<a class=\"page-link\" href=\"javascript:continueView(" + pg + ")\">" + pg
 								+ "</a>");
 						out.println("    </li>     ");
 					}
@@ -174,7 +174,7 @@ public class AnimalController {
 			}
 
 			out.println("     <li class=\"page-item\">");
-			out.println("      <a class=\"page-link\" href=\"javascript:recentAnimal(" + end
+			out.println("      <a class=\"page-link\" href=\"javascript:continueView(" + end
 					+ ")\" aria-label=\"Next\">");
 			out.println("       <span aria-hidden=\"true\">&raquo;</span>");
 			out.println("        <span class=\"sr-only\">Next</span>");

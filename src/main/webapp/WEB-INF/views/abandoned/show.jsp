@@ -45,9 +45,15 @@
 		var view = document.getElementById("result");
 		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
 			var text = httpRequest.responseText;
-			view.innerHTML = text;			
+			view.innerHTML = text;	
 		}
 	}	
+	
+	function continueView(pageNo){		
+		var offset = $("#result").offset();
+		$('html, body').animate({scrollTop: offset.top}, 200);
+		recentAnimal(pageNo);
+	}
 </script>
 </head>
 <body onload="recentAnimal(1)">

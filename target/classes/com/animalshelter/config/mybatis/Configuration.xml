@@ -9,6 +9,5 @@
 			type="com.animalshelter.member.model.MemberDto" />
 		<typeAlias alias="memberDetailDto"
 			type="com.animalshelter.member.model.MemberDetailDto" />
-		<typeAlias type=""/>
 	</typeAliases>
 </configuration>
