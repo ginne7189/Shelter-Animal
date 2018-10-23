@@ -5,13 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id"
-	content="913701006072-m83o6h66ff1f5cu966hva2k0p57g3s4e.apps.googleusercontent.com">
 <title>로그인</title>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <style type="text/css">
-A:link {
+/* A:link {
 	text-decoration: none;
 	color: #646464;
 }
@@ -29,7 +25,7 @@ A:active {
 A:hover {
 	text-decoration: none;
 	color: #646464;
-}
+}   */
 </style>
 </head>
 <body>
@@ -95,39 +91,6 @@ A:hover {
 	</div>
 </div>
 </div>
-
-	<!-- <div id="fb-root"></div>
-	Facebook login start
-	<script>
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id))
-				return;
-			js = d.createElement(s);
-			js.id = id;
-			js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.1&appId=2231997260364748&autoLogAppEvents=1';
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
-	Facebook login end -->
-	<!-- Google login start -->
-	<script>
-		function onSignIn(googleUser) {
-			// Useful data for your client-side scripts:
-			var profile = googleUser.getBasicProfile();
-			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-			console.log('Full Name: ' + profile.getName());
-			console.log('Given Name: ' + profile.getGivenName());
-			console.log('Family Name: ' + profile.getFamilyName());
-			console.log("Image URL: " + profile.getImageUrl());
-			console.log("Email: " + profile.getEmail());
-
-			// The ID token you need to pass to your backend:
-			var id_token = googleUser.getAuthResponse().id_token;
-			console.log("ID Token: " + id_token);
-		};
-	</script>
-	<!-- Google login end -->
 	<br>
 </body>
 </html>
