@@ -79,7 +79,8 @@ public class AnimalController {
 			////// get basic info start //////
 			DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
-			String url = service_url + api_key + searchStartDate + searchEndDate + numOfRows;
+			String url = service_url + api_key + searchStartDate + searchEndDate + animalKind + kindDetail + cityCode
+					+ districtCode + shelterCode + numOfRows;
 			Document doc = dBuilder.parse(url);
 			// root tag
 			doc.getDocumentElement().normalize();
