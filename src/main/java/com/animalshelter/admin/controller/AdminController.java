@@ -71,6 +71,7 @@ public class AdminController {
 
 	@RequestMapping(value = "photoUpload.animal", method = RequestMethod.POST)
 	public void test(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/plain; charset=UTF-8");
 		String uploadPath = servletContext.getRealPath("/upload/img");
 		int size = 10 * 1024 * 1024; // 업로드 사이즈 제한 10M 이하
 		File dir = new File(uploadPath);

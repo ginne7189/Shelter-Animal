@@ -15,7 +15,7 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-	<!-- https://mvnrepository.com/artifact/com.servlets/cos -->
+		<!-- https://mvnrepository.com/artifact/com.servlets/cos -->
 		<dependency>
 			<groupId>com.servlets</groupId>
 			<artifactId>cos</artifactId>

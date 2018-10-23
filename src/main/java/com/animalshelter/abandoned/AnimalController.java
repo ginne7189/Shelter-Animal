@@ -11,7 +11,6 @@ import javax.xml.parsers.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -43,8 +42,8 @@ public class AnimalController {
 		String cityCode = "&upr_cd=";
 		String districtCode = "&org_cd=";
 		String shelterCode = "&care_reg_no=";
-		String state = "&state=";
-		String neuter_yn = "&neuter_yn=";
+		/*String state = "&state=";
+		String neuter_yn = "&neuter_yn=";*/
 
 		if (map.get("searchStartDate") != null) {
 			searchStartDate += map.get("searchStartDate");
