@@ -6,9 +6,9 @@
 <%
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Calendar cal = Calendar.getInstance();
-	
+
 	String searchEndDate = sdf.format(cal.getTime()); // today
-	cal.add(Calendar.MONTH,-1);
+	cal.add(Calendar.MONTH, -1);
 	String searchStartDate = sdf.format(cal.getTime());
 %>
 <%@include file="../common/header.jsp"%>
@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">	
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SEARCHING</title>
 <style>
 .card-img-top {
@@ -27,31 +27,149 @@
 /* .navbar-brand {
 	padding-left: 366px !important;
 } */
-</style> 
+</style>
 
 <script type="text/javascript">
 	var isClick = 0;
 
-	function recentAnimal(pageNo) {
+	 function recentAnimal(pageNo) {
 		var searchStartDate = document.getElementById("searchStartDate").value;
 		var searchEndDate = document.getElementById("searchEndDate").value;
+		var animalKind = document.getElementById("animalKind").value;
+		var kindDetail = document.getElementById("kindDetail").value;
+		var cityCode = document.getElementById("city").value;
+		var districtCode = document.getElementById("district").value;
+		var shelterCode = document.getElementById("shelterList").value;
+		/* var state = document.getElementById("searchEndDate").value;
+		var neuter_yn = document.getElementById("searchEndDate").value; */
+		
+		
 		var params = "searchStartDate=" + searchStartDate + "&searchEndDate="
 				+ searchEndDate + "&pageNo=" + pageNo;
-		
-		sendRequest("${root}/abandoned.animal", params, viewResult, "POST");	
-	}
+		params+="&animalKind="+animalKind;
+		params+="&kindDetail="+kindDetail;
+		params+="&cityCode="+cityCode;
+		params+="&districtCode="+districtCode;
+		params+="&shelterCode="+shelterCode;
+
+		sendRequest("${root}/abandoned.animal", params, viewResult, "POST");
+	} 	
 
 	function viewResult() {
 		var view = document.getElementById("result");
 		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
 			var text = httpRequest.responseText;
-			view.innerHTML = text;			
+			view.innerHTML = text;
 		}
-	}	
+	}
+
+	function continueView(pageNo) {
+		var offset = $("#result").offset();
+		$('html, body').animate({
+			scrollTop : offset.top
+		}, 200);
+		recentAnimal(pageNo);
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "http://${myIP}${root}/getCity.animal",
+		dataType : "json",
+		success : function(data) {
+			$.each(data.city,function(key,value) {
+				var orgCd = value.orgCd;
+				var orgdownNm = value.orgdownNm;
+				$('#city').append($('<option>',{ value: orgCd, text: orgdownNm }));				
+			});			
+		},
+		error : function(e) {
+			alert("처리중 장애가 발생하였습니다.");
+		}
+	});
+	
+	$(document).ready(function(){	
+		$("#city").change(function() {
+			
+			$("select[name='district'] option").remove();
+			$('#district').append($('<option>',{ value: "", text: "전체" }));
+			
+			$("select[name='shelterList'] option").remove();
+			$('#shelterList').append($('<option>',{ value: "", text: "전체" }));
+			
+			var cityCode= $("#city option:selected").val();
+			
+			$.ajax({
+				type : "POST",
+				url : "http://${myIP}${root}/getDistrict.animal",
+				data : {upr_cd : cityCode},
+				dataType : "json",
+				success : function(data) {
+					$.each(data.district,function(key,value) {
+						var orgCd = value.orgCd;
+						var orgdownNm = value.orgdownNm;
+						$('#district').append($('<option>',{ value: orgCd, text: orgdownNm }));				
+					});			
+				},
+				error : function(e) {
+					alert("처리중 장애가 발생하였습니다.");
+				}
+			});
+		});
+		
+		$("#district").change(function() {
+			
+			$("select[name='shelterList'] option").remove();
+			$('#shelterList').append($('<option>',{ value: "", text: "전체" }));
+			
+			var cityCode= $("#city option:selected").val();
+			var districtCode = $("#district option:selected").val();
+			
+			$.ajax({
+				type : "POST",
+				url : "http://${myIP}${root}/getShelter.animal",
+				data : {upr_cd : cityCode, org_cd : districtCode},
+				dataType : "json",
+				success : function(data) {
+					$.each(data.shelterList,function(key,value) {
+						var careNm = value.careNm;
+						var careRegNo = value.careRegNo;
+						$('#shelterList').append($('<option>',{ value: careRegNo, text: careNm }));				
+					});			
+				},
+				error : function(e) {
+					alert("처리중 장애가 발생하였습니다.");
+				}
+			});
+		});
+		
+		$("#animalKind").change(function() {
+			
+			$("select[name='kindDetail'] option").remove();
+			$('#kindDetail').append($('<option>',{ value: "", text: "전체" }));
+			
+			var animalCode = $("#animalKind option:selected").val();
+			$.ajax({
+				type : "POST",
+				url : "http://${myIP}${root}/kindDetail.animal",
+				data : {up_kind_cd : animalCode},
+				dataType : "json",
+				success : function(data) {
+					$.each(data.kindDetail,function(key,value) {
+						var nameOfKind = value.nameOfKind;
+						var kindCode = value.kindCode;
+						$('#kindDetail').append($('<option>',{ value: kindCode, text: nameOfKind }));				
+					});			
+				},
+				error : function(e) {
+					alert("처리중 장애가 발생하였습니다.");
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body onload="recentAnimal(1)">
-	
+
 	<div class="jumbotron toplayout" style="text-align: center;">
 		<h2>유기동물 리스트페이지</h2>
 		<h4>유기동물 리스트가 나오는 페이지입니다</h4>
@@ -68,11 +186,31 @@
 				id="searchEndDate" name="searchEndDate" value="<%=searchEndDate%>"
 				max="<%=searchEndDate%>" required style="border: 1px solid gray;">
 		</div>
-		<input type="button" value="검색" onclick="javascript:recentAnimal(1)">
+		<div class="SearchByLocation">
+			시도 <select id="city" name="city">
+				<option value="">전체</option>
+			</select> 구군 <select id="district" name ="district">
+				<option value="">전체</option>
+			</select> 보호센터 <select id= "shelterList" name = "shelterList">
+				<option value=""> 전체 </option>
+			</select>
+		</div>
+		<div class="SearchByKind">
+			품종 <select id="animalKind" name ="animalKind">
+				<option value="">전체</option>
+				<option value="417000">개</option>
+				<option value="422400">고양이</option>
+				<option value="429900">기타</option>
+			</select>
+			상세 <select id="kindDetail" name ="kindDetail">
+				<option value="">전체</option>
+			</select>
+		</div>
+		<input type="button" id="btnSearch" value="검색" onclick="javascript:recentAnimal(1)">
 	</div>
 	<!-- Page Content -->
 	<div class="container">
 		<div class="row" id="result"></div>
-	</div>	
+	</div>
 </body>
 </html>
