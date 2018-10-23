@@ -32,10 +32,6 @@ $(document).ready(function() {
 		
 	});
 	
-	
-	
-	
-	
 	$(".movepage").click(function() {
 		moveBoard('${bcode}', $(this).attr("mv-page-no"), '${key}', '${word}', 'list');
 		getList($(this).attr("mv-page-no"));

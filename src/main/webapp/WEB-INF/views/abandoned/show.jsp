@@ -1,8 +1,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@include file="../common/common.jsp"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Calendar cal = Calendar.getInstance();
@@ -32,7 +31,7 @@
 <script type="text/javascript">
 	var isClick = 0;
 
-	 function recentAnimal(pageNo) {
+	function recentAnimal(pageNo) {
 		var searchStartDate = document.getElementById("searchStartDate").value;
 		var searchEndDate = document.getElementById("searchEndDate").value;
 		var animalKind = document.getElementById("animalKind").value;
@@ -42,18 +41,17 @@
 		var shelterCode = document.getElementById("shelterList").value;
 		/* var state = document.getElementById("searchEndDate").value;
 		var neuter_yn = document.getElementById("searchEndDate").value; */
-		
-		
+
 		var params = "searchStartDate=" + searchStartDate + "&searchEndDate="
 				+ searchEndDate + "&pageNo=" + pageNo;
-		params+="&animalKind="+animalKind;
-		params+="&kindDetail="+kindDetail;
-		params+="&cityCode="+cityCode;
-		params+="&districtCode="+districtCode;
-		params+="&shelterCode="+shelterCode;
+		params += "&animalKind=" + animalKind;
+		params += "&kindDetail=" + kindDetail;
+		params += "&cityCode=" + cityCode;
+		params += "&districtCode=" + districtCode;
+		params += "&shelterCode=" + shelterCode;
 
 		sendRequest("${root}/abandoned.animal", params, viewResult, "POST");
-	} 	
+	}
 
 	function viewResult() {
 		var view = document.getElementById("result");
@@ -70,95 +68,126 @@
 		}, 200);
 		recentAnimal(pageNo);
 	}
-	
+
 	$.ajax({
 		type : "POST",
 		url : "http://${myIP}${root}/getCity.animal",
 		dataType : "json",
 		success : function(data) {
-			$.each(data.city,function(key,value) {
+			$.each(data.city, function(key, value) {
 				var orgCd = value.orgCd;
 				var orgdownNm = value.orgdownNm;
-				$('#city').append($('<option>',{ value: orgCd, text: orgdownNm }));				
-			});			
+				$('#city').append($('<option>', {
+					value : orgCd,
+					text : orgdownNm
+				}));
+			});
 		},
 		error : function(e) {
 			alert("처리중 장애가 발생하였습니다.");
 		}
 	});
-	
-	$(document).ready(function(){	
+
+	$(document).ready(function() {
 		$("#city").change(function() {
-			
+
 			$("select[name='district'] option").remove();
-			$('#district').append($('<option>',{ value: "", text: "전체" }));
-			
+			$('#district').append($('<option>', {
+				value : "",
+				text : "전체"
+			}));
+
 			$("select[name='shelterList'] option").remove();
-			$('#shelterList').append($('<option>',{ value: "", text: "전체" }));
-			
-			var cityCode= $("#city option:selected").val();
-			
+			$('#shelterList').append($('<option>', {
+				value : "",
+				text : "전체"
+			}));
+
+			var cityCode = $("#city option:selected").val();
+
 			$.ajax({
 				type : "POST",
 				url : "http://${myIP}${root}/getDistrict.animal",
-				data : {upr_cd : cityCode},
+				data : {
+					upr_cd : cityCode
+				},
 				dataType : "json",
 				success : function(data) {
-					$.each(data.district,function(key,value) {
+					$.each(data.district, function(key, value) {
 						var orgCd = value.orgCd;
 						var orgdownNm = value.orgdownNm;
-						$('#district').append($('<option>',{ value: orgCd, text: orgdownNm }));				
-					});			
+						$('#district').append($('<option>', {
+							value : orgCd,
+							text : orgdownNm
+						}));
+					});
 				},
 				error : function(e) {
 					alert("처리중 장애가 발생하였습니다.");
 				}
 			});
 		});
-		
+
 		$("#district").change(function() {
-			
+
 			$("select[name='shelterList'] option").remove();
-			$('#shelterList').append($('<option>',{ value: "", text: "전체" }));
-			
-			var cityCode= $("#city option:selected").val();
+			$('#shelterList').append($('<option>', {
+				value : "",
+				text : "전체"
+			}));
+
+			var cityCode = $("#city option:selected").val();
 			var districtCode = $("#district option:selected").val();
-			
+
 			$.ajax({
 				type : "POST",
 				url : "http://${myIP}${root}/getShelter.animal",
-				data : {upr_cd : cityCode, org_cd : districtCode},
+				data : {
+					upr_cd : cityCode,
+					org_cd : districtCode
+				},
 				dataType : "json",
 				success : function(data) {
-					$.each(data.shelterList,function(key,value) {
+					$.each(data.shelterList, function(key, value) {
 						var careNm = value.careNm;
 						var careRegNo = value.careRegNo;
-						$('#shelterList').append($('<option>',{ value: careRegNo, text: careNm }));				
-					});			
+						$('#shelterList').append($('<option>', {
+							value : careRegNo,
+							text : careNm
+						}));
+					});
 				},
 				error : function(e) {
 					alert("처리중 장애가 발생하였습니다.");
 				}
 			});
 		});
-		
+
 		$("#animalKind").change(function() {
-			
+
 			$("select[name='kindDetail'] option").remove();
-			$('#kindDetail').append($('<option>',{ value: "", text: "전체" }));
-			
+			$('#kindDetail').append($('<option>', {
+				value : "",
+				text : "전체"
+			}));
+
 			var animalCode = $("#animalKind option:selected").val();
 			$.ajax({
 				type : "POST",
 				url : "http://${myIP}${root}/kindDetail.animal",
-				data : {up_kind_cd : animalCode},
+				data : {
+					up_kind_cd : animalCode
+				},
 				dataType : "json",
 				success : function(data) {
-					$.each(data.kindDetail,function(key,value) {
+					$.each(data.kindDetail, function(key, value) {
 						var nameOfKind = value.nameOfKind;
 						var kindCode = value.kindCode;
-						$('#kindDetail').append($('<option>',{ value: kindCode, text: nameOfKind }));				
-					});			
+						$('#kindDetail').append($('<option>', {
+							value : kindCode,
+							text : nameOfKind
+						}));
+					});
 				},
 				error : function(e) {
 					alert("처리중 장애가 발생하였습니다.");
@@ -174,35 +203,37 @@
 		<h2>유기동물 리스트페이지</h2>
 		<h4>유기동물 리스트가 나오는 페이지입니다</h4>
 		<h5>검색 옵션창은 어디로..?</h5>
-		<b>공고중</b> : 등록날짜로부터 일주일간 공고하며, 최초 공고 이후 10일이 지난 이후로는 해당 시,도지사 또는
-		시장,군수,구청장이 그 동물의 소유권을 취득하게 됩니다. <br> 그 이후 보호 단계로 넘어가게 됩니다. <br>
-		<br> <b>보호중</b> : 보호중의 경우, 최초 등록일로부터 10일이 지난 이후이며, 이 경우 새로운 주인을
-		찾거나 혹은 경우에 따라 안락사가 진행되게 됩니다. <br> 보호중인 동물들은 새로운 주인을 간절하게 기다리고
-		있습니다. <br>
+		<b>공고중</b> : 등록날짜로부터 일주일간 공고하며, 최초 공고 이후 10일이 지난 이후로는 해당 시,도지사 또는 시장,군수,구청장이 그 동물의 소유권을 취득하게 됩니다. <br> 그 이후 보호 단계로 넘어가게 됩니다. <br> <br> <b>보호중</b> : 보호중의 경우, 최초 등록일로부터 10일이 지난 이후이며, 이 경우 새로운 주인을 찾거나 혹은 경우에 따라 안락사가 진행되게 됩니다. <br> 보호중인 동물들은 새로운 주인을 간절하게 기다리고 있습니다. <br>
 		<div class="SearchDate">
-			등록날짜 <input type="date" id="searchStartDate" name="searchStartDate"
-				value="<%=searchStartDate%>" max="<%=searchEndDate%>" required
-				style="border: 1px solid gray;"> ~ <input type="date"
-				id="searchEndDate" name="searchEndDate" value="<%=searchEndDate%>"
-				max="<%=searchEndDate%>" required style="border: 1px solid gray;">
+			등록날짜
+			<input type="date" id="searchStartDate" name="searchStartDate" value="<%=searchStartDate%>" max="<%=searchEndDate%>" required style="border: 1px solid gray;">
+			~
+			<input type="date" id="searchEndDate" name="searchEndDate" value="<%=searchEndDate%>" max="<%=searchEndDate%>" required style="border: 1px solid gray;">
 		</div>
 		<div class="SearchByLocation">
-			시도 <select id="city" name="city">
+			시도
+			<select id="city" name="city">
 				<option value="">전체</option>
-			</select> 구군 <select id="district" name ="district">
+			</select>
+			구군
+			<select id="district" name="district">
 				<option value="">전체</option>
-			</select> 보호센터 <select id= "shelterList" name = "shelterList">
-				<option value=""> 전체 </option>
+			</select>
+			보호센터
+			<select id="shelterList" name="shelterList">
+				<option value="">전체</option>
 			</select>
 		</div>
 		<div class="SearchByKind">
-			품종 <select id="animalKind" name ="animalKind">
+			품종
+			<select id="animalKind" name="animalKind">
 				<option value="">전체</option>
 				<option value="417000">개</option>
 				<option value="422400">고양이</option>
 				<option value="429900">기타</option>
 			</select>
-			상세 <select id="kindDetail" name ="kindDetail">
+			상세
+			<select id="kindDetail" name="kindDetail">
 				<option value="">전체</option>
 			</select>
 		</div>
