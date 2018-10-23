@@ -1,10 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
-  
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>    
+
 <!DOCTYPE html>
 <html>
 <head>
- 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<c:if test="${email == null }">
+
+<script >
+
+
+$(document).ready(function() {
+	if("${sidebar}" == "side"){
+		getList1();
+	}else{
+		getList();
+	}
+	$("#searchBtn").click(function() {
+		
+		getList1();
+		//$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		
+	});
+	$(".w3-bar-item").click(function() {
+// 		alert("${root}/sidebar/"+$(this).attr("value")+".animal");
+		$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		
+	});
+	
+});
+
+function getList() {
+	$.ajax({
+		type : "POST",
+		url : "${root}/sidebar/articlelist.animal",
+		dataType : "json",
+		data : {"sidebar": "sidebar"},
+		success : function(data) {
+			makeList(data);
+			
+		},
+		error : function(e) {
+			
+		}
+	});
+}
+function getList1() {
+	$.ajax({
+		type : "POST",
+		url : "${root}/sidebar/articlelist.animal",
+		dataType : "json",
+		data : {"sidebar":"side"},
+		success : function(data) {
+			makeList(data);
+			
+		},
+		error : function(e) {
+			
+		}
+	});
+}
+
+function makeList(data) {
+	$("#listview").empty();
+	var view=$("#listview");
+	var members=data.members;//{"members" : [{}, {}, {} ...]}
+	for(var i=0;i<members.length;i++) {
+		var tr = $("<tr></tr>").						
+						append($("<td></td>").text(members[i].email)).
+					   append($("<td></td>").text(members[i].seq)).
+					   append($("<td></td>").text(members[i].subject)).
+					   append($("<td></td>").text(members[i].boardtype)).
+					   append($("<td></td>").text(members[i].joindate)).
+					   append($("<td></td>").text(members[i].hit));
+		
+		
+		$("#listview").append(tr);
+	}
+}
+</script>
+</c:if>
 <style>
 .sidebar{
 	position:fixed;
@@ -63,9 +141,10 @@ h2:after{
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-
-	<%@include file="../common/sidebar.jsp" %>
-     <%@include file="../common/header.jsp" %>
+	<%@include file="../common/sidebar.jsp"%>
+	
+	<%@include file="../common/header.jsp"%>
+	
      <div class="jumbotron toplayout" style="text-align: center;">
 	    <h2>마이페이지</h2>
 	    <h4>내가 쓴 글 보기</h4>
@@ -80,67 +159,32 @@ h2:after{
 	  <div style="margin-top:8%; margin-bottom:2%">
 	  <h4>자유게시판</h4> </div>
 	  <div class="row" style="margin-bottom:5%">
+	  <table width="900">
+<tr>
+	<td align="right">
+	<select id="key">
+		<option value="email">작성자
+		<option value="subject">제목
+	</select>
+	<input type="text" id="word">
+	<input type="button" id="searchBtn" value="검색">
+	</td>
+</tr>
+</table>
 	  <table class="table">
 	    <thead>
 	      <tr>
-	        <th><input type="checkbox"></th>
+	        <th>작성자</th>
 	        <th>글번호</th>	         
 	         <th>제목</th>
-	         <th>글종류</th>
+	         <th>${email }</th>
 	        <th>작성일시</th>
 	        <th>조회수</th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>1</td>
-	        <td>시츄가 실종되었어요</td>
-	        <td>실종</td>
-	        <td>2017-08-10</td>
-	        <td>4</td>
-	      </tr>
-	      <tr>	        
-	        <td><input type="checkbox"></td>
-	        <td>2</td>
-	        <td>말티즈 분양받으실분 구합니다.</td>
-	        <td>분양</td>
-	        <td>2017-08-10</td> 
-	        <td>14</td>
-	      </tr>
-	       <tr>	        
-	        <td><input type="checkbox"></td>
-	        <td>2</td>
-	        <td>말티즈 분양받으실분 구합니다.</td>
-	        <td>분양</td>
-	        <td>2017-08-10</td> 
-	        <td>14</td>
-	      </tr>
-	       <tr>	        
-	        <td><input type="checkbox"></td>
-	        <td>2</td>
-	        <td>말티즈 분양받으실분 구합니다.</td>
-	        <td>분양</td>
-	        <td>2017-08-10</td> 
-	        <td>14</td>
-	      </tr>
-	       <tr>	        
-	        <td><input type="checkbox"></td>
-	        <td>2</td>
-	        <td>말티즈 분양받으실분 구합니다.</td>
-	        <td>기타</td>
-	        <td>2017-08-10</td> 
-	        <td>14</td>
-	      </tr>
-	       <tr>	        
-	        <td><input type="checkbox"></td>
-	        <td>2</td>
-	        <td>말티즈 분양받으실분 구합니다.</td>
-	        <td>기타</td>
-	        <td>2017-08-10</td> 
-	        <td>14</td>
-	      </tr>
 
+	    <tbody id="listview"></tbody>  
 	    </tbody>
 	  </table>
 	   <!-- /.container -->
@@ -177,8 +221,7 @@ h2:after{
 			</li>
 		</ul> 
 		<div style="margin-left:30%">
-			<input type="button"  class="btn btn-outline-primary" id="select_img3"  value="수정" />
-			<input type="button"  class="btn btn-outline-primary" id="select_img3"  value="삭제" />
+		
 		</div>
    		</div>
 	</div>	    

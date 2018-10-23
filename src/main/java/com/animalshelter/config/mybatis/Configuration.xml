@@ -9,5 +9,15 @@
 			type="com.animalshelter.member.model.MemberDto" />
 		<typeAlias alias="memberDetailDto"
 			type="com.animalshelter.member.model.MemberDetailDto" />
+		<typeAlias alias="boardDto" 
+			type="com.animalshelter.sidebar.model.BoardDto"/>
+		<typeAlias alias="parcelDto" 
+			type="com.animalshelter.sidebar.model.ParcelDto"/>
+		<typeAlias alias="donationDto" 
+			type="com.animalshelter.sidebar.model.DonationDto"/>
+		<typeAlias alias="volunteerDto" 
+			type="com.animalshelter.sidebar.model.VolunteerDto"/>
+		<typeAlias alias="pageNavigation" 
+			type="com.animalshelter.sidebar.model.PageNavigation"/>
 	</typeAliases>
 </configuration>

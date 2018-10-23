@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,9 +124,10 @@ h1:after{
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-<%@include file="../common/sidebar.jsp" %>
-
-<%@include file="../common/header.jsp" %>
+<c:if test="${email == null }">
+	<%@include file="../common/sidebar.jsp"%>
+</c:if>
+	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron toplayout" style="text-align: center;">
 	    <h2>마이페이지</h2>
 	    <h4>내정보보기</h4>
@@ -148,13 +152,19 @@ h1:after{
 
     <label for="psw-repeat"><b>비밀번호 확인</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    
+  	<label for="psw-repeat"><b>전화번호</b></label>
+    <input type="text" placeholder="Enter Tel" name="psw-repeat" required>
+    
+    <label for="psw-repeat"><b>주소</b></label>
+    <input type="text" placeholder="Enter Email" name="psw-repeat" required>
     <hr>
 
     
   </div>
 
 <div style="margin-left:85%" >
-		<button type="button" class="button button1" data-toggle="modal" data-target="#dntModal">회원가입</button>
+		<button type="button" class="button button1" data-toggle="modal" data-target="#dntModal">작성완료</button>
 		
 		<div class="modal fade" id="dntModal" tabindex="-1" role="dialog" aria-labelledby="dntModalLabel">
 		<div class="modal-dialog" role="document">

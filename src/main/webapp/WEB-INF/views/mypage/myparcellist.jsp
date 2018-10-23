@@ -1,191 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
-  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>  
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<c:if test="${email == null }">
+<script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/portfolio-item.css" rel="stylesheet">
-<style>
-.sidebar{
-	position:fixed;
+$(document).ready(function() {
+	
+	if("${sidebar}" == "side"){
+		getList1();
+	}else{
+		getList();
+	}
+	$("#searchBtn").click(function() {
+		
+		getList1();
+		//$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		
+	});
+	$(".w3-bar-item").click(function() {
+		
+		$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		
+	});
+	
+});
+
+function getList() {
+
+	$.ajax({
+		type : "POST",
+		url : "${root}/sidebar/parcel.animal",
+		dataType : "json",
+		data : {"sidebar": "sidebar"},
+		success : function(data) {
+			makeList(data);
+			
+		},
+		error : function(e) {
+			
+		}
+	});
+}
+function getList1() {
+	$.ajax({
+		type : "POST",
+		url : "${root}/sidebar/parcel.animal",
+		dataType : "json",
+		data : {"sidebar":"side"},
+		success : function(data) {
+			makeList(data);
+			
+		},
+		error : function(e) {
+			
+		}
+	});
+}
+
+
+
+function makeList(data){
+	var view=$("#main");
+	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
+	var viewlist="";
+// 	$("#main").empty();
+// 	var members = data.members;
+	for(var i=0;i<members.length ;i++){
+		viewlist +="<table>";	
+		viewlist +="</table>";
+		viewlist +="</div>";
+		viewlist += "<div class='col-lg-4 col-sm-6' style='padding: 10px; padding-left: 0px;' >";
+		viewlist += "<div class='card h-100'>";
+		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
+		viewlist +=  "<div class='card-body'>";
+		viewlist +=   "<h4 class='card-title'>"; 
+		viewlist +=      "<a href='#'>"+members[i].subject+"</a>";
+		viewlist +=   "</h4>";
+		viewlist +=    "<p class='card-text'>	 <b>품종 :</b> "+members[i].kind+"</p>";
+		viewlist +=    "<p class='card-text'>	 <b>나이 :</b> "+members[i].age+"	</p>";
+		viewlist +=    "<p class='card-text'>	 <b>체중 :</b> "+members[i].weight+"	</p>";
+		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
+		viewlist +=  "</div>";
+		viewlist += "</div>";
+      
+
+	}
+	
+	view.append(viewlist);
+}
+
+</script>
+</c:if>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<style type="text/css">
+body{
+	font-family: 'Noto Sans KR', sans-serif;
 }
 .card-img-top{
 	width : 100%;
-	height : 300px;
+	height: 300px;
 }
-.container-fluid{
-	width : 88%;
+.container{
+	width : 60%;
 }
-h2:after{
-  content: "";
-        display: block;
-        width: 60px;
-        border-bottom: 2px solid #bcbcbc;
-        margin: 20px auto;
+.container{
+	margin-top: 100px;	
 }
-.button1 {
-    background-color: white;
-    color: black;
-    border: 2px solid #555555;
+.jumbotron{
+	text-align: center;
 }
-.button2 {
-    background-color: #008CBA;
-    color: white;
- 	border: none;
-     padding: 12px 20px;
-     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
+#first{
+	margin-top: 30px;
 }
-.button {
-    background-color: #008CBA; 
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-.form-control{
-	margin:auto;
-	width:40%;
+#second{
+	margin-top: 30px;
 }
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-<%@include file="../common/sidebar.jsp" %>
-<%@include file="../common/header.jsp" %>  
-<div class="jumbotron toplayout" style="text-align: center;">
+<c:if test="${email != null }">
+	<%@include file="../common/sidebar.jsp"%>
+</c:if>
+	<%@include file="../common/header.jsp"%>
+	<div class="jumbotron toplayout" style="text-align: center;">
 	    <h2>마이페이지</h2>
-	    <h4>분양신청내역</h4>
+	    <h4>관심동물보기</h4>
 	</div>
+<!-- 동물 리스트 -->
     <!-- Page Content -->
-    <div class="container-fluid" style="width:48%; display:inline-block; text-align:center; margin-left: 26%;margin-top:2%; background-color=yellow;">
-<!-- 		<div class="col-sm-6" style="float:left;"> -->
-		      <!-- Portfolio Item Heading -->
+    <div class="container">
 
-  	  <div class="container">
-	  
-	<div style="margin-top:5%">
-  	<h2>분양 신청내역</h2>
-  	<div class="row" style="margin-bottom:5%">
-  	<table class="table">
-	    <thead>
-	      <tr>
-	         <th><input type="checkbox"></th>
-	        <th>글번호</th>
-	        <th>센터이름</th>
-	         <th>묘종/견종</th>         
-	         <th>특징</th>
-	        <th>신청일</th>
-	        <th>조회수</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>1</td>
-	    	<td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>2</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>3</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>3</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>3</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>3</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>3</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	      <tr>
-	        <td><input type="checkbox"></td>
-	        <td>3</td>
-	        <td>용인보호소</td>
-	        <td>웰시코기</td>
-	        <td>원/구충 완료</td>
-	        <td>2018-10-09</td>
-	        <td>6</td>
-	      </tr>
-	    </tbody>
-	  </table>
-	  <div class="container" style="margin-left:40%">
+      <div class="row" id="main" style="padding:0px; margin:0px;">
+      
+        
+   </div>
+      	<div class="col-sm-2" style="margin-right: 30px;float: right"></div> 
+    </div>
+	
+	 <!-- /.container -->
+    <div class="container" style="margin-top: 150px">
 		<!-- ㅍㅔ이징 처리 -->
-		<div class="row" >
-		<ul class="pagination justify-content-center" >
+		<ul class="pagination justify-content-center">
 			<li class="page-item">
 				<a class="page-link" href="#" aria-label="Previous">
 					<span aria-hidden="true">&laquo;</span>
@@ -214,23 +182,11 @@ h2:after{
 				</a>
 			</li>
 		</ul> 
-		<div style="margin-left:30%">
-			<input type="button"  class="btn btn-outline-primary" id="select_img3"  value="수정" />
-			<input type="button"  class="btn btn-outline-primary" id="select_img3"  value="삭제" />
-		</div>
-   		</div>
-	</div>	    
-	  </div>
-	</div>
-   </div>
-	   
-</div>
-
-  </body>
-  <div class="jumbotron text-center" style="margin-bottom:0"> 
-  <p>footer</p>
- </div>
-
+	</div>	     
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</body>
 </html>
-
 

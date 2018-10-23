@@ -13,6 +13,10 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
 </style> 
 </head>
 <body>
+<form class="mvform" >
+<input type="hidden" class="acode" name="acode" value="sidebar" >
+<!-- <input type="hidden" class="acode" name="acode" value="aa" > -->
+</form>
 <!-- header1 -->
 <nav class="navbar navbar-expand-sm bg-yellow navbar-yellow" style="height:44px;">
     <ul class="navbar-nav" style=" position: absolute;right: 3%;">
@@ -48,6 +52,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/volunteerDetail.animal">봉사소개</a>
       <a class="dropdown-item" href="${root}/volunteerReg.animal">봉사신청</a>
+      <a class="dropdown-item" href="${root}/sidebar/volunteer.animal" >봉사목록</a>
     </div>
   </li> 
   
@@ -65,6 +70,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
       <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
       <a class="dropdown-item" href="${root}/missingReg.animal">실종동물등록</a>
       <a class="dropdown-item" href="#">실종동물찾기</a>
+      <a class="dropdown-item" href="${root}/sidebar/missing.animal">실종동물목록</a>
     </div>
   </li> 
   
@@ -74,6 +80,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
       <a class="dropdown-item" href="#">분양소개</a>
       <a class="dropdown-item" href="#">분양등록</a>
       <a class="dropdown-item" href="#">개인분양</a>
+      <a class="dropdown-item" href="${root}/sidebar/parcel.animal">분양신청목록</a>
     </div>
   </li> 
   <li class="nav-item dropdown">
@@ -81,6 +88,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/donation.animal">후원소개</a>
       <a class="dropdown-item" href="${root}/donationReg.animal">후원신청</a>
+        <a class="dropdown-item" href="${root}/sidebar/donation.animal">후원목록</a>
     </div>
   </li> 
   </ul>

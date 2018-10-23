@@ -11,6 +11,8 @@
 	<!-- content -->
 	<%@include file="WEB-INF/views/main.jsp"%>
 	<%@include file="WEB-INF/views/common/footer.jsp"%>
+	<a href="${root}/sidebar/parcel.animal" value="parcel" id=article class="w3-bar-item">내가 쓴 글</a> 
+	
 	<div id="content"></div>
 </body>
 </html>
