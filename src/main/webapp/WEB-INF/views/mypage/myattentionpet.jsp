@@ -41,7 +41,7 @@ body{
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-
+<div class="detail" value="val"><p>관심동물상세</p></div>
 <c:if test="${email != null }">
 
 	<%@include file="../common/sidebar.jsp"%>
@@ -50,7 +50,7 @@ body{
 	<div class="jumbotron toplayout" style="text-align: center;">
 	    <h2>마이페이지</h2>
 	    <h4>관심동물보기</h4>
-	    <input type="button" id="searchBtn" value="검색" style="width:50px;">
+	    
 	</div>
 <!-- 동물 리스트 -->
     <!-- Page Content -->
@@ -77,6 +77,9 @@ body{
 		pages</td>
 	</tr>
 		</table>
+		
+		
+		
 <!--     	<table> -->
 <!--     	<tr> -->
 <%--     	<td width="100%" align="center"><!--PAGE--> ${navigator.navigator}</td> --%>

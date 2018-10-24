@@ -100,12 +100,12 @@ public class PageNavigation {
 		tmpNavigator.append("<ul class=\"pagination justify-content-center\" >\n");
 		if (this.isNowFirst()) {
 			tmpNavigator.append("  <li>\n");
-			tmpNavigator.append("   <a class=\"page-link\" href=\"#\" aria-label=\"Previous\">");
+			tmpNavigator.append("   <a class=\"page-link\" aria-label=\"Previous\">");
 			tmpNavigator.append("		<span aria-hidden=\"true\">&laquo;</span>");
 			tmpNavigator.append("   <span class=\"sr-only\">Previous</span></a></li>");
 		} else {
-			tmpNavigator.append("  <li class=\"page-item\" mv-page-no=\"\" +prePage+ \"\">\n");
-			tmpNavigator.append("   <a class=\"page-link\" href=\"#\" aria-label=\"Previous\">");
+			tmpNavigator.append("  <li class=\"page-item\" mv-page-no=\"" +prePage+ "\">\n");
+			tmpNavigator.append("   <a class=\"page-link\" aria-label=\"Previous\">");
 			tmpNavigator.append("		<span aria-hidden=\"true\">&laquo;</span>");
 			tmpNavigator.append("   <span class=\"sr-only\" >Previous</span></a></li>");
 		}
@@ -145,10 +145,10 @@ public class PageNavigation {
 		if(endPage > totalPageCount)
 			endPage = totalPageCount;
 		
-		for (int i = startPage; i < endPage; i++) {
+		for (int i = startPage; i < endPage+1; i++) {
 			
 				tmpNavigator.append("<li class=\"page-item\" mv-page-no=\""+i+"\">");
-				tmpNavigator.append( "<a class=\"page-link\">2</a>\n");
+				tmpNavigator.append( "<a class=\"page-link\">"+i+"</a>\n");
 				tmpNavigator.append("</li>");
 			
 		}
@@ -156,12 +156,12 @@ public class PageNavigation {
 		if (this.isNowLast()) {
 	
 			tmpNavigator.append("  <li>");
-			tmpNavigator.append("    <a class=\"page-link\" href=\"#\" aria-label=\"Next\">");
+			tmpNavigator.append("    <a class=\"page-link\"  aria-label=\"Next\">");
 			tmpNavigator.append(" 		<span aria-hidden=\"true\">&raquo;</span> \n");
 			tmpNavigator.append(" 		<span class=\"sr-only\">Next</span></a></li>");
 		} else {
-			tmpNavigator.append("  <li class=\"page-item\" mv-page-no =\"\" + (endPage + 1)+\"\">");
-			tmpNavigator.append("    <a class=\"page-link\" href=\"#\" aria-label=\"Next\">");
+			tmpNavigator.append("  <li class=\"page-item\" mv-page-no =\"" + (endPage + 1)+"\">");
+			tmpNavigator.append("    <a class=\"page-link\" aria-label=\"Next\">");
 			tmpNavigator.append(" 		<span aria-hidden=\"true\">&raquo;</span> \n");
 			tmpNavigator.append(" 		<span class=\"sr-only\">Next</span></a></li>");
 			

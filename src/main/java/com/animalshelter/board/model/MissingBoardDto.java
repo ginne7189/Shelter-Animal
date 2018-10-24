@@ -1,15 +1,36 @@
 package com.animalshelter.board.model;
 
-public class MissingBoardDto {
+public class MissingBoardDto extends BoardDto{
 
 	private int seq;
 	private String tel;
 	private String location;
-	private String missingdate;
 	private String kind;
-	private String size;
+	private String gender;
+	private String petsize;
+	private String feature;
+	private String date;
 	private int age;
 	
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getFeature() {
+		return feature;
+	}
+	public void setFeature(String feature) {
+		this.feature = feature;
+	}
+	public String getPetsize() {
+		return petsize;
+	}
+	public void setPetsize(String petsize) {
+		this.petsize = petsize;
+	}
 	public int getSeq() {
 		return seq;
 	}
@@ -28,11 +49,12 @@ public class MissingBoardDto {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getMissingdate() {
-		return missingdate;
+	
+	public String getDate() {
+		return date;
 	}
-	public void setMissingdate(String missingdate) {
-		this.missingdate = missingdate;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getKind() {
 		return kind;
@@ -46,12 +68,7 @@ public class MissingBoardDto {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getSize() {
-		return size;
-	}
-	public void setSize(String size) {
-		this.size = size;
-	}
+	
 	
 	
 }

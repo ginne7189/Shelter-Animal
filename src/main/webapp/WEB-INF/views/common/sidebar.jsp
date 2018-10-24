@@ -16,7 +16,7 @@
     <p class="w3-text-grey">Template by W3.CSS</p>
   </div>
   <div class="w3-bar-block">
-    <a href="infolist"  class="w3-bar-item w3-button w3-padding ">내 정보보기</a> 
+    <a value="infolist"  class="w3-bar-item w3-button w3-padding ">내 정보보기</a> 
      <a value="attention"  class="w3-bar-item w3-button w3-padding " pg="1">관심동물보기</a> 
     <a value="articlelist"  class="w3-bar-item w3-button w3-padding ">내가 쓴 글</a> 
     <a value="donation" class="w3-bar-item w3-button w3-padding">후원내역</a>

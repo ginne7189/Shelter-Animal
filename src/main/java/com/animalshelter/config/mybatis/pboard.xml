@@ -14,6 +14,15 @@
 		SELECT * FROM dual         
 	</insert>
 	
+	<insert id="mwriteArticle" parameterType="mboardDto">
+		INSERT ALL
+            INTO board(seq, subject, content, boardtype, hit, joindate, email)
+            VALUES (#{seq}, #{subject},  #{content}, 2, 0, sysdate,  #{email})
+            INTO missingboard(seq, age, kind, petsize, feature, location, tel, missingdate)
+            VALUES (#{seq},  #{age},  #{kind},  #{petsize},  #{feature},  #{location},#{tel},  #{date})
+		SELECT * FROM dual         
+	</insert>
+	
 	<select id="viewArticle" parameterType="int" resultType="pboardDto">
 		SELECT b.seq, b.subject, b.content, b.boardtype, b.hit, b.joindate, b.email,
 			   p.age, p.kind, p.weight, p.gender, p.feature, p.location

@@ -108,35 +108,16 @@
 
 	<!-- ㅍㅔ이징 처리 -->
     <div class="container" style="margin-top: 150px">
-		<ul class="pagination justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-					<span class="sr-only">Previous</span>
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">1</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">2</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">3</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">4</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">5</a>
-			</li>			
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-					<span class="sr-only">Next</span>
-				</a>
-			</li>
-		</ul> 
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan="3" height="5"></td>
+	</tr>
+	<tr valign="top">
+		<td width="100%" align="center" class="page"><!--PAGE--> ${navigator.navigator}</td>
+		<td nowrap class="stext"><b>${navigator.pageNo}</b> / ${navigator.totalPageCount}
+		pages</td>
+	</tr>
+		</table>
 	</div>	     
 	
 <footer style="margin-top: 200px;">

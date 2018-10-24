@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@include file="common.jsp"%>
 
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
 <script>
 
 $(document).ready(function() {
-		alert("${sidebar}");
+
 	if("${sidebar}" == "donation"){
 		getList(1);
 	}else if("${sidebar}" == "attention"){
@@ -76,29 +77,74 @@ $(document).ready(function() {
 	
 	
 	$(".page-item").click(function() {
-		moveBoard('${bcode}', $(this).attr("mv-page-no"), '${key}', '${word}', 'list');
+	
+// 		moveBoard('${bcode}', $(this).attr("mv-page-no"), '${key}', '${word}', 'list');
+		if("${sidebar}" == "donation"){
+			getList($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "attention"){
+			getList($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "articlelist"){
+			getList($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "parcel"){
+			getList($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "volunteer"){
+			getList($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "otherdonation"){
+			getList1($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "otherattention"){
+			getList1($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "otherarticlelist"){
+			getList1($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "otherparcel"){
+			getList1($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "othervolunteer"){
+			getList1($(this).attr("mv-page-no"));
+		}else if("${sidebar}" == "othermissing"){
+			getList1($(this).attr("mv-page-no"));
+		}else{
+			getList1($(this).attr("mv-page-no"));
+		}
 		getList($(this).attr("mv-page-no"));
 	});
 
-	$(".detail").click(function() {
-		alert($(this).attr("article-seq"));
-		getList($(this).attr("mv-page-no"));
+	
+	$(document).on("click", ".detail", function() {
+		
+		$(".acode").attr("value",$(this).attr("article-seq"));
+		$(".mvform").attr("action","${root}/parcel/pview.animal").submit();
 	});
 	
-	$(".page-item").click(function() {
-		if("${sidebar}" == "side"){
-			getList1(1);
-		}else{
-			getList(1);
-		}
+	
+	
+// 	$(".page-item").click(function() {
+// 		if("${sidebar}" == "side"){
+// 			getList1(1);
+// 		}else{
+// 			getList(1);
+// 		}
 		
-	});
+// 	});
 });
 
 function getList(pg) {
+	var tsidebar;
+	if("${sidebar}" == "donation"){
+		tsidebar="donation";
+	}else if("${sidebar}" == "attention"){
+		tsidebar="attention";
+	}else if("${sidebar}" == "articlelist"){
+		tsidebar="articlelist";
+	}else if("${sidebar}" == "parcel"){
+		tsidebar="parcel";
+	}else if("${sidebar}" == "volunteer"){
+		tsidebar="volunteer";
+	}else if("${sidebar}" == "missinglist"){
+		tsidebar="missinglist";
+	}
+	
 	$.ajax({
 		type : "POST",
-		url : "${root}/sidebar/attention.animal",
+		url : "${root}/sidebar/"+tsidebar +".animal",
 		dataType : "json",
 		data : {"sidebar": "sidebar","pg":pg},
 		success : function(data) {
@@ -112,6 +158,8 @@ function getList(pg) {
 				makeparcelList(data);
 			}else if("${sidebar}" == "volunteer"){
 				makevolunteerList(data);
+			}else if("${sidebar}" == "missinglist"){
+				makemissingList(data);
 			}
 			
 			
@@ -122,23 +170,41 @@ function getList(pg) {
 	});
 }
 function getList1(pg) {
-
+	var tsidebar;
+	if("${sidebar}" == "otherdonation"){
+		tsidebar="donation";
+	}else if("${sidebar}" == "otherattention"){
+		tsidebar="attention";
+	}else if("${sidebar}" == "otherarticlelist"){
+		tsidebar="articlelist";
+	}else if("${sidebar}" == "otherparcel"){
+		tsidebar="parcel";
+	}else if("${sidebar}" == "othervolunteer"){
+		tsidebar="volunteer";
+	}else if("${sidebar}" == "othermissinglist"){
+		tsidebar="missinglist";
+	}
+	
 	$.ajax({
 		type : "POST",
-		url : "${root}/sidebar/attention.animal",
+	
+		url : "${root}/sidebar/"+tsidebar +".animal",
 		dataType : "json",
 		data : {"sidebar":"side","pg":pg},
 		success : function(data) {
-			if("${sidebar}" == "donation"){
+			if("${sidebar}" == "otherdonation"){
+				
 				makedonationList(data);
-			}else if("${sidebar}" == "attention"){
+			}else if("${sidebar}" == "otherattention"){
 				makeattentionList(data);
-			}else if("${sidebar}" == "articlelist"){
+			}else if("${sidebar}" == "otherarticlelist"){
 				makearticleList(data);
-			}else if("${sidebar}" == "parcel"){
+			}else if("${sidebar}" == "otherparcel"){
 				makeparcelList(data);
-			}else if("${sidebar}" == "volunteer"){
+			}else if("${sidebar}" == "othervolunteer"){
 				makevolunteerList(data);
+			}else if("${sidebar}" == "othermissing"){
+				makemissingList(data);
 			}
 		},
 		error : function(e) {
@@ -149,6 +215,7 @@ function getList1(pg) {
 
 
 function makedonationList(data){
+	$(".container-fluid").empty();
 	var view=$(".container-fluid");
 	var members = data.members;
 	//alert(member.length);	//회원수 출력 :120
@@ -159,7 +226,7 @@ function makedonationList(data){
 
 			viewlist += "<div class='container' article-seq='"+members[i].seq+ "'>";
 			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='col-md-5 info-big'>";
+			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
 			viewlist +=	"<p><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
@@ -186,7 +253,7 @@ function makedonationList(data){
 		}else{
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='col-md-5'>";
+			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
 			viewlist +=	"</div>";
 			viewlist += "<div class='col-sm-2'></div>";
@@ -232,7 +299,7 @@ function makemissingList(data){
 		viewlist +="<table>";	
 		viewlist +="</table>";
 		viewlist +="</div>";
-		viewlist += "<div class='col-lg-4 col-sm-6' style='padding: 10px; padding-left: 0px;' >";
+		viewlist += "<div class='detail col-lg-4 col-sm-6' article-seq='"+members[i].seq+"' style='padding: 10px; padding-left: 0px;' >";
 		viewlist += "<div class='card h-100'>";
 		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
 		viewlist +=  "<div class='card-body'>";
@@ -259,15 +326,13 @@ function makeattentionList(data){
 	var viewlist="";
 	
 	for(var i=0;i<members.length ;i++){
-		viewlist +="<table>";	
-		viewlist +="</table>";
-		viewlist +="</div>";
-		viewlist += "<div class='col-lg-4 col-sm-6' style='padding: 10px; padding-left: 0px;' >";
+		
+		viewlist += "<div class='detail col-lg-4 col-sm-6' article-seq='"+members[i].seq+"' style='padding: 10px; padding-left: 0px;' >";
 		viewlist += "<div class='card h-100'>";
-		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
+		viewlist +=  "<img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'>";
 		viewlist +=  "<div class='card-body'>";
-		viewlist +=   "<h4 class='card-title'>"; 
-		viewlist +=      "<a href='#'>"+members[i].subject+"</a>";
+		viewlist +=   "<h4 class='card-title' article-seq='val'>"; 
+		viewlist +=    members[i].subject;
 		viewlist +=   "</h4>";
 		viewlist +=    "<p class='card-text'>	 <b>품종 :</b> "+members[i].kind+"</p>";
 		viewlist +=    "<p class='card-text'>	 <b>나이 :</b> "+members[i].age+"	</p>";
@@ -275,7 +340,7 @@ function makeattentionList(data){
 		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
 		viewlist +=  "</div>";
 		viewlist += "</div>";
-      
+		viewlist +="</div>";
 
 	}
 	
@@ -286,7 +351,7 @@ function makearticleList(data) {
 	var view=$("#listview");
 	var members=data.members;//{"members" : [{}, {}, {} ...]}
 	for(var i=0;i<members.length;i++) {
-		var tr = $("<tr></tr>").						
+		var tr = $("<tr class='detail' article-seq='"+members[i].seq+"'></tr>").						
 						append($("<td></td>").text(members[i].email)).
 					   append($("<td></td>").text(members[i].seq)).
 					   append($("<td></td>").text(members[i].subject)).
@@ -299,6 +364,7 @@ function makearticleList(data) {
 	}
 }
 function makeparcelList(data){
+	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
 	//alert(member.length);	//회원수 출력 :120
@@ -309,7 +375,7 @@ function makeparcelList(data){
 		viewlist +="<table>";	
 		viewlist +="</table>";
 		viewlist +="</div>";
-		viewlist += "<div class='col-lg-4 col-sm-6' style='padding: 10px; padding-left: 0px;' >";
+		viewlist += "<div class='detail col-lg-4 col-sm-6' article-seq='"+members[i].seq+"' style='padding: 10px; padding-left: 0px;' >";
 		viewlist += "<div class='card h-100'>";
 		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
 		viewlist +=  "<div class='card-body'>";
@@ -329,6 +395,7 @@ function makeparcelList(data){
 	view.append(viewlist);
 }
 function makevolunteerList(data){
+	$(".container-fluid").empty();
 	var view=$(".container-fluid");
 	var members = data.members;
 	//alert(member.length);	//회원수 출력 :120
@@ -339,7 +406,7 @@ function makevolunteerList(data){
 
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='col-md-5 info-big'>";
+			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
 			viewlist +=	"<p>"+ members[i].subject + "</p>";		
@@ -374,7 +441,7 @@ function makevolunteerList(data){
 		}else{
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='col-md-5'>";
+			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
 			viewlist +=	"</div>";
 			
@@ -482,6 +549,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">실종동물</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
+      <a class="dropdown-item" href="${root }/parcel/pwrite.animal">실종동물신청</a>
       <a class="dropdown-item" value="othermissing">실종동물목록</a>
     </div>
   </li> 
@@ -490,7 +558,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">분양받기</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">분양소개</a>
-      <a class="dropdown-item" href="${root }/parcel/pwrite.animal"">개인분양등록</a>
+      <a class="dropdown-item" href="${root }/parcel/pwrite.animal">개인분양신청</a>
       <a class="dropdown-item" value="otherparcel">분양신청목록</a>
     </div>
   </li> 

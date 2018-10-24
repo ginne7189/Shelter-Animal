@@ -12,9 +12,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import com.animalshelter.board.model.MissingBoardDto;
 import com.animalshelter.board.model.PboardDto;
 import com.animalshelter.board.service.PboardService;
 import com.animalshelter.member.model.MemberDto;
@@ -66,10 +66,49 @@ public class PboardController {
 		return "parcel/pview";		
 	}
 
+	@RequestMapping(value="/mwrite.animal", method=RequestMethod.GET)
+	public String mwrite(@RequestParam Map<String,String> map) {
+		return "parcel/mwrite";
+	}
+	
+	@RequestMapping(value="/mwrite.animal", method=RequestMethod.POST)
+	public String mwrite(MissingBoardDto mboardDto, Model model, HttpSession session 
+						,HttpServletRequest request) {
+		
+		MemberDto memberDto2 = new MemberDto();
+		memberDto2.setEmail("kjhabc2002@naver.com");
+		session.setAttribute("userInfo", memberDto2);
+		
+		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
+		if(memberDto != null) {
+			if(mboardDto.getContent()==null) {
+				System.out.println("fuck");
+			}
+			mboardDto.setEmail(memberDto2.getEmail());
+			System.out.println(mboardDto.getSubject());
+			System.out.println(mboardDto.getContent());
+			System.out.println(mboardDto.getEmail());
+			int seq = pboardService.mwriteArticle(mboardDto);
+			
+			if(seq != 0) {
+				model.addAttribute("wseq", seq);
+				request.setAttribute("pboardDto", mboardDto);
+			}else {
+				model.addAttribute("errorMsg", "서버에 문제가 있습니다. 잠시 후 다시 이용해주세요");
+			}
+		}else {
+			model.addAttribute("errorMsg", "로그인 후 글 작성해주세요");
+		}
+		
+		return "parcel/mview";		
+	}
 	@RequestMapping(value="/pview.animal", method=RequestMethod.GET)
-	public String view(ModelMap model) {
-			PboardDto pboardDto = pboardService.viewArticle();
-			model.addAttribute("particle", pboardDto);
+	public String view(@RequestParam Map<String, String> map,HttpServletRequest request) {
+		
+		int seq=Integer.parseInt(map.get("acode"));
+		System.out.println("seq :"+seq);
+			PboardDto pboardDto = pboardService.viewArticle(seq);
+			request.setAttribute("pboardDto", pboardDto);
 		return "parcel/pview";
 	}	
 	

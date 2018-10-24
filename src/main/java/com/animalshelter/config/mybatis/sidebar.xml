@@ -40,32 +40,23 @@
 	</if> -->
 	</select>
 	
-	<select id="missinglist" parameterType="map"   resultType="MissingDto">
-	
+
+
+
+	<select id="donation" parameterType="map"   resultType="donationDto">
 	select t.*
 	from(
 		select rownum rn, a.*
 		from(
-			select m.kind,m.weight,m.age,m.feature
-			from board b, missingboard m
-			where b.seq = m.seq
+			select d.centername,d.gatheringfee,d.cdonationfee,d.cdonationpurpose
+			from board b,donationboard d
+			where b.seq=d.seq 
 			order by b.seq desc
-				) a
+			) a
 		where rownum &lt;= #{end}
 		) t
 	where t.rn &gt; #{start}
-
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
 	
-	<select id="donation" parameterType="map"   resultType="donationDto">
-	select d.centername,d.gatheringfee,d.cdonationfee,d.cdonationpurpose
-	from board b,donationboard d
-	where b.seq=d.seq 
 <!-- 	select seq -->
 <!-- 	from pparcelboard -->
 	<!-- <if test="word != null and word != ''">

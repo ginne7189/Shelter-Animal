@@ -20,8 +20,7 @@
 	<select id="getTotalArticleCount" parameterType="map" resultType="int">
 	select count(seq)
 	from board
-	where bcode = #{bcode}
-	<if test="word != null and word != ''">
+<if test="word != null and word != ''">
 		<choose>
 			<when test="key == 'subject'">
 			and subject like '%'||#{word}||'%'

@@ -186,9 +186,21 @@ h1:after{
 	</div>
 </form>
 
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan="3" height="5"></td>
+	</tr>
+	<tr valign="top">
+		<td width="100%" align="center" class="page"><!--PAGE--> ${navigator.navigator}</td>
+		<td nowrap class="stext"><b>${navigator.pageNo}</b> / ${navigator.totalPageCount}
+		pages</td>
+	</tr>
+		</table>
 		</div>
   </body>
   <div class="jumbotron text-center" style="margin-bottom:0"> 
+  
   <p>footer</p>
  </div>
 

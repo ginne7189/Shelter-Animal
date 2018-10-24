@@ -18,12 +18,22 @@ public class SidebarServiceImpl implements SidebarService{
 	
 	@Override
 	public List<BoardDto> articleList(Map<String, String> map) {
-		// TODO Auto-generated method stub
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).articleList(map);
 	}
 	@Override
 	public List<MissingDto> missingList(Map<String, String> map) {
-		// TODO Auto-generated method stub
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).missingList(map);
 	}
 	@Override
@@ -38,21 +48,37 @@ public class SidebarServiceImpl implements SidebarService{
 	}
 
 	@Override
-	public List<DonationDto> donation() {
-		// TODO Auto-generated method stub
-		return sqlSession.getMapper(SidebarDao.class).donation();
+	public List<DonationDto> donation(Map<String, String> map) {
+
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
+		return sqlSession.getMapper(SidebarDao.class).donation(map);
 	}
 
 	@Override
-	public List<VolunteerDto> volunteer() {
-		// TODO Auto-generated method stub
-		return sqlSession.getMapper(SidebarDao.class).volunteer();
+	public List<VolunteerDto> volunteer(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
+		return sqlSession.getMapper(SidebarDao.class).volunteer(map);
 	}
 
 	@Override
-	public List<ParcelDto> parcel() {
-		// TODO Auto-generated method stub
-		return sqlSession.getMapper(SidebarDao.class).parcel();
+	public List<ParcelDto> parcel(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
+		return sqlSession.getMapper(SidebarDao.class).parcel(map);
 	}
 
 	@Override
@@ -68,19 +94,34 @@ public class SidebarServiceImpl implements SidebarService{
 
 	@Override
 	public List<DonationDto> mydonation(Map<String, String> map) {
-		// TODO Auto-generated method stub
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).mydonation(map);
 	}
 
 	@Override
 	public List<VolunteerDto> myvolunteer(Map<String, String> map) {
-		// TODO Auto-generated method stub
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).myvolunteer(map);
 	}
 
 	@Override
 	public List<ParcelDto> myparcel(Map<String, String> map) {
-		// TODO Auto-generated method stub
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).myparcel(map);
 	}
 }

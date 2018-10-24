@@ -45,7 +45,7 @@ body{
 	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron toplayout" style="text-align: center;">
 	    <h2>마이페이지</h2>
-	    <h4>관심동물보기</h4>
+	    <h4>분양신청내역</h4>
 	</div>
 <!-- 동물 리스트 -->
     <!-- Page Content -->
@@ -61,35 +61,16 @@ body{
 	 <!-- /.container -->
     <div class="container" style="margin-top: 150px">
 		<!-- ㅍㅔ이징 처리 -->
-		<ul class="pagination justify-content-center">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-					<span class="sr-only">Previous</span>
-				</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">1</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">2</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">3</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">4</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="#">5</a>
-			</li>			
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-					<span class="sr-only">Next</span>
-				</a>
-			</li>
-		</ul> 
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td colspan="3" height="5"></td>
+	</tr>
+	<tr valign="top">
+		<td width="100%" align="center" class="page"><!--PAGE--> ${navigator.navigator}</td>
+		<td nowrap class="stext"><b>${navigator.pageNo}</b> / ${navigator.totalPageCount}
+		pages</td>
+	</tr>
+		</table>
 	</div>	     
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
