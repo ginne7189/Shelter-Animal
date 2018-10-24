@@ -6,112 +6,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<c:if test="${email == null }">
-<script>
 
-
-
-$(document).ready(function() {
-	
-	if("${sidebar}" == "side"){
-		getList1(1);
-	}else{
-		getList(1);
-	}
-	$("#searchBtn").click(function() {
-		
-		getList1(1);
-		//$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
-		
-	});
-	$(".w3-bar-item").click(function() {
-		
-		$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
-		
-	});
-	
-	$(".movepage").click(function() {
-// 		moveBoard('${bcode}', $(this).attr("mv-page-no"), '${key}', '${word}', 'list');
-		getList($(this).attr("mv-page-no"));
-	});
-	
-	$(".page-item").click(function() {
-		if("${sidebar}" == "side"){
-			getList1(1);
-		}else{
-			getList(1);
-		}
-
-		
-	});
-});
-
-function getList(pg) {
-	
-	$.ajax({
-		type : "POST",
-		url : "${root}/sidebar/attention.animal",
-		dataType : "json",
-		data : {"sidebar": "sidebar","pg":pg},
-		success : function(data) {
-			makeList(data);
-			
-		},
-		error : function(e) {
-			
-		}
-	});
-}
-function getList1(pg) {
-	$.ajax({
-		type : "POST",
-		url : "${root}/sidebar/attention.animal",
-		dataType : "json",
-		data : {"sidebar":"side","pg":$(this).attr("pg")},
-		success : function(data) {
-			makeList(data);
-			
-		},
-		error : function(e) {
-			
-		}
-	});
-}
-
-function makeList(data){
-	$("#main").empty();
-	var view=$("#main");
-	var members = data.members;
-	
-	var viewlist="";
-	
-	for(var i=0;i<members.length ;i++){
-		viewlist +="<table>";	
-		viewlist +="</table>";
-		viewlist +="</div>";
-		viewlist += "<div class='col-lg-4 col-sm-6' style='padding: 10px; padding-left: 0px;' >";
-		viewlist += "<div class='card h-100'>";
-		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
-		viewlist +=  "<div class='card-body'>";
-		viewlist +=   "<h4 class='card-title'>"; 
-		viewlist +=      "<a href='#'>"+members[i].subject+"</a>";
-		viewlist +=   "</h4>";
-		viewlist +=    "<p class='card-text'>	 <b>품종 :</b> "+members[i].kind+"</p>";
-		viewlist +=    "<p class='card-text'>	 <b>나이 :</b> "+members[i].age+"	</p>";
-		viewlist +=    "<p class='card-text'>	 <b>체중 :</b> "+members[i].weight+"	</p>";
-		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
-		viewlist +=  "</div>";
-		viewlist += "</div>";
-      
-
-	}
-	
-	view.append(viewlist);
-}
-
-</script>
-</c:if>
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -147,10 +42,10 @@ body{
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
 
-<%-- <c:if test="${email != null }"> --%>
+<c:if test="${email != null }">
 
 	<%@include file="../common/sidebar.jsp"%>
-<%-- </c:if> --%>
+</c:if>
 	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron toplayout" style="text-align: center;">
 	    <h2>마이페이지</h2>

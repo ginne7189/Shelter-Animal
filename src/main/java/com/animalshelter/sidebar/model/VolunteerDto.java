@@ -1,6 +1,6 @@
 package com.animalshelter.sidebar.model;
 
-public class VolunteerDto {
+public class VolunteerDto extends BoardDto{
 	private int seq;
 	private String tel;
 	private String centername;

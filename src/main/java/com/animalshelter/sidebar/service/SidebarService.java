@@ -9,6 +9,8 @@ public interface SidebarService {
 	
 	List<BoardDto> articleList(Map<String, String> map);
 
+
+	List<MissingDto> missingList(Map<String, String> map);
 	
 	List<ParcelDto> attention(Map<String, String> map);
 	List<ParcelDto> myattention(Map<String, String> map);

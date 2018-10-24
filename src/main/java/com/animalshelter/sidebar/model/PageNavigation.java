@@ -97,28 +97,48 @@ public class PageNavigation {
 		
 			prePage=(pageNo - 1) / pc * pc;
 		
-		tmpNavigator.append("<table cellpadding='0' cellspacing='0' border='0'>\n");
-		tmpNavigator.append(" <tr>\n");
+		tmpNavigator.append("<ul class=\"pagination justify-content-center\" >\n");
 		if (this.isNowFirst()) {
-			tmpNavigator.append("  <td><font color='#999999'>\n");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>");
-			tmpNavigator.append("<label class=\"firstpage\">최신목록</lable>\n");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
-			tmpNavigator.append("   이전</font>\n");
+			tmpNavigator.append("  <li>\n");
+			tmpNavigator.append("   <a class=\"page-link\" href=\"#\" aria-label=\"Previous\">");
+			tmpNavigator.append("		<span aria-hidden=\"true\">&laquo;</span>");
+			tmpNavigator.append("   <span class=\"sr-only\">Previous</span></a></li>");
 		} else {
-			tmpNavigator.append("  <td> \n");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>");
-			tmpNavigator.append("<label class=\"firstpage\">최신목록</lable>\n");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
-			tmpNavigator.append("   <lable class=\"movepage\" mv-page-no=\"" +prePage+ "\">이전</label>");
+			tmpNavigator.append("  <li class=\"page-item\" mv-page-no=\"\" +prePage+ \"\">\n");
+			tmpNavigator.append("   <a class=\"page-link\" href=\"#\" aria-label=\"Previous\">");
+			tmpNavigator.append("		<span aria-hidden=\"true\">&laquo;</span>");
+			tmpNavigator.append("   <span class=\"sr-only\" >Previous</span></a></li>");
 		}
-		tmpNavigator.append("  \n</td>\n");
-		tmpNavigator.append("  <td style='padding: 0 5 0 5'>\n");
-		tmpNavigator.append("   <table cellpadding='0' cellspacing='0' border='0'>\n");
-		tmpNavigator.append("    <tr>\n");
-		tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
-		tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>");
-		tmpNavigator.append("     </td>\n");
+//		<ul class="pagination justify-content-center" >
+//		<li class="page-item">
+//			<a class="page-link" href="#" aria-label="Previous">
+//				<span aria-hidden="true">&laquo;</span>
+//				<span class="sr-only">Previous</span>
+//			</a>
+//		</li>
+//		<li class="page-item">
+//			<a class="page-link" href="#">1</a>
+//		</li>
+//		<li class="page-item">
+//			<a class="page-link" href="#">2</a>
+//		</li>
+//		<li class="page-item">
+//			<a class="page-link" href="#">3</a>
+//		</li>
+//		<li class="page-item">
+//			<a class="page-link" href="#">4</a>
+//		</li>
+//		<li class="page-item">
+//			<a class="page-link" href="#">5</a>
+//		</li>			
+//		<li class="page-item">
+//			<a class="page-link" href="#" aria-label="Next">
+//				<span aria-hidden="true">&raquo;</span>
+//				<span class="sr-only">Next</span>
+//			</a>
+//		</li>
+//	</ul> 
+
 		
 		int startPage = prePage + 1;
 		int endPage = prePage + pc;
@@ -126,38 +146,30 @@ public class PageNavigation {
 			endPage = totalPageCount;
 		
 		for (int i = startPage; i < endPage; i++) {
-
-				tmpNavigator.append("<td style='padding:0 7 0 7;' nowrap>");
-				tmpNavigator.append("   	<label class=\"movepage\" mv-page-no=\"" + i + "\">" + i + "</label>");
-				tmpNavigator.append( "</td>\n");
-				tmpNavigator.append("  <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
-				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
+			
+				tmpNavigator.append("<li class=\"page-item\" mv-page-no=\""+i+"\">");
+				tmpNavigator.append( "<a class=\"page-link\">2</a>\n");
+				tmpNavigator.append("</li>");
 			
 		}
-		tmpNavigator.append("     </td>\n");
-		tmpNavigator.append("    </tr>\n");
-		tmpNavigator.append("   </table>\n");
-		tmpNavigator.append("  </td>\n");
-		tmpNavigator.append("  <td>\n");
-		
+
 		if (this.isNowLast()) {
-			tmpNavigator.append("   <font color='#999999'>다음<img");
-			tmpNavigator.append("   src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'> \n");
-			tmpNavigator.append("   끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></font>\n");
+	
+			tmpNavigator.append("  <li>");
+			tmpNavigator.append("    <a class=\"page-link\" href=\"#\" aria-label=\"Next\">");
+			tmpNavigator.append(" 		<span aria-hidden=\"true\">&raquo;</span> \n");
+			tmpNavigator.append(" 		<span class=\"sr-only\">Next</span></a></li>");
 		} else {
-			tmpNavigator.append("  <label class=\"movepage\" mv-page-no =\"" + (endPage + 1)+"\">다음</label>");
-			tmpNavigator.append(" <img src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></a>\n");
-			tmpNavigator.append("   <label class=\"movepage\" mv-page-no =\""+totalPageCount+"\">끝목록</label>");
-			tmpNavigator.append("<img src='\" + root + \"/img/board/icon_next02_dim.gif' width='7' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'>\n");
+			tmpNavigator.append("  <li class=\"page-item\" mv-page-no =\"\" + (endPage + 1)+\"\">");
+			tmpNavigator.append("    <a class=\"page-link\" href=\"#\" aria-label=\"Next\">");
+			tmpNavigator.append(" 		<span aria-hidden=\"true\">&raquo;</span> \n");
+			tmpNavigator.append(" 		<span class=\"sr-only\">Next</span></a></li>");
+			
+			
 		}
 
 		tmpNavigator.append("  </td>\n");
-		tmpNavigator.append(" </tr>\n");
-		tmpNavigator.append("</table>\n");
+		tmpNavigator.append("</ul>\n");
 
 		this.navigator = tmpNavigator.toString();
 	}

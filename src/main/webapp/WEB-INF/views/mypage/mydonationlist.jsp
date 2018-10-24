@@ -5,142 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<c:if test="${email == null }">
 
-<script>
-
-
-$(document).ready(function() {
-	
-	if("${sidebar}" == "side"){
-		getList1();
-	}else{
-		getList();
-	}
-	$("#searchBtn").click(function() {
-		
-		getList1();
-		//$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
-		
-	});
-	$(".w3-bar-item").click(function() {
-		
-		$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
-		
-	});
-	
-});
-
-function getList() {
-	$.ajax({
-		type : "POST",
-		url : "${root}/sidebar/donation.animal",
-		dataType : "json",
-		data : {"sidebar": "sidebar"},
-		success : function(data) {
-			makeList(data);
-			
-		},
-		error : function(e) {
-			
-		}
-	});
-}
-function getList1() {
-	$.ajax({
-		type : "POST",
-		url : "${root}/sidebar/donation.animal",
-		dataType : "json",
-		data : {"sidebar":"side"},
-		success : function(data) {
-			makeList(data);
-			
-		},
-		error : function(e) {
-			
-		}
-	});
-}
-
-
-
-
-function makeList(data){
-	var view=$(".container-fluid");
-	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
-	var viewlist="";
-
-	for(var i=0;i<members.length ;i++){
-		if(i%2==0){
-
-			viewlist += "<div class='container'>";
-			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='col-md-5 info-big'>";
-			viewlist +=	"<h2>"+members[i].centername +"</h2>";
-			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
-			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;'>";		
-			viewlist +=	 members[i].cdonationpurpose;	
-			viewlist +=  "</p>";
-			viewlist +=		"<hr>";
-			viewlist +=			"</div>";
-			viewlist +=			"<p><strong>현재 모금액</strong></p>";
-			viewlist +=			"<div class='progress'>";
-			viewlist +=			"<div class='progress-bar progress-bar-striped progress-bar-animated' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
-			viewlist +=			"</div>";
-			viewlist +=	"</div>";
-			viewlist +=	"<div class='col-sm-2'></div>";
-			viewlist +=	"<div class='col-md-5'>";
-			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
-			viewlist +=	"</div>";
-			viewlist += "</div>";
-			viewlist +="</div>";
-			viewlist +="<br>";	
-			viewlist +="<hr>";	
-			viewlist +="<br>";
-		}else{
-			viewlist += "<div class='container'>";
-			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='col-md-5'>";
-			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
-			viewlist +=	"</div>";
-			viewlist += "<div class='col-sm-2'></div>";
-			viewlist +=	"<div class='col-md-5 info-big'>";
-			viewlist +=	"<h2>"+members[i].centername +"</h2>";
-			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
-			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;'>";		
-			viewlist +=	 members[i].cdonationpurpose;	
-			viewlist +=  "</p>";
-			viewlist +=		"<hr>";
-			viewlist +=			"</div>";
-			viewlist +=			"<p><strong>현재 모금액</strong></p>";
-			viewlist +=			"<div class='progress'>";
-			viewlist +=			"<div class='progress-bar progress-bar-striped progress-bar-animated' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
-			viewlist +=			"</div>";
-			viewlist +=	"</div>";
-			viewlist +=	"</div>";			
-			viewlist += "</div>";
-			viewlist +="</div>";
-			viewlist +="<br>";	
-			viewlist +="<hr>";	
-			viewlist +="<br>";
-			 
-		}
-		
-      
-
-	}
-	
-	view.append(viewlist);
-}
-
-</script>
-</c:if>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>후원 모집 리스트 페이지</title>
@@ -227,6 +92,7 @@ function makeList(data){
 <!-- 총 컨테이너 끝 -->	
 
 	<!-- ㅍㅔ이징 처리 -->
+	<div class="container detail" article-seq="2" ><p>상세넘어가기</p></div>
     <div class="container" style="margin-top: 150px">
 		<ul class="pagination justify-content-center">
 			<li class="page-item">

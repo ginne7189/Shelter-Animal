@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.animalshelter.board.dao.PboardDao">
+
+	<insert id="writeArticle" parameterType="pboardDto">
+		INSERT ALL
+            INTO board(seq, subject, content, boardtype, hit, joindate, email)
+            VALUES (#{seq}, #{subject},  #{content}, 1, 0, sysdate,  #{email})
+            INTO pparcelboard(seq, age, kind, weight, gender, feature, location)
+            VALUES (#{seq},  #{age},  #{kind},  #{weight},  #{gender}, #{feature},  #{location})
+		SELECT * FROM dual         
+	</insert>
+	
+	<select id="viewArticle" parameterType="int" resultType="pboardDto">
+		SELECT b.seq, b.subject, b.content, b.boardtype, b.hit, b.joindate, b.email,
+			   p.age, p.kind, p.weight, p.gender, p.feature, p.location
+		FROM board b, pparcelboard p
+		WHERE b.seq=p.seq
+		AND p.seq=#{seq}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

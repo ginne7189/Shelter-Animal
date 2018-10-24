@@ -19,5 +19,10 @@
 			type="com.animalshelter.sidebar.model.VolunteerDto"/>
 		<typeAlias alias="pageNavigation" 
 			type="com.animalshelter.sidebar.model.PageNavigation"/>
+		<typeAlias alias="missingDto" 
+			type="com.animalshelter.sidebar.model.MissingDto"/>
+<!-- 		<typeAlias alias="boardDto" type="com.animalshelter.board.model.BoardDto"/> -->
+		<typeAlias alias="pboardDto" type="com.animalshelter.board.model.PboardDto"/>
+		<typeAlias alias="vboardDto" type="com.animalshelter.board.model.VboardDto"/>	
 	</typeAliases>
 </configuration>

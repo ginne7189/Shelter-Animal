@@ -20,34 +20,23 @@
 	<select id="getTotalArticleCount" parameterType="map" resultType="int">
 	select count(seq)
 	from board
-	where 1=1
-<!-- 	bcode = #{bcode} -->
-<!-- 	<if test="word != null and word != ''"> -->
-<!-- 		<choose> -->
-<!-- 			<when test="key == 'subject'"> -->
-<!-- 			and subject like '%'||#{word}||'%' -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 			and ${key} = #{word} -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
-<!-- 	</if> -->
+	where bcode = #{bcode}
+	<if test="word != null and word != ''">
+		<choose>
+			<when test="key == 'subject'">
+			and subject like '%'||#{word}||'%'
+			</when>
+			<otherwise>
+			and ${key} = #{word}
+			</otherwise>
+		</choose>
+	</if>
 	</select>
 	
 	<update id="updateHit" parameterType="int">
 	update board
-	set hit=hit+1
-	where seq=#{seq}
+	set hit = hit + 1
+	where seq = #{seq}
 	</update>
 
 </mapper>
-
-
-
-
-
-
-
-
-
-

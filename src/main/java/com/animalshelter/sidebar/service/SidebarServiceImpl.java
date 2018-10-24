@@ -21,7 +21,11 @@ public class SidebarServiceImpl implements SidebarService{
 		// TODO Auto-generated method stub
 		return sqlSession.getMapper(SidebarDao.class).articleList(map);
 	}
-	
+	@Override
+	public List<MissingDto> missingList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(SidebarDao.class).missingList(map);
+	}
 	@Override
 	public List<ParcelDto> attention(Map<String, String> map) {
 		int pg = Integer.parseInt(map.get("pg"));
