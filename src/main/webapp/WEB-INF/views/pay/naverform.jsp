@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-String root = request.getContextPath();
-%>
+<%@include file="../common/common.jsp"%>
 <!DOCTYPE html>
 
 <html>
@@ -13,7 +11,7 @@ String root = request.getContextPath();
 	<br>
 	<!--// mode : development or production-->
 	<button style="background-color: white;" onclick="javascript:naverPay();">
-		<img class="btn-img" src="<%=root %>/img/naverPayBtn.jpg" width="100">
+		<img class="btn-img" src="${root }/resources/img/naverPayBtn.jpg" width="100">
 	</button>
 	<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 	<script>
@@ -35,7 +33,7 @@ String root = request.getContextPath();
 					"totalPayAmount" : money,
 					"taxScopeAmount" : money,
 					"taxExScopeAmount" : "0",
-					"returnUrl" : "http://192.168.14.12/free-animal/donation?money=" + money
+					"returnUrl" : "http://${myIP}/animalshelter/payment.animal?money=" + money
 			});
 		}
 	</script>
