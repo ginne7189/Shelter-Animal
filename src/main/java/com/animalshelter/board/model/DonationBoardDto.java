@@ -1,6 +1,6 @@
 package com.animalshelter.board.model;
 
-public class DonationBoardDto {
+public class DonationBoardDto extends BoardDto{
 	
 	private int seq;
 	private String centername;

@@ -14,8 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.animalshelter.board.model.MissingBoardDto;
-import com.animalshelter.board.model.PboardDto;
+import com.animalshelter.board.model.*;
 import com.animalshelter.board.service.PboardService;
 import com.animalshelter.member.model.MemberDto;
 import com.oreilly.servlet.MultipartRequest;
@@ -111,7 +110,36 @@ public class PboardController {
 			request.setAttribute("pboardDto", pboardDto);
 		return "parcel/pview";
 	}	
-	
+
+	@RequestMapping(value="/dview.animal", method=RequestMethod.GET)
+	public String dview(@RequestParam Map<String, String> map,HttpServletRequest request) {
+		int seq=Integer.parseInt(map.get("acode"));
+		System.out.println("seq :"+seq);
+			DonationBoardDto pboardDto = pboardService.dviewArticle(seq);
+			request.setAttribute("pboardDto", pboardDto);
+			System.out.println(pboardDto.getCdonationpurpose());
+		return "parcel/dview";
+	}	
+
+	@RequestMapping(value="/mview.animal", method=RequestMethod.GET)
+	public String mview(@RequestParam Map<String, String> map,HttpServletRequest request) {
+		
+		int seq=Integer.parseInt(map.get("acode"));
+		System.out.println("seq :"+seq);
+			MissingBoardDto pboardDto = pboardService.mviewArticle(seq);
+			request.setAttribute("pboardDto", pboardDto);
+		return "parcel/mview";
+	}	
+
+	@RequestMapping(value="/vview.animal", method=RequestMethod.GET)
+	public String vview(@RequestParam Map<String, String> map,HttpServletRequest request) {
+		
+		int seq=Integer.parseInt(map.get("acode"));
+		System.out.println("seq :"+seq);
+			VolunteerBoardDto pboardDto = pboardService.vviewArticle(seq);
+			request.setAttribute("pboardDto", pboardDto);
+		return "parcel/vview";
+	}	
 	@RequestMapping(value = "photoUpload.animal", method = RequestMethod.POST)
 	   public void test(HttpServletRequest request, HttpServletResponse response) {
 	      response.setContentType("text/plain; charset=UTF-8");

@@ -42,9 +42,14 @@ $(document).ready(function() {
 		
 	});
 	$(".w3-bar-item").click(function() {
+		alert($(this).attr("value"));
 		$(".acode").attr("value",$(this).attr("value"));
+		if($(this).attr("value")=="infolist"){
+			alert("떠라");
+			$(".mvform").attr("action","${root}/"+$(this).attr("value")+".animal").submit();
+		}else{
 		$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
-		
+		}
 	});
 	
 	
@@ -109,9 +114,34 @@ $(document).ready(function() {
 
 	
 	$(document).on("click", ".detail", function() {
-		
+		var view;
+		if("${sidebar}" == "donation"){
+			view="dview";
+		}else if("${sidebar}" == "attention"){
+			view="pview";
+		}else if("${sidebar}" == "articlelist"){
+			view="pview";
+		}else if("${sidebar}" == "parcel"){
+			view="pview";
+		}else if("${sidebar}" == "volunteer"){
+			view="vview";
+		}else if("${sidebar}" == "otherdonation"){
+			view="dview";
+		}else if("${sidebar}" == "otherattention"){
+			view="pview";
+		}else if("${sidebar}" == "otherarticlelist"){
+			view="pview";
+		}else if("${sidebar}" == "otherparcel"){
+			view="pview";
+		}else if("${sidebar}" == "othervolunteer"){
+			view="vview";
+		}else if("${sidebar}" == "othermissing"){
+			view="mview";
+		}else{
+			view="mview"
+		}
 		$(".acode").attr("value",$(this).attr("article-seq"));
-		$(".mvform").attr("action","${root}/parcel/pview.animal").submit();
+		$(".mvform").attr("action","${root}/parcel/"+view+".animal").submit();
 	});
 	
 	

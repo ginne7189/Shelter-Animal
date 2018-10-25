@@ -32,7 +32,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
   <!-- Slideshow Header -->
   <div class="w3-container" id="apartment">
-    <h2 class="w3-text-green">개인 분양 상세 페이지</h2>
+    <h2 class="w3-text-green">봉사 상세 페이지</h2>
 <!-- 사진 슬라이드 영역 -->    
     <div class="w3-display-container mySlides">
     <img src="https://images.unsplash.com/photo-1518815068914-038920b6f0c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38f02f628dfcc539764a05b5bc42a419&auto=format&fit=crop&w=1012&q=80" style="width:100%;height:500px;margin-bottom:-6px">
@@ -68,12 +68,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h4><strong><i class="material-icons">pets</i> 기본 정보</strong></h4>
     <div class="w3-row w3-large">
       <div class="w3-col s6">
-        <p><i class="fa fa-check-square-o"></i> 품종 : ${pboardDto.kind }</p>
-        <p><i class="fa fa-check-square-o"></i> 나이 : ${pboardDto.age }</p>
+        <p><i class="fa fa-check-square-o"></i> 봉사센터 : ${pboardDto.centername }</p>
+        <p><i class="fa fa-check-square-o"></i> 봉사종류 : ${pboardDto.volunteerkind }</p>
       </div>
       <div class="w3-col s6">
-        <p><i class="fa fa-check-square-o"></i> 성별 : ${pboardDto.gender }</p>
-        <p><i class="fa fa-check-square-o"></i> 위치 : ${pboardDto.location }</p>
+        <p><i class="fa fa-check-square-o"></i> 봉사일시 : ${pboardDto.volunteerdate }</p>
+        <p><i class="fa fa-check-square-o"></i> 전화번호 : ${pboardDto.tel }</p>
+        <p><i class="fa fa-check-square-o"></i> 위치 : ${pboardDto.centerlocation }</p>
       </div>
     </div>
     <hr>

@@ -12,7 +12,8 @@ public interface MemberDao {
 	List<String> getPwd(String email);
 	MemberDto login(Map<String, String> map);
 	MemberDto registerComplete(String email);
-	
+	MemberDto getInfo(Map<String,String> map);
+	MemberDto updateInfo(Map<String,String> map);
 	MemberDto getMember(String id);
 	int modify(MemberDto memberDto);
 	int delete(String email);	

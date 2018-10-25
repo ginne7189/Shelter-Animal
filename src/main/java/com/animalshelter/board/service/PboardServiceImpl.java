@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.animalshelter.board.dao.PboardDao;
-import com.animalshelter.board.model.MissingBoardDto;
-import com.animalshelter.board.model.PboardDto;
+import com.animalshelter.board.model.*;
 import com.animalshelter.common.dao.CommonDao;
 
 @Service
@@ -30,6 +29,21 @@ public class PboardServiceImpl implements PboardService {
 	@Override
 	public PboardDto viewArticle(int seq) {
 		return sqlSession.getMapper(PboardDao.class).viewArticle(seq);
+	}
+	@Override
+	public DonationBoardDto dviewArticle(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(PboardDao.class).dviewArticle(seq);
+	}
+	@Override
+	public MissingBoardDto mviewArticle(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(PboardDao.class).mviewArticle(seq);
+	}
+	@Override
+	public VolunteerBoardDto vviewArticle(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(PboardDao.class).vviewArticle(seq);
 	}
 
 //	@Override

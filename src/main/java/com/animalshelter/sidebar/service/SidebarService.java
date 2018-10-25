@@ -8,7 +8,7 @@ import com.animalshelter.sidebar.model.*;
 public interface SidebarService {
 	
 	List<BoardDto> articleList(Map<String, String> map);
-
+	List<InfoDto> infoList(Map<String, String> map);
 
 	List<MissingDto> missingList(Map<String, String> map);
 	

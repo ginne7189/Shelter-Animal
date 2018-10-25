@@ -25,6 +25,49 @@ public class SidebarController {
 	@Autowired
 	private CommonService commonService;
 
+	
+	@RequestMapping(value = "/sidebar/naverpay.animal", method = RequestMethod.GET)
+	public String naverpay(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
+		
+		return "pay/naverform";
+		
+	}
+	
+//	@RequestMapping(value = "/sidebar/parcel.animal", method = RequestMethod.GET)
+//	public String parcel(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
+//
+//		String email=(String) session.getAttribute("email");
+//		
+//		PageNavigation navigator = commonService.makePageNavigation(map);
+//		navigator.setRoot(request.getContextPath());
+//		navigator.setKey(map.get("key"));
+//		navigator.setWord(map.get("word"));
+//		navigator.setNavigator();
+//		request.setAttribute("navigator", navigator);
+//		return "mypage/mymissinglist";
+//	}
+//	
+//	@RequestMapping(value = "/sidebar/pick.animal", method = RequestMethod.GET)
+//	public String pick(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
+//
+//		if (map.get("acode") != null) {
+//			request.setAttribute("sidebar", "sidebar");
+//		} else {
+//			request.setAttribute("sidebar", "side");
+//		}
+//		request.setAttribute("sidebar", map.get("acode"));
+//		
+//		map.put("pg", "1");
+//
+//		PageNavigation navigator = commonService.makePageNavigation(map);
+//		navigator.setRoot(request.getContextPath());
+//		navigator.setKey(map.get("key"));
+//		navigator.setWord(map.get("word"));
+//		navigator.setNavigator();
+//		request.setAttribute("navigator", navigator);
+//		return "mypage/mymissinglist";
+//	}
+	
 	@RequestMapping(value = "/sidebar/missing.animal", method = RequestMethod.GET)
 	public String missing(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
 
@@ -83,9 +126,6 @@ public class SidebarController {
 
 	}
 
-	
-	
-	
 	@RequestMapping(value = "/sidebar/articlelist.animal", method = RequestMethod.GET)
 	public String articlelist(@RequestParam Map<String, String> map, HttpServletRequest request) {
 
@@ -105,6 +145,8 @@ public class SidebarController {
 		request.setAttribute("navigator", navigator);
 		return "mypage/myarticlelist";
 	}
+
+	
 
 	@RequestMapping(value = "/sidebar/articlelist.animal", method = RequestMethod.POST)
 	@ResponseBody
@@ -237,7 +279,7 @@ public class SidebarController {
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (DonationDto dto : list) {
-			System.out.println(dto.getCentername());
+			System.out.println("seq :"+dto.getSeq());
 			JSONObject article = new JSONObject();
 			article.put("seq", dto.getSeq());
 			article.put("centername", dto.getCentername());

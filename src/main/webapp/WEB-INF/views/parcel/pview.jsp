@@ -22,6 +22,19 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .mySlides {display:none}
 </style>
+<script>
+
+$(document).ready(function() {
+	
+	$(".w3-button").click(function() {
+		$(".pviewhidden").attr("value",$(this).attr("value"));
+		$(".pview").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		
+	});
+});
+
+
+</script>
 </head>
 <body class="w3-content w3-border-left w3-border-right">
 <!-- 분양글 디브 -->
@@ -62,7 +75,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <img class="petpic w3-opacity w3-hover-opacity-off" src="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d812e1079e635c6fb59ded315f72316f&auto=format&fit=crop&w=634&q=80" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(4)">
     </div>
   </div>
-
+<form class="pview"><input type="hidden" class="pviewhidden"></form>
 <!-- 기본정보란 -->
   <div class="w3-container">
     <h4><strong><i class="material-icons">pets</i> 기본 정보</strong></h4>
@@ -81,15 +94,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h4><strong>${pboardDto.subject }</strong></h4>
     <br>
     <p>${pboardDto.content }</p>
-    <hr>
+    <div>
+     <p><button class="w3-button w3-green w3-third" value="parcel">분양신청</button></p>
+    </div>
+    <div >
+    <p><button style="padding-left:50px;" class="w3-button w3-green w3-third" value="pick"> 찜하기</button></p>
+    </div>
     <br>
-    
+    <hr>
 <!-- 댓글창 시작 -->    
     <h4><strong>댓글창</strong></h4>
     <p>댓글목록</p>
     <hr>
     <p>댓글창 삽입</p>
-	 <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">댓글등록</button></p>
+	 <p><button class="w3-button w3-green w3-third">댓글등록</button></p>
+	  
   </div>
   <hr>
 <!-- 댓글창 끝 -->
@@ -103,6 +122,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i class="fa fa-phone" style="width:30px"></i>분양자 전화번호<br>
     <i class="fa fa-envelope" style="width:30px"> </i>분양자 이메일 주소<br>
   </div>
+
+
 
 <!-- End page content -->
 </div>

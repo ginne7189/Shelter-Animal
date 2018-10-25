@@ -163,27 +163,7 @@ h1:after{
     
   </div>
 
-<div style="margin-left:85%" >
-		<button type="button" class="button button1" data-toggle="modal" data-target="#dntModal">작성완료</button>
-		
-		<div class="modal fade" id="dntModal" tabindex="-1" role="dialog" aria-labelledby="dntModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">후원 금액 입력</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<p>금액 : <input type="text" class="donation"></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary">기부하기</button>					
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
+
 </form>
 
 

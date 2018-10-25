@@ -16,4 +16,5 @@ public interface SidebarDao {
 	List<VolunteerDto> myvolunteer(Map<String, String> map);
 	List<ParcelDto> parcel(Map<String, String> map);
 	List<ParcelDto> myparcel(Map<String, String> map);
+	List<InfoDto> infoList(Map<String, String> map);
 }

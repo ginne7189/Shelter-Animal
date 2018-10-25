@@ -72,4 +72,16 @@ public class MemberServiceImpl implements MemberService {
 	public int resetPwd(Map<String, String> map) {
 		return sqlSession.getMapper(MemberDao.class).resetPwd(map);
 	}
+
+	@Override
+	public MemberDto getInfo(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MemberDao.class).getInfo(map);
+	}
+
+	@Override
+	public MemberDto updateInfo(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(MemberDao.class).updateInfo(map);
+	}
 }

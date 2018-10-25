@@ -20,6 +20,22 @@
 		#{email}
 	</select>
 
+	<select id="getInfo" parameterType="map" 
+		resultType="MemberDto">
+		select email, name, tel, salt
+		from member
+		where email = #{email}
+	</select>
+	
+	<select id="updateInfo" parameterType="map" 
+		resultType="MemberDto">
+		
+	 update member
+     set pwd=#{pwd}, name=#{name},tel=#{tel}
+     where email=#{email}
+		
+	</select>
+	
 	<insert id="registerConfirm" parameterType="String">
 		update member
 		set

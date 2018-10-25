@@ -23,10 +23,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .mySlides {display:none}
 </style>
 </head>
+<script>
+
+$(document).ready(function() {
+	$(".w3-button").click(function() {
+		$(".dvform").attr("action","${root}/sidebar/naverpay.animal").submit();
+		
+	});
+});
+
+
+</script>
 <body class="w3-content w3-border-left w3-border-right">
 <!-- 분양글 디브 -->
 <div class="w3-main w3-white" style="padding:80px">
-
+<form class="dvform"></form>
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:80px"></div>
 
@@ -68,12 +79,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h4><strong><i class="material-icons">pets</i> 기본 정보</strong></h4>
     <div class="w3-row w3-large">
       <div class="w3-col s6">
-        <p><i class="fa fa-check-square-o"></i> 품종 : ${pboardDto.kind }</p>
-        <p><i class="fa fa-check-square-o"></i> 나이 : ${pboardDto.age }</p>
+        <p><i class="fa fa-check-square-o"></i> 후원센터 : ${pboardDto.centername }</p>
+        <p><i class="fa fa-check-square-o"></i> 후원목적: ${pboardDto.cdonationpurpose }</p>
       </div>
       <div class="w3-col s6">
-        <p><i class="fa fa-check-square-o"></i> 성별 : ${pboardDto.gender }</p>
-        <p><i class="fa fa-check-square-o"></i> 위치 : ${pboardDto.location }</p>
+        <p><i class="fa fa-check-square-o"></i> 목표금액 : ${pboardDto.cdonationfee }</p>
+        <p><i class="fa fa-check-square-o"></i> 모인금액 : ${pboardDto.gatheringfee }</p>
       </div>
     </div>
     <hr>
@@ -103,7 +114,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i class="fa fa-phone" style="width:30px"></i>분양자 전화번호<br>
     <i class="fa fa-envelope" style="width:30px"> </i>분양자 이메일 주소<br>
   </div>
-
+<p><button class="w3-button w3-green w3-third">댓글등록</button></p>
 <!-- End page content -->
 </div>
 

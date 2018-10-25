@@ -1,6 +1,6 @@
 package com.animalshelter.board.model;
 
-public class VolunteerBoardDto {
+public class VolunteerBoardDto extends BoardDto{
 	
 	private int seq;
 	private String tel;
@@ -8,6 +8,9 @@ public class VolunteerBoardDto {
 	private String volunteerkind;
 	private String volunteerdate;
 	private String centerlocation;
+	
+	
+	
 	public int getSeq() {
 		return seq;
 	}
