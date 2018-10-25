@@ -104,6 +104,7 @@ public class MemberController {
 					memberDto = memberService.getMemberInfo(email);
 					session.setAttribute("user", memberDto.getName());
 					session.setAttribute("email", memberDto.getEmail());
+					session.setAttribute("usercode", memberDto.getUsercode());
 					return "../../index";
 				} else {
 					// 아이디 또는 비밀번호를 확인해주세요.
