@@ -228,7 +228,7 @@ public class AnimalController {
 	@RequestMapping(value = "getCity.animal", method = RequestMethod.POST)
 	@ResponseBody
 	public String getCity() {
-		String url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?" + api_key;
+		String url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?" + api_key +"&numOfRows=30";
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 
@@ -272,7 +272,7 @@ public class AnimalController {
 	@ResponseBody
 	public String getDistrict(@RequestParam("upr_cd") String upr_cd) {
 		String url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sigungu?upr_cd=" + upr_cd
-				+ "&" + api_key;
+				+ "&" + api_key +"&numOfRows=30";
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 
@@ -317,7 +317,7 @@ public class AnimalController {
 	@ResponseBody
 	public String getShelter(@RequestParam("upr_cd") String upr_cd, @RequestParam("org_cd") String org_cd) {
 		String url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/shelter?upr_cd=" + upr_cd
-				+ "&org_cd=" + org_cd + "&" + api_key;
+				+ "&org_cd=" + org_cd + "&" + api_key +"&numOfRows=30";
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 

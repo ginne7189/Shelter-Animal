@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.Document;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import com.animalshelter.admin.service.AdminService;
@@ -131,7 +131,7 @@ public class AdminController {
 		}
 		return listCnt;
 	}
-	
+
 	@RequestMapping(value = "admin/statistics.animal", method = RequestMethod.GET)
 	public String mvAbandonedChart() {
 		return "admin/statistics";
@@ -174,18 +174,18 @@ public class AdminController {
 		String today = endde + sdf.format(cal.getTime()); // today
 
 		cal.set(year, thisMonth, startDay);
-		String firstDayOfMonth = bgnde + sdf.format(cal.getTime());		
+		String firstDayOfMonth = bgnde + sdf.format(cal.getTime());
 		String tempMonth = thisMonth + 1 + "월";
-		
+
 		int value = getAbandonedCount(firstDayOfMonth, today);
 		monthData.put("month", tempMonth);
 		monthData.put("value", value);
-		
+
 		jarray.put(monthData);
 		json.put("monthData", jarray);
 		return json.toString();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "countAbandonedType.animal", method = RequestMethod.POST)
 	public String getCountOfAbandonedType() {
@@ -194,36 +194,37 @@ public class AdminController {
 
 		String bgnde = "&bgnde=";
 		String endde = "&endde=";
-		
-		String typeCode[] = {"417000", "422400", "429900"};
-		String type[] = {"개","고양이","기타"};
+
+		String typeCode[] = { "417000", "422400", "429900" };
+		String type[] = { "개", "고양이", "기타" };
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 
 		int year = cal.get(Calendar.YEAR);
 
-		String searchStartDate = bgnde + year+"-01-01";
+		String searchStartDate = bgnde + year + "-01-01";
 		String searchEndDate = endde + sdf.format(cal.getTime()); // today
-				
+
 		String service_url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?";
 		String api_key = "ServiceKey=MOs%2BsExsezFOnRAr3WvDbeDXv4h%2FGdmDNVxTe%2FvoRgpiRE9gzCGzFwcuFUDaycs6HUwaZefSMY1jrXMzs0%2FJ%2FQ%3D%3D";
-		//String api_key = "ServiceKey=lqoruspPyIUYqSauL%2FTDTAqIHgzz9%2F5G5AnOtKdkADTUioapCVMAPV3fmS2Bgh35FIZv54m4nurcOHbTJGJgDA%3D%3D";
-		
+		// "ServiceKey=lqoruspPyIUYqSauL%2FTDTAqIHgzz9%2F5G5AnOtKdkADTUioapCVMAPV3fmS2Bgh35FIZv54m4nurcOHbTJGJgDA%3D%3D";
+
 		int listCnt = 0;
 		try {
 			DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactoty.newDocumentBuilder();
-			for(int i=0; i<3; i++) {
+			for (int i = 0; i < 3; i++) {
 				JSONObject typeData = new JSONObject();
-				String url = service_url + api_key + searchStartDate + searchEndDate + "&upkind="+typeCode[i];
+				String url = service_url + api_key + searchStartDate + searchEndDate + "&upkind=" + typeCode[i];
 				Document doc = dBuilder.parse(url); // root tag
 				doc.getDocumentElement().normalize();
-				
+
 				// 파싱할 tag
-				listCnt = Integer.parseInt(doc.getElementsByTagName("totalCount").item(0).getFirstChild().getTextContent());
-				
+				listCnt = Integer
+						.parseInt(doc.getElementsByTagName("totalCount").item(0).getFirstChild().getTextContent());
+
 				String typeName = type[i];
 				int typeValue = listCnt;
 				typeData.put("type", typeName);
@@ -238,7 +239,78 @@ public class AdminController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return json.toString();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "countCityAbandoned.animal", method = RequestMethod.POST)
+	public String getCountCityAbandoned() {
+		String api_key = "ServiceKey=MOs%2BsExsezFOnRAr3WvDbeDXv4h%2FGdmDNVxTe%2FvoRgpiRE9gzCGzFwcuFUDaycs6HUwaZefSMY1jrXMzs0%2FJ%2FQ%3D%3D";
+		String service_url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?";
+		// "ServiceKey=lqoruspPyIUYqSauL%2FTDTAqIHgzz9%2F5G5AnOtKdkADTUioapCVMAPV3fmS2Bgh35FIZv54m4nurcOHbTJGJgDA%3D%3D";
+
+		String url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?" + api_key
+				+ "&numOfRows=30";
+		JSONObject json = new JSONObject();
+		JSONArray jarray = new JSONArray();
+
+		try {
+			DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder;
+			dBuilder = dbFactoty.newDocumentBuilder();
+			Document doc = dBuilder.parse(url);
+			// root tag
+			doc.getDocumentElement().normalize();
+
+			// 파싱할 tag
+			NodeList nList = doc.getElementsByTagName("item");
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+				Node nNode = nList.item(temp);
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					JSONObject cityAbandoned = new JSONObject();
+
+					Element eElement = (Element) nNode;
+					String cityCode = getTagValue("orgCd", eElement);
+					String cityName = getTagValue("orgdownNm", eElement);
+					cityAbandoned.put("orgCd", cityCode);
+					cityAbandoned.put("orgdownNm", cityName);
+
+					url = service_url + api_key + "&upr_cd=" + cityCode;
+					doc = dBuilder.parse(url);
+					// root tag
+					doc.getDocumentElement().normalize();
+					int listCnt = Integer
+							.parseInt(doc.getElementsByTagName("totalCount").item(0).getFirstChild().getTextContent());
+					cityAbandoned.put("cityValue", listCnt);
+
+					jarray.put(cityAbandoned);
+				}
+			}
+			json.put("cityAbandoned", jarray);
+
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+
+	// tag값의 정보를 가져오는 메소드
+	private static String getTagValue(String tag, Element eElement) {
+		Node nValue = null;
+		if (eElement.getElementsByTagName(tag).item(0) == null) {
+			return "";
+		} else {
+			NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
+			nValue = (Node) nlList.item(0);
+			if (nValue == null)
+				return "";
+		}
+		return nValue.getNodeValue();
 	}
 }

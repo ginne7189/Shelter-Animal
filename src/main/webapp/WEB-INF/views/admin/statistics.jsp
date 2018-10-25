@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>유기동물 증감 차트</title>
+<title>유기동물 통계</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 </head>
 <body>
 	<h1>2018년</h1>
 	<h3>현재까지 유기동물 수</h3>
-	<div style="width: 50%; align-content: center;">
+	<div style="width: 60%; align-content: center;">
 		<canvas id="thisYearAbandoned" width="400" height="200"></canvas>
 		<br> 현재까지 구조된 총 동물 수 :
 		<span id="totalCount"></span>
@@ -19,17 +19,31 @@
 	</div>
 	<hr>
 	<br>
-	<h3>종별 유기동물</h3>
-	<div style="width: 50%; align-content: center;">
+	<h3>종별 유기동물 현황</h3>
+	<div style="width: 60%; align-content: center;">
 		<canvas id="pieChart" width="400" height="200"></canvas>
+		<br>
+		<span id="dog"></span>
+		<br>
+		<span id="cat"></span>
+		<br>
+		<span id="etc"></span>
 	</div>
-	<br>	
+	<br>
 	<hr>
 	<br>
 	<br>
 	<h3>전년도 동월과 비교</h3>
-	<div style="width: 50%; align-content: center;">
+	<div style="width: 60%; align-content: center;">
 		<canvas id="compareAbandoned" width="400" height="200"></canvas>
+	</div>
+	<br>
+	<hr>
+	<br>
+	<br>
+	<h3>시도별 유기동물 현황</h3>
+	<div style="width: 60%; align-content: center;">
+		<canvas id="sidoChart" width="400" height="200"></canvas>
 	</div>
 	<script>
 	var totalCount = 0;
@@ -46,7 +60,7 @@
 						type : 'line',
 						label : '꺽은선 그래프',
 						data : [ ], // 여기에 월에 해당하는 값 쑤셔넣기
-						backgroundColor : [ 'rgba(255, 99, 132, 0.2)',],
+						backgroundColor : [ 'rgba(255, 99, 132, 1)',],
 						borderColor : [ 'rgba(255,99,132,1)'],
 						borderWidth : 2,
 						fill : false,
@@ -151,9 +165,9 @@
 					}, {
 						type: 'line',
 						label: '2018',
-						backgroundColor : [ 'rgba(75, 192, 192, 0.8)',],
+						backgroundColor : [ 'rgba(54, 162, 235, 0.8)',],
 						data: [ ],
-						borderColor: 'rgba(75, 192, 192, 0.8)',
+						borderColor: 'rgba(54, 162, 235, 0.8)',
 						fill : false,
 						borderWidth: 2,
 						lineTension : 0
@@ -175,7 +189,7 @@
 							display : true,
 							scaleLabel : {
 								display : true
-							}
+							} 
 						} ],
 						yAxes : [ {
 							display : true,
@@ -204,8 +218,9 @@
 						type : 'pie',
 						label : '동물 종별',
 						data : [ ],
-						backgroundColor : [ 'rgba(255, 99, 132, 0.2)',],
-						borderColor : [ 'rgba(255,99,132,1)'],
+						backgroundColor : [ 'rgba(54, 162, 235, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+							'rgba(153, 102, 255, 0.8)'],
 						borderWidth : 2,
 						fill : false,
 						lineTension : 0
@@ -241,6 +256,96 @@
 					}
 				}); 
 		
+		var ctx4 = document.getElementById("sidoChart");
+		var monthDataArr = new Array();
+		
+		var myChart4 = new Chart(ctx4,
+				{
+				type : 'bar',
+					label : '시도별 유기동물 수',
+					data : {
+					labels : [],
+					datasets : [ {
+						type : 'line',
+						label : '꺽은선 그래프',
+						data : [ ], 
+						backgroundColor : [ 'rgba(54, 162, 235, 1)',],
+						borderColor : [ 'rgba(54, 162, 235, 1)'],
+						borderWidth : 2,
+						fill : false,
+						lineTension : 0
+					}, {
+						type: 'bar',
+						label: '바 그래프',
+						backgroundColor : [ 'rgba(75, 192, 192, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+							'rgba(54, 162, 235, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(75, 192, 192, 0.8)',
+							'rgba(153, 102, 255, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+							'rgba(255, 159, 64, 0.8)',
+							'rgba(153, 86, 255, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+							'rgba(54, 162, 235, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(75, 192, 192, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+							'rgba(54, 162, 235, 0.8)',],
+						data: [ ],
+						borderColor: 'white',
+						fill : true,
+						borderWidth: 1
+					}
+					
+					]
+				},
+					responsive : true,
+					title : {
+						display : true,
+						text : '시도별 유기동물 수'
+					},
+					tooltips : {
+						mode : 'index',
+						intersect: true
+					},
+					scaleShowValues: true,
+					scales : {
+						xAxes : [ {
+							display : true,
+							scaleLabel : {
+								display : true,
+								labelString : 'value',
+								autoSkip : false,
+								stacked: false,
+						        beginAtZero: true,
+							},
+							ticks : {
+								stepSize: 1,
+					            autoSkip: false
+							}
+						} ],
+						yAxes : [ {
+							display : true,
+							scaleLabel : {
+								display : true,
+								labelString : 'value',
+								beginAtZero: true
+							},
+							ticks : {
+								suggestedMin : -10,
+								suggestedMax : 200,
+								stepSize: 1,
+					            min: 0,
+					            autoSkip: false
+							}
+						} ]
+					}
+				}); 
+		
+		
 		function doFill(){
 			for(var a=0; a<i; a++){
 				myChart2.data.datasets[1].data[a]=monthDataArr[a];
@@ -267,16 +372,41 @@
 					alert("처리중 장애가 발생하였습니다.");
 				}
 			});
-			
+						
+			var typeValue = new Array();
+			var typeName = new Array();
 			$.ajax({
 				type : "POST",
 				url : "http://${myIP}${root}/countAbandonedType.animal",
 				dataType : "json",
 				success : function(data) {
+					var cnt = 0;
+					var total = 0;
 					$.each(data.typeData, function(key, value) {
-						addData(myChart3, value.type, value.value);
+						addData(myChart3, value.type, value.value);						
+						typeValue[cnt] = value.value;
+						typeName[cnt]=value.type;
+						total += value.value;
+						cnt++;
+					});					
+					
+					$("#dog").html(typeName[0]+" : "+typeValue[0]+"마리"+"&nbsp&nbsp&nbsp&nbsp비율 : "+((typeValue[0]/total)*100).toFixed(2)+"%");
+					$("#cat").html(typeName[1]+" : "+typeValue[1]+"마리"+"&nbsp&nbsp&nbsp&nbsp비율 : "+((typeValue[1]/total)*100).toFixed(2)+"%");
+					$("#etc").html(typeName[2]+" : "+typeValue[2]+"마리"+"&nbsp&nbsp&nbsp&nbsp비율 : "+((typeValue[2]/total)*100).toFixed(2)+"%");					
+				},
+				error : function(e) {
+					alert("처리중 장애가 발생하였습니다.");
+				}
+			});
+			
+			$.ajax({
+				type : "POST",
+				url : "http://${myIP}${root}/countCityAbandoned.animal",
+				dataType : "json",
+				success : function(data) {
+					$.each(data.cityAbandoned, function(key, value) {
+						addData(myChart4, value.orgdownNm, value.cityValue);
 					});
-					$("#totalCount").html(totalCount);
 				},
 				error : function(e) {
 					alert("처리중 장애가 발생하였습니다.");
