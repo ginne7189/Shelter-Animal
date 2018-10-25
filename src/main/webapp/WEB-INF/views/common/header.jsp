@@ -33,7 +33,7 @@ $(document).ready(function() {
 	}else if("${sidebar}" == "othermissing"){
 		getList1(1);
 	}else{
-		getList1(1);
+		//getList1(1);
 	}
 	$("#searchBtn").click(function() {
 		
@@ -42,10 +42,10 @@ $(document).ready(function() {
 		
 	});
 	$(".w3-bar-item").click(function() {
-		alert($(this).attr("value"));
+	
 		$(".acode").attr("value",$(this).attr("value"));
 		if($(this).attr("value")=="infolist"){
-			alert("떠라");
+
 			$(".mvform").attr("action","${root}/"+$(this).attr("value")+".animal").submit();
 		}else{
 		$(".mvform").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
@@ -579,7 +579,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">실종동물</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
-      <a class="dropdown-item" href="${root }/parcel/pwrite.animal">실종동물신청</a>
+      <a class="dropdown-item" href="${root }/parcel/mwrite.animal">실종동물신청</a>
       <a class="dropdown-item" value="othermissing">실종동물목록</a>
     </div>
   </li> 

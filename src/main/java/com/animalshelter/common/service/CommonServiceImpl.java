@@ -17,7 +17,6 @@ public class CommonServiceImpl implements CommonService {
 	
 	@Override
 	public PageNavigation makePageNavigation(Map<String, String> map) {
-		System.out.println("pg1"+map.get("pg"));
 		int pg = Integer.parseInt(map.get("pg"));
 		
 		PageNavigation navigation = new PageNavigation();
@@ -25,7 +24,6 @@ public class CommonServiceImpl implements CommonService {
 //		int newArticleCount = sqlSession.getMapper(CommonDao.class).getNewArticleCount(Integer.parseInt(map.get("bcode")));
 //		navigation.setNewArticleCount(newArticleCount);
 		int totalArticleCount = sqlSession.getMapper(CommonDao.class).getTotalArticleCount(map);
-		System.out.println("total :" +totalArticleCount);
 		navigation.setTotalArticleCount(totalArticleCount);
 		int totalPageCount = (totalArticleCount - 1) / 9 + 1;
 		navigation.setTotalPageCount(totalPageCount);

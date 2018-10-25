@@ -37,20 +37,10 @@ public class PboardController {
 	@RequestMapping(value="/pwrite.animal", method=RequestMethod.POST)
 	public String write(PboardDto pboardDto, Model model, HttpSession session 
 						,HttpServletRequest request) {
-		
-		MemberDto memberDto2 = new MemberDto();
-		memberDto2.setEmail("kjhabc2002@naver.com");
-		session.setAttribute("userInfo", memberDto2);
-		
+				
 		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
 		if(memberDto != null) {
-			if(pboardDto.getContent()==null) {
-				System.out.println("fuck");
-			}
-			pboardDto.setEmail(memberDto2.getEmail());
-			System.out.println(pboardDto.getSubject());
-			System.out.println(pboardDto.getContent());
-			System.out.println(pboardDto.getEmail());
+			pboardDto.setEmail(memberDto.getEmail());
 			int seq = pboardService.writeArticle(pboardDto);
 			if(seq != 0) {
 				model.addAttribute("wseq", seq);
@@ -80,13 +70,7 @@ public class PboardController {
 		
 		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
 		if(memberDto != null) {
-			if(mboardDto.getContent()==null) {
-				System.out.println("fuck");
-			}
 			mboardDto.setEmail(memberDto2.getEmail());
-			System.out.println(mboardDto.getSubject());
-			System.out.println(mboardDto.getContent());
-			System.out.println(mboardDto.getEmail());
 			int seq = pboardService.mwriteArticle(mboardDto);
 			
 			if(seq != 0) {
@@ -105,7 +89,7 @@ public class PboardController {
 	public String view(@RequestParam Map<String, String> map,HttpServletRequest request) {
 		
 		int seq=Integer.parseInt(map.get("acode"));
-		System.out.println("seq :"+seq);
+
 			PboardDto pboardDto = pboardService.viewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
 		return "parcel/pview";
@@ -114,10 +98,8 @@ public class PboardController {
 	@RequestMapping(value="/dview.animal", method=RequestMethod.GET)
 	public String dview(@RequestParam Map<String, String> map,HttpServletRequest request) {
 		int seq=Integer.parseInt(map.get("acode"));
-		System.out.println("seq :"+seq);
 			DonationBoardDto pboardDto = pboardService.dviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
-			System.out.println(pboardDto.getCdonationpurpose());
 		return "parcel/dview";
 	}	
 
@@ -125,7 +107,6 @@ public class PboardController {
 	public String mview(@RequestParam Map<String, String> map,HttpServletRequest request) {
 		
 		int seq=Integer.parseInt(map.get("acode"));
-		System.out.println("seq :"+seq);
 			MissingBoardDto pboardDto = pboardService.mviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
 		return "parcel/mview";
@@ -135,7 +116,6 @@ public class PboardController {
 	public String vview(@RequestParam Map<String, String> map,HttpServletRequest request) {
 		
 		int seq=Integer.parseInt(map.get("acode"));
-		System.out.println("seq :"+seq);
 			VolunteerBoardDto pboardDto = pboardService.vviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
 		return "parcel/vview";

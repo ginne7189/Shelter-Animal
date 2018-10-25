@@ -139,7 +139,7 @@ $(document).ready(function() {
 			alert("내용 입력!!!");
 			return;				
 		} else {
-			$("#writeForm").attr("action", "${root}/parcel/pwrite.animal").submit();
+			$("#writeForm").attr("action", "${root}/parcel/mwrite.animal").submit();
 		}
 	});
 });

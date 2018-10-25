@@ -24,7 +24,6 @@ public class SidebarController {
 	private SidebarService sidebarService;
 	@Autowired
 	private CommonService commonService;
-
 	
 	@RequestMapping(value = "/sidebar/naverpay.animal", method = RequestMethod.GET)
 	public String naverpay(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
@@ -33,40 +32,43 @@ public class SidebarController {
 		
 	}
 	
-//	@RequestMapping(value = "/sidebar/parcel.animal", method = RequestMethod.GET)
-//	public String parcel(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
-//
-//		String email=(String) session.getAttribute("email");
-//		
-//		PageNavigation navigator = commonService.makePageNavigation(map);
-//		navigator.setRoot(request.getContextPath());
-//		navigator.setKey(map.get("key"));
-//		navigator.setWord(map.get("word"));
-//		navigator.setNavigator();
-//		request.setAttribute("navigator", navigator);
-//		return "mypage/mymissinglist";
-//	}
-//	
-//	@RequestMapping(value = "/sidebar/pick.animal", method = RequestMethod.GET)
-//	public String pick(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
-//
-//		if (map.get("acode") != null) {
-//			request.setAttribute("sidebar", "sidebar");
-//		} else {
-//			request.setAttribute("sidebar", "side");
-//		}
-//		request.setAttribute("sidebar", map.get("acode"));
-//		
-//		map.put("pg", "1");
-//
-//		PageNavigation navigator = commonService.makePageNavigation(map);
-//		navigator.setRoot(request.getContextPath());
-//		navigator.setKey(map.get("key"));
-//		navigator.setWord(map.get("word"));
-//		navigator.setNavigator();
-//		request.setAttribute("navigator", navigator);
-//		return "mypage/mymissinglist";
-//	}
+	@RequestMapping(value = "/sidebar/pparcel.animal", method = RequestMethod.GET)
+	public String pparcel(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
+
+		String email;//(String) session.getAttribute("email");
+		
+		map.put("email", "kjhabc2002@naver.com");
+		List<ParcelDto> list;
+		map.put("pg", "1");
+		
+		list = sidebarService.pparcel(map);
+		
+		PageNavigation navigator = commonService.makePageNavigation(map);
+		navigator.setRoot(request.getContextPath());
+		navigator.setKey(map.get("key"));
+		navigator.setWord(map.get("word"));
+		navigator.setNavigator();
+		request.setAttribute("navigator", navigator);
+		return "mypage/mymissinglist";
+	}
+	
+	
+	@RequestMapping(value = "/sidebar/pick.animal", method = RequestMethod.GET)
+	public String pick(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
+		String email;//(String) session.getAttribute("email");
+		map.put("email", "kjhabc2002@naver.com");
+		List<ParcelDto> list;
+		map.put("pg", "1");
+		list = sidebarService.picklist(map);
+
+		PageNavigation navigator = commonService.makePageNavigation(map);
+		navigator.setRoot(request.getContextPath());
+		navigator.setKey(map.get("key"));
+		navigator.setWord(map.get("word"));
+		navigator.setNavigator();
+		request.setAttribute("navigator", navigator);
+		return "mypage/mymissinglist";
+	}
 	
 	@RequestMapping(value = "/sidebar/missing.animal", method = RequestMethod.GET)
 	public String missing(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
@@ -96,11 +98,9 @@ public class SidebarController {
 
 		List<MissingDto> list;
 		String ee = map.get("sidebar");
-		System.out.println(ee);
 		map.put("email", "taehong88@gmail.com");
 		list = sidebarService.missingList(map);
 
-		System.out.println(list.size());
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (MissingDto dto : list) {
@@ -155,11 +155,9 @@ public class SidebarController {
 
 		List<BoardDto> list;
 		String ee = map.get("sidebar");
-		System.out.println(ee);
 		map.put("email", "taehong88@gmail.com");
 		list = sidebarService.articleList(map);
 
-		System.out.println(list.size());
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (BoardDto dto : list) {
@@ -212,19 +210,19 @@ public class SidebarController {
 	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request) {
 		// String email=(String) session.getAttribute("email");
 		List<ParcelDto> list;
-		String ee = map.get("sidebar");
 		map.put("email", "kjhabc2002@naver.com");
+		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
-			list = sidebarService.myattention(map);
+			list = sidebarService.picklist(map);
 		} else {
-			list = sidebarService.attention(map);
+			list = sidebarService.picklist(map);
 		}
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (ParcelDto dto : list) {
 			JSONObject article = new JSONObject();
-			article.put("subject", dto.getSubject());
 			article.put("seq", dto.getSeq());
+			article.put("subject", dto.getSubject());
 			article.put("kind", dto.getKind());
 			article.put("age", dto.getAge());
 			article.put("weight", dto.getWeight());
@@ -233,12 +231,7 @@ public class SidebarController {
 			jarray.put(article);
 		}
 		json.put("members", jarray);
-		PageNavigation navigator = commonService.makePageNavigation(map);
-		navigator.setRoot(request.getContextPath());
-		navigator.setKey(map.get("key"));
-		navigator.setWord(map.get("word"));
-		navigator.setNavigator();
-		request.setAttribute("navigator", navigator);
+		// System.out.println(json.toString());
 		return json.toString();
 	}
 
@@ -265,21 +258,17 @@ public class SidebarController {
 	@ResponseBody
 	public String donation(@RequestParam Map<String, String> map) {
 		// String email=(String) session.getAttribute("email");
-		System.out.println("완료");
 		List<DonationDto> list;
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
-			System.out.println(ee);
 			list = sidebarService.mydonation(map);
 		} else {
-			System.out.println(ee);
 			list = sidebarService.donation(map);
 		}
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (DonationDto dto : list) {
-			System.out.println("seq :"+dto.getSeq());
 			JSONObject article = new JSONObject();
 			article.put("seq", dto.getSeq());
 			article.put("centername", dto.getCentername());
@@ -318,21 +307,17 @@ public class SidebarController {
 	@ResponseBody
 	public String volunteer(@RequestParam Map<String, String> map) {
 		// String email=(String) session.getAttribute("email");
-		System.out.println("완료");
 		List<VolunteerDto> list;
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
-			System.out.println(ee);
 			list = sidebarService.myvolunteer(map);
 		} else {
-			System.out.println(ee);
 			list = sidebarService.volunteer(map);
 		}
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (VolunteerDto dto : list) {
-			System.out.println(dto.getCentername());
 			JSONObject article = new JSONObject();
 			article.put("seq", dto.getSeq());
 			article.put("centername", dto.getCentername());
@@ -378,13 +363,10 @@ public class SidebarController {
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
-			System.out.println(ee);
 			list = sidebarService.myparcel(map);
 		} else {
-			System.out.println(ee);
 			list = sidebarService.parcel(map);
 		}
-		System.out.println(list.size());
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (ParcelDto dto : list) {

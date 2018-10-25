@@ -78,7 +78,20 @@
 	where t.rn &gt; #{start}
 	
 	</select>
-	
+<!-- 	<select id="pparcel" parameterType="map"   resultType="parcelDto"> -->
+<!-- 	insert into picklist -->
+<!-- 	from  -->
+<!-- 	</select> -->
+	<select id="pick" parameterType="map"   resultType="parcelDto">
+	insert 
+	into picklist 
+	values (#{seq},#{email})
+	</select>
+	<select id="pparcel" parameterType="map"   resultType="parcelDto">
+	insert 
+	into parcellist
+	values (#{email},#{seq})
+	</select>
 	<select id="parcel" parameterType="map"   resultType="parcelDto">
 	select t.*
 	from(
@@ -159,15 +172,36 @@
 	where t.rn &gt; #{start}
 	</select>
 	
-	<select id="myparcel" parameterType="map"   resultType="parcelDto">\
+	<select id="myparcel" parameterType="map"   resultType="parcelDto">
 	select t.*
 	from(
 		select rownum rn, a.*
 		from(
-			select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location,b.subject
+			select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location
 			from board b,pparcelboard p
 			where b.seq=p.seq 
-			and b.email='${email}'
+			and b.seq in(select seq from parcellist where email='${email}')
+	) a
+		where rownum &lt;= #{end}
+		) t
+	where t.rn &gt; #{start}
+	
+<!-- 	select seq -->
+<!-- 	from pparcelboard -->
+	<!-- <if test="word != null and word != ''">
+	and m.${key} = #{word}
+	</if> -->
+	</select>
+	
+	<select id="picklist" parameterType="map"   resultType="parcelDto">
+	select t.*
+	from(
+		select rownum rn, a.*
+		from(
+			select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location
+			from board b,pparcelboard p
+			where b.seq=p.seq 
+			and b.seq in(select seq from picklist where email='${email}')
 	) a
 		where rownum &lt;= #{end}
 		) t

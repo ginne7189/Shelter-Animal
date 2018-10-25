@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../common/header.jsp" %> 
+<%
+String root = request.getContextPath();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,12 +28,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </head>
 <script>
 
-$(document).ready(function() {
-	$(".w3-button").click(function() {
-		$(".dvform").attr("action","${root}/sidebar/naverpay.animal").submit();
-		
-	});
-});
 
 
 </script>
@@ -92,6 +89,36 @@ $(document).ready(function() {
     <h4><strong>${pboardDto.subject }</strong></h4>
     <br>
     <p>${pboardDto.content }</p>
+    
+    <input type="number" id="money" value=""  placeholder="기부할 금액"/>원 기부하기<br><br>
+<!--// mode : development or production-->
+<button class="w3-button w3-green w3-third" style="background-color: white;" onclick="javascript:naverPay();">기부하기</button>
+<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+<script>
+		var oPay = Naver.Pay.create({
+			"mode" : "production", // development or production
+			"clientId" : "u86j4ripEt8LRfPGzQ8" // clientId
+		});
+
+		//직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요  
+		function naverPay() {
+			var money = document.getElementById("money").value;
+			if (money == null || money == "") {
+				return;
+			}
+			oPay.open({
+					"merchantUserKey" : "assdf",
+					"merchantPayKey" : "1001",
+					"productName" : "기부하기",
+					"totalPayAmount" : money,
+					"taxScopeAmount" : money,
+					"taxExScopeAmount" : "0",
+					"returnUrl" : "http://${myIP}/animalshelter/payment.animal?money=" + money
+			});
+		}
+	</script>
+    
+    
     <hr>
     <br>
     
@@ -114,7 +141,7 @@ $(document).ready(function() {
     <i class="fa fa-phone" style="width:30px"></i>분양자 전화번호<br>
     <i class="fa fa-envelope" style="width:30px"> </i>분양자 이메일 주소<br>
   </div>
-<p><button class="w3-button w3-green w3-third">댓글등록</button></p>
+
 <!-- End page content -->
 </div>
 

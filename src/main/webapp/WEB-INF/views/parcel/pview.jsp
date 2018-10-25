@@ -27,7 +27,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 $(document).ready(function() {
 	
 	$(".w3-button").click(function() {
-		$(".pviewhidden").attr("value",$(this).attr("value"));
+		alert("${pboardDto.seq}");
+		$(".pviewhidden").attr("value","${pboardDto.seq}");
 		$(".pview").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
 		
 	});
@@ -75,7 +76,7 @@ $(document).ready(function() {
       <img class="petpic w3-opacity w3-hover-opacity-off" src="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d812e1079e635c6fb59ded315f72316f&auto=format&fit=crop&w=634&q=80" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(4)">
     </div>
   </div>
-<form class="pview"><input type="hidden" class="pviewhidden"></form>
+<form class="pview"><input type="hidden" class="pviewhidden" name="seq"></form>
 <!-- 기본정보란 -->
   <div class="w3-container">
     <h4><strong><i class="material-icons">pets</i> 기본 정보</strong></h4>
@@ -95,7 +96,7 @@ $(document).ready(function() {
     <br>
     <p>${pboardDto.content }</p>
     <div>
-     <p><button class="w3-button w3-green w3-third" value="parcel">분양신청</button></p>
+     <p><button class="w3-button w3-green w3-third" value="pparcel">분양신청</button></p>
     </div>
     <div >
     <p><button style="padding-left:50px;" class="w3-button w3-green w3-third" value="pick"> 찜하기</button></p>

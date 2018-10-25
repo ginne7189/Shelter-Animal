@@ -27,7 +27,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).articleList(map);
 	}
 	@Override
@@ -37,7 +36,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).missingList(map);
 	}
 	@Override
@@ -47,7 +45,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).attention(map);
 	}
 
@@ -59,7 +56,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).donation(map);
 	}
 
@@ -70,7 +66,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).volunteer(map);
 	}
 
@@ -81,7 +76,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).parcel(map);
 	}
 
@@ -92,7 +86,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).myattention(map);
 	}
 
@@ -103,7 +96,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).mydonation(map);
 	}
 
@@ -114,7 +106,6 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).myvolunteer(map);
 	}
 
@@ -125,8 +116,31 @@ public class SidebarServiceImpl implements SidebarService{
 		int start = end - 9;
 		map.put("start", start + "");
 		map.put("end", end + "");
-		System.out.println("start : end :"+ start+" "+end);
 		return sqlSession.getMapper(SidebarDao.class).myparcel(map);
 	}
+	@Override
+	public List<ParcelDto> pick(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(SidebarDao.class).pick(map);
+	}
+	@Override
+	public List<ParcelDto> picklist(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		return sqlSession.getMapper(SidebarDao.class).picklist(map);
+	}
+	@Override
+	public List<ParcelDto> pparcel(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		return sqlSession.getMapper(SidebarDao.class).pparcel(map);
+	}
+
 	
 }
