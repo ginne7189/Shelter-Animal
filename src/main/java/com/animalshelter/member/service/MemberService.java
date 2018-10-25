@@ -18,4 +18,5 @@ public interface MemberService {
 	int resetPwd(Map<String, String> map);
 	int afterReset(String email);
 	String doReset(String secretCode);
+	int isResetReady(String secretCode);
 }

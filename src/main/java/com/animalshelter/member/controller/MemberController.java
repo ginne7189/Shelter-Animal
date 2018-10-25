@@ -155,13 +155,19 @@ public class MemberController {
 
 	@RequestMapping(value = "/pwdRequest.animal", method = RequestMethod.GET)
 	public String requestSetPwd(@RequestParam("email") String userEmail, MemberDto memberDto) {
+		int cnt = memberService.isResetReady(userEmail);
+
+		if (cnt == 1) {
+			return "login/validationFail";
+		}
+
 		memberDto = memberService.getMemberInfo(userEmail);
 		Security security = new Security();
 		String secretCode = security.generateSalt();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userEmail", userEmail);
 		map.put("secretCode", secretCode);
-		int cnt = memberService.pwdReset(map);
+		cnt = memberService.pwdReset(map);
 
 		if (cnt == 1) {
 			String subject = memberDto.getName() + "님, 비밀번호 변경 안내";

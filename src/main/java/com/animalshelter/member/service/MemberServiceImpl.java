@@ -20,14 +20,6 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberDao.class).register(memberDto);
 	}
 
-	/*@Override
-	public MemberDto login(String email, String pass) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("userid", email);
-		map.put("userpwd", pass);
-		//return memberDao.login(map);
-	}*/
-
 	@Override
 	public MemberDto registerComplete(String email) {
 		return sqlSession.getMapper(MemberDao.class).registerComplete(email);
@@ -71,5 +63,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int resetPwd(Map<String, String> map) {
 		return sqlSession.getMapper(MemberDao.class).resetPwd(map);
+	}
+
+	@Override
+	public int isResetReady(String secretCode) {
+		return sqlSession.getMapper(MemberDao.class).isResetReady(secretCode);
 	}
 }
