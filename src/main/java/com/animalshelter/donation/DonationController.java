@@ -1,9 +1,5 @@
 package com.animalshelter.donation;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +17,7 @@ public class DonationController {
 	@RequestMapping(value = "payment.animal", method = RequestMethod.GET)
 	public String donation(@RequestParam String money, @RequestParam String resultCode, @RequestParam String paymentId,
 			HttpServletRequest request, HttpServletResponse response) {
-		
+
 		String path = "";
 		if (resultCode.equals("Success")) {
 			// 성공시 DB작업 등

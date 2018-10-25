@@ -17,7 +17,6 @@ public class SidebarServiceImpl implements SidebarService{
 
 	@Override
 	public List<InfoDto> infoList(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.getMapper(SidebarDao.class).infoList(map);
 	}
 	@Override
@@ -120,7 +119,6 @@ public class SidebarServiceImpl implements SidebarService{
 	}
 	@Override
 	public List<ParcelDto> pick(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.getMapper(SidebarDao.class).pick(map);
 	}
 	@Override
@@ -140,7 +138,5 @@ public class SidebarServiceImpl implements SidebarService{
 		map.put("start", start + "");
 		map.put("end", end + "");
 		return sqlSession.getMapper(SidebarDao.class).pparcel(map);
-	}
-
-	
+	}	
 }

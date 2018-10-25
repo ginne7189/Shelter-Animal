@@ -77,6 +77,11 @@
 		delete from pwdreset where
 		email = #{userEmail}
 	</update>
+	
+	<select id="isResetReady" parameterType="String" resultType="int">
+		SELECT
+		count(email) FROM pwdreset WHERE email = #{email}
+	</select>
 </mapper>
 
 

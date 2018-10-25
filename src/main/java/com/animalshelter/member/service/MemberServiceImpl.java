@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
 	public int register(MemberDto memberDto) {
 		return sqlSession.getMapper(MemberDao.class).register(memberDto);
@@ -31,12 +31,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int isRegistered(String email) {	
+	public int isRegistered(String email) {
 		return sqlSession.getMapper(MemberDao.class).isRegistered(email);
 	}
 
 	@Override
-	public MemberDto getLoginInfo(String email) {		
+	public MemberDto getLoginInfo(String email) {
 		return sqlSession.getMapper(MemberDao.class).getLoginInfo(email);
 	}
 
@@ -67,13 +67,15 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberDto getInfo(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.getMapper(MemberDao.class).getInfo(map);
 	}
 
 	@Override
 	public MemberDto updateInfo(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.getMapper(MemberDao.class).updateInfo(map);
+	}
+
+	public int isResetReady(String secretCode) {
+		return sqlSession.getMapper(MemberDao.class).isResetReady(secretCode);
 	}
 }

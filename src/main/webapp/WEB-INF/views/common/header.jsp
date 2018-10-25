@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="common.jsp"%>
 
 <!DOCTYPE html>
@@ -143,17 +141,6 @@ $(document).ready(function() {
 		$(".acode").attr("value",$(this).attr("article-seq"));
 		$(".mvform").attr("action","${root}/parcel/"+view+".animal").submit();
 	});
-	
-	
-	
-// 	$(".page-item").click(function() {
-// 		if("${sidebar}" == "side"){
-// 			getList1(1);
-// 		}else{
-// 			getList(1);
-// 		}
-		
-// 	});
 });
 
 function getList(pg) {
@@ -248,7 +235,6 @@ function makedonationList(data){
 	$(".container-fluid").empty();
 	var view=$(".container-fluid");
 	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 
 	for(var i=0;i<members.length ;i++){
@@ -307,14 +293,9 @@ function makedonationList(data){
 			viewlist +="</div>";
 			viewlist +="<br>";	
 			viewlist +="<hr>";	
-			viewlist +="<br>";
-			 
+			viewlist +="<br>";			 
 		}
-		
-      
-
-	}
-	
+	}	
 	view.append(viewlist);
 }
 
@@ -322,7 +303,6 @@ function makemissingList(data){
 	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 	
 	for(var i=0;i<members.length ;i++){
@@ -342,17 +322,13 @@ function makemissingList(data){
 		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
 		viewlist +=  "</div>";
 		viewlist += "</div>";
-      
-
-	}
-	
+	}	
 	view.append(viewlist);
 }
 function makeattentionList(data){
 	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 	
 	for(var i=0;i<members.length ;i++){
@@ -371,9 +347,7 @@ function makeattentionList(data){
 		viewlist +=  "</div>";
 		viewlist += "</div>";
 		viewlist +="</div>";
-
-	}
-	
+	}	
 	view.append(viewlist);
 }
 function makearticleList(data) {
@@ -388,8 +362,6 @@ function makearticleList(data) {
 					   append($("<td></td>").text(members[i].boardtype)).
 					   append($("<td></td>").text(members[i].joindate)).
 					   append($("<td></td>").text(members[i].hit));
-		
-		
 		$("#listview").append(tr);
 	}
 }
@@ -397,10 +369,7 @@ function makeparcelList(data){
 	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
-// 	$("#main").empty();
-// 	var members = data.members;
 	for(var i=0;i<members.length ;i++){
 		viewlist +="<table>";	
 		viewlist +="</table>";
@@ -418,22 +387,17 @@ function makeparcelList(data){
 		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
 		viewlist +=  "</div>";
 		viewlist += "</div>";
-      
-
-	}
-	
+	}	
 	view.append(viewlist);
 }
 function makevolunteerList(data){
 	$(".container-fluid").empty();
 	var view=$(".container-fluid");
 	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 
 	for(var i=0;i<members.length ;i++){
 		if(i%2==0){
-
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
 			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
@@ -474,8 +438,6 @@ function makevolunteerList(data){
 			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
 			viewlist +=	"</div>";
-			
-			
 			viewlist +=	"<div class='col-sm-2'></div>";
 			viewlist +=	"<div class='col-md-5 info-big'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
@@ -504,30 +466,27 @@ function makevolunteerList(data){
 			viewlist +="</div>";
 			viewlist +="<br>";	
 			viewlist +="<hr>";	
-			viewlist +="<br>";
-			 
+			viewlist +="<br>";			 
 		}
-		
-      
-
-	}
-	
+	}	
 	view.append(viewlist);
 }
 </script>
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <style>
-ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
-</style> 
+ul.nav li.dropdown:hover>div.dropdown-menu {
+	display: block;
+	margin: 0;
+}
+</style>
 </head>
 <body>
 <form class="mvform" >
 <input type="hidden" class="acode" name="acode" value="sidebar" >
-<!-- <input type="hidden" class="acode" name="acode" value="aa" > -->
 </form>
 <!-- header1 -->
 <nav class="navbar navbar-expand-sm bg-yellow navbar-yellow" style="height:44px;">
@@ -555,7 +514,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
 </nav>
 <!-- img : logo -->
 <div class="imgcontainer" align="center"style="margin-bottom: 10px"> 
-<a href="index.jsp"><img src="https://images.unsplash.com/photo-1520038410233-7141be7e6f97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9af3b2bb5fbb37be767fbe40967c14b1&auto=format&fit=crop&w=1353&q=80" width="200px"height="100px"></a>
+<a href="${root}index.jsp"><img src="https://images.unsplash.com/photo-1520038410233-7141be7e6f97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9af3b2bb5fbb37be767fbe40967c14b1&auto=format&fit=crop&w=1353&q=80" width="200px"height="100px"></a>
 </div>
 <!--  -->
 <ul class="nav nav-tabs justify-content-center">

@@ -9,6 +9,19 @@ public class MemberDto {
 	private String tel;
 	private String joindate;
 	private String valid;
+	private String usercode;
+
+	public String getUsercode() {
+		return usercode;
+	}
+
+	public void setUsercode(String usercode) {
+		this.usercode = usercode;
+	}
+
+	public void setValid(String valid) {
+		this.valid = valid;
+	}
 
 	public String getValid() {
 		return valid;

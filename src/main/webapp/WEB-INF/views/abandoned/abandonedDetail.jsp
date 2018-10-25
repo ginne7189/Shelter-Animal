@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.animalshelter.dto.AnimalDto"%>
 <%@page import="java.util.List"%>
@@ -32,12 +31,12 @@
 		<h3>
 			공고번호 :
 			<%=list.get(index).getNoticeNo()%></h3>
-		<table class="table table-bordered"
-			style="margin-left: 13%; margin-top: 2%; width: 80%; font-size: 15px;">
+		<table class="table table-bordered" style="margin-left: 13%; margin-top: 2%; width: 80%; font-size: 15px;">
 			<tbody>
 				<tr>
-					<td colspan="2"><img src=" <%=list.get(index).getPopfile()%>"
-						width="600px" /></td>
+					<td colspan="2">
+						<img src=" <%=list.get(index).getPopfile()%>" width="600px" />
+					</td>
 				</tr>
 				<tr>
 					<td>유기번호</td>
@@ -137,8 +136,7 @@
 	<div style="margin: 5%;">
 		<div id="map" style="width: 100%; height: 400px;"></div>
 
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4bfd5c9518e4c10e2e8621f362038713&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4bfd5c9518e4c10e2e8621f362038713&libraries=services,clusterer,drawing"></script>
 		<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
@@ -171,8 +169,7 @@
 		
 		</script>
 	</div>
-	<table class="table table-bordered"
-		style="margin-left: 13%; margin-top: 2%; width: 80%; font-size: 15px;">
+	<table class="table table-bordered" style="margin-left: 13%; margin-top: 2%; width: 80%; font-size: 15px;">
 		<tbody>
 			<tr>
 				<td>보호소 이름</td>

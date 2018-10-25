@@ -7,7 +7,7 @@
 <title>메일 전송 완료!</title>
 </head>
 <body>
-<%@include file="../common/header.jsp"%>
-<h3>메일 전송이 완료되었습니다!</h3>
+	<%@include file="../common/header.jsp"%>
+	<h3>메일 전송이 완료되었습니다!</h3>
 </body>
 </html>

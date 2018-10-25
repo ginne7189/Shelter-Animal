@@ -94,8 +94,6 @@ public class SidebarController {
 	@RequestMapping(value = "/sidebar/missing.animal", method = RequestMethod.POST)
 	@ResponseBody
 	public String missing(@RequestParam Map<String, String> map,HttpServletRequest request) {
-		// String email=(String) session.getAttribute("email");
-
 		List<MissingDto> list;
 		String ee = map.get("sidebar");
 		map.put("email", "taehong88@gmail.com");
@@ -121,7 +119,6 @@ public class SidebarController {
 		navigator.setNavigator();
 		request.setAttribute("navigator", navigator);
 		json.put("members", jarray);
-		// System.out.println(json.toString());
 		return json.toString();
 
 	}
@@ -151,8 +148,6 @@ public class SidebarController {
 	@RequestMapping(value = "/sidebar/articlelist.animal", method = RequestMethod.POST)
 	@ResponseBody
 	public String articlelist(@RequestParam Map<String, String> map) {
-		// String email=(String) session.getAttribute("email");
-
 		List<BoardDto> list;
 		String ee = map.get("sidebar");
 		map.put("email", "taehong88@gmail.com");
@@ -172,28 +167,13 @@ public class SidebarController {
 			jarray.put(article);
 		}
 		json.put("members", jarray);
-		// System.out.println(json.toString());
 		return json.toString();
 
 	}
 
 	@RequestMapping(value = "/sidebar/attention.animal", method = RequestMethod.GET)
 	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
-		// session.removeAttribute("distinct");
-		// session.setAttribute("distinct", "");
-		request.setAttribute("sidebar", map.get("acode"));
-//		if (map.get("acode").equals("attention")) {
-//			request.setAttribute("sidebar", "attention");
-//		} else if (map.get("acode").equals("articlelist")) {
-//			request.setAttribute("sidebar", "articlelist");
-//		} else if (map.get("acode").equals("donation")) {
-//			request.setAttribute("sidebar", "donation");
-//		} else if (map.get("acode").equals( "volunteer")) {
-//			request.setAttribute("sidebar", "volunteer");
-//		} else if (map.get("acode").equals("parcel")) {
-//			request.setAttribute("sidebar", "parcel");
-//		} 
-		
+		request.setAttribute("sidebar", map.get("acode"));		
 		map.put("pg", "1");
 
 		PageNavigation navigator = commonService.makePageNavigation(map);
@@ -208,7 +188,6 @@ public class SidebarController {
 	@RequestMapping(value = "/sidebar/attention.animal", method = RequestMethod.POST)
 	@ResponseBody
 	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request) {
-		// String email=(String) session.getAttribute("email");
 		List<ParcelDto> list;
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
@@ -257,7 +236,6 @@ public class SidebarController {
 	@RequestMapping(value = "/sidebar/donation.animal", method = RequestMethod.POST)
 	@ResponseBody
 	public String donation(@RequestParam Map<String, String> map) {
-		// String email=(String) session.getAttribute("email");
 		List<DonationDto> list;
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
@@ -279,7 +257,6 @@ public class SidebarController {
 			jarray.put(article);
 		}
 		json.put("members", jarray);
-		// System.out.println(json.toString());
 		return json.toString();
 	}
 
@@ -307,6 +284,7 @@ public class SidebarController {
 	@ResponseBody
 	public String volunteer(@RequestParam Map<String, String> map) {
 		// String email=(String) session.getAttribute("email");
+
 		List<VolunteerDto> list;
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
@@ -329,7 +307,6 @@ public class SidebarController {
 			jarray.put(article);
 		}
 		json.put("members", jarray);
-		// System.out.println(json.toString());
 		return json.toString();
 	}
 
@@ -344,8 +321,6 @@ public class SidebarController {
 		}
 		request.setAttribute("sidebar", map.get("acode"));
 		map.put("pg", "1");
-		// List<ParcelDto> list = sidebarService.myparcel("wlswn3974@gmail.com");
-		// System.out.println(list.size());
 		PageNavigation navigator = commonService.makePageNavigation(map);
 		navigator.setRoot(request.getContextPath());
 		navigator.setKey(map.get("key"));
@@ -358,7 +333,6 @@ public class SidebarController {
 	@RequestMapping(value = "/sidebar/parcel.animal", method = RequestMethod.POST)
 	@ResponseBody
 	public String parcel(@RequestParam Map<String, String> map, Model model) {
-		// String email=(String) session.getAttribute("email");
 		List<ParcelDto> list;
 		map.put("email", "kjhabc2002@naver.com");
 		String ee = map.get("sidebar");
@@ -381,7 +355,6 @@ public class SidebarController {
 			jarray.put(article);
 		}
 		json.put("members", jarray);
-		// System.out.println(json.toString());
 		return json.toString();
 	}
 }
