@@ -33,7 +33,7 @@
 					"totalPayAmount" : money,
 					"taxScopeAmount" : money,
 					"taxExScopeAmount" : "0",
-					"returnUrl" : "http://${myIP}/animalshelter/payment.animal?money=" + money
+					"returnUrl" : "http://${myIP}${root}/payment.animal?money=" + money
 			});
 		}
 	</script>

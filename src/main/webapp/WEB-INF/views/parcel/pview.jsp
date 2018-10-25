@@ -24,14 +24,90 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </style>
 <script>
 
-$(document).ready(function() {
+function modifyReply(){
+	alert("will modify");
+}
+/* 
+function deleteReply(writer, reg_date){
+ 	alert(writer);
+ 	 $.ajax({
+ 		type : "POST",
+ 		url : "http://${myIP}${root}/reply/delete.animal",
+ 		data : {
+ 			c_code : "1",
+ 			seq : "${pboardDto.seq}",
+ 		},
+ 		success : function(data) {
+ 			
+ 		},
+ 		error : function(e) {
+ 			
+ 		} 
+ 	});	
+}  */
+
+$(document).ready(function() {	
+	
+	showReply();
+	
+	function showReply(){
+		$.ajax({
+			type : "POST",
+			url : "http://${myIP}${root}/reply/show.animal",
+			data : {
+				c_code : "1",
+				seq : "${pboardDto.seq}",
+			},
+			dataType : "json",
+			success : function(data) {
+				$.each(data.replyValue, function(key, value) {
+					var writer = value.writer;
+					var reg_date = value.reg_date;
+					var cmnt_content = value.cmnt_content;
+					 $('#viewReply > tbody:last').append('<tr><td>'+ writer +' </td><td>' + cmnt_content + '</td><td>'+ reg_date + 
+							'</td><td><a href="javascript:modifyReply();" >수정</a></td><td><a href=\"javascript:deleteReply('+writer+','+'2000'+');\" >삭제</a></td></tr>');
+						
+				});
+			},
+			error : function(e) {
+				
+			}
+		});
+	}
+	
+	 
 	
 	$(".w3-button").click(function() {
-		alert("${pboardDto.seq}");
 		$(".pviewhidden").attr("value","${pboardDto.seq}");
-		$(".pview").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
-		
+		if($(this).attr("value")!="reply"){
+			$(".pview").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		}else{
+			var comment = $("#reply_content").val();
+			$.ajax({
+				type : "POST",
+				url : "http://${myIP}${root}/reply/insert.animal",
+				data : {
+					c_code : "1",
+					seq : "${pboardDto.seq}",
+					cmnt_content : comment,
+					writer : "${sessionScope.user }", 
+				},
+				success : function(data) {
+					//$('#viewReply > tbody:last').append(data);
+					
+					$( '#viewReply> tbody:last').empty();
+					showReply();
+				},
+				error : function(e) {
+					alert(e);
+				}
+			});
+		}		
 	});
+	
+	
+	
+	
 });
 
 
@@ -103,13 +179,18 @@ $(document).ready(function() {
     </div>
     <br>
     <hr>
+    
 <!-- 댓글창 시작 -->    
     <h4><strong>댓글창</strong></h4>
-    <p>댓글목록</p>
+    <table id="viewReply" cellspacing="3">
+  
+  <tbody></tbody>
+</table>
     <hr>
-    <p>댓글창 삽입</p>
-	 <p><button class="w3-button w3-green w3-third">댓글등록</button></p>
-	  
+    <c:if test="${not empty sessionScope.user}" >
+    <p><textarea id="reply_content" name="reply_content" rows="4" cols="50"></textarea> </p>
+	 <p><button class="w3-button w3-green w3-third" value="reply">댓글등록</button></p>
+	  </c:if>
   </div>
   <hr>
 <!-- 댓글창 끝 -->

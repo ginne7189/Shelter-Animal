@@ -24,7 +24,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/infolist.animal", method = RequestMethod.GET)
 	public String info(HttpSession session,@RequestParam Map<String, String> map,HttpServletRequest request) {
-		System.out.println("ㄷㄷㄷㄷ");
 		String email="kjhabc2002@naver.com";//(String) session.getAttribute("email");
 		map.put("email", email);
 		MemberDto memberDto=memberService.getInfo(map);
@@ -34,11 +33,9 @@ public class MemberController {
 
 	@RequestMapping(value = "/infolist.animal", method = RequestMethod.POST)
 	public String info(HttpSession session,@RequestParam Map<String, String> map) {
-		System.out.println("제발");
 		String email="kjhabc2002@naver.com";
 		map.put("email", email);
 		MemberDto memberDto=memberService.updateInfo(map);
-		System.out.println("ㅁㄹㄷㅈ");
 		return "register/registertemp";
 	}
 	@RequestMapping(value = "/register.animal", method = RequestMethod.GET)

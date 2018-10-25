@@ -127,7 +127,7 @@
 				}
 			});
 		});
-
+		
 		$("#district").change(function() {
 
 			$("select[name='shelterList'] option").remove();

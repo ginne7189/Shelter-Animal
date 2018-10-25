@@ -15,7 +15,7 @@ public class DonationController {
 	}
 
 	@RequestMapping(value = "payment.animal", method = RequestMethod.GET)
-	public String donation(@RequestParam String money, @RequestParam String resultCode, @RequestParam String paymentId,
+	public String donation(@RequestParam String money, @RequestParam String resultCode,
 			HttpServletRequest request, HttpServletResponse response) {
 
 		String path = "";

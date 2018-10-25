@@ -24,6 +24,10 @@ $(document).ready(function() {
 		getList(1);
 	}else if("${sidebar}" == "volunteer"){
 		getList(1);
+	}else if("${sidebar}" == "sendEmail"){
+		window.location.replace("${myIP}${root}/admin/sendEmail.animal");
+	}else if("${sidebar}" == "statistics"){
+		
 	}else{
 		getList1(1);
 	}
@@ -328,16 +332,25 @@ function makevolunteerList(data){
   	<h3 class="w3-wide"><i class="fa fa-paw fa-lg"></i><b> 도기도기</b></h3>
   	<br><br><br>
     <h4>
-    <b>{이름뿌려주기}님의 마이 메뉴</b>
+    <b>${sessionScope.user}님의 마이 메뉴</b>
     </h4>
   </div>
   <hr>
   <div class="w3-padding-64 w3-large w3-text-grey sidebarlist" style="font-weight:bold">
+  <c:if test="${not empty sessionScope.user}" >
+  	관리자 메뉴<br>
+  	<hr>
+    <a href="${root}/admin/statistics.animal">통계보기</a><br>
+    <a href="${root}/admin/sendEmail.animal">이메일 보내기</a>
+    <hr>
+    </c:if>
+  
     <a value="infolist"  class="w3-bar-item w3-button w3-padding ">내 정보보기</a> 
     <a value="attention"  class="w3-bar-item w3-button w3-padding " pg="1">관심동물보기</a> 
     <a value="articlelist"  class="w3-bar-item w3-button w3-padding ">내가 쓴 글</a> 
     <a value="donation" class="w3-bar-item w3-button w3-padding">후원내역</a>
     <a value="parcel"  class="w3-bar-item w3-button w3-padding ">분양신청내역</a>
+    
   </div>
   <hr>
 </nav>

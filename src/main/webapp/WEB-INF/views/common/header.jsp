@@ -514,7 +514,7 @@ ul.nav li.dropdown:hover>div.dropdown-menu {
 </nav>
 <!-- img : logo -->
 <div class="imgcontainer" align="center"style="margin-bottom: 10px"> 
-<a href="${root}index.jsp"><img src="https://images.unsplash.com/photo-1520038410233-7141be7e6f97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9af3b2bb5fbb37be767fbe40967c14b1&auto=format&fit=crop&w=1353&q=80" width="200px"height="100px"></a>
+<a href="${root}/index.jsp"><img src="https://images.unsplash.com/photo-1520038410233-7141be7e6f97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9af3b2bb5fbb37be767fbe40967c14b1&auto=format&fit=crop&w=1353&q=80" width="200px"height="100px"></a>
 </div>
 <!--  -->
 <ul class="nav nav-tabs justify-content-center">
