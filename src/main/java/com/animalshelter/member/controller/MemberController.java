@@ -191,8 +191,8 @@ public class MemberController {
 			contents += "본 이메일은 발신전용 이메일입니다.<br>";
 			contents += "<a href=\"http://192.168.14.12/animalshelter/pwdReset.animal?secretCode=" + secretCode
 					+ "\">비밀번호 변경하기</a>";
-			String from = "animalshelter@nipa0711.net";
-			String fromName = "AnimalShelter";
+			String from = "animore@nipa0711.net";
+			String fromName = "Animore";
 
 			HashMap<String, String> mail = new HashMap<String, String>();
 			mail.put("email", memberDto.getEmail());

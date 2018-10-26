@@ -207,8 +207,8 @@ public class AdminController {
 		String searchEndDate = endde + sdf.format(cal.getTime()); // today
 
 		String service_url = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?";
-		String api_key = "ServiceKey=MOs%2BsExsezFOnRAr3WvDbeDXv4h%2FGdmDNVxTe%2FvoRgpiRE9gzCGzFwcuFUDaycs6HUwaZefSMY1jrXMzs0%2FJ%2FQ%3D%3D";
-		// "ServiceKey=lqoruspPyIUYqSauL%2FTDTAqIHgzz9%2F5G5AnOtKdkADTUioapCVMAPV3fmS2Bgh35FIZv54m4nurcOHbTJGJgDA%3D%3D";
+		//String api_key = "ServiceKey=MOs%2BsExsezFOnRAr3WvDbeDXv4h%2FGdmDNVxTe%2FvoRgpiRE9gzCGzFwcuFUDaycs6HUwaZefSMY1jrXMzs0%2FJ%2FQ%3D%3D";
+		String api_key = "ServiceKey=lqoruspPyIUYqSauL%2FTDTAqIHgzz9%2F5G5AnOtKdkADTUioapCVMAPV3fmS2Bgh35FIZv54m4nurcOHbTJGJgDA%3D%3D";
 
 		int listCnt = 0;
 		try {
