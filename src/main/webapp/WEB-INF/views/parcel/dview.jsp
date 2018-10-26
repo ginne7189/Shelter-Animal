@@ -174,7 +174,7 @@ $(document).ready(function() {
 		//직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요  
 		function naverPay() {
 			var seq = ${pboardDto.seq }
-			alert(seq);
+			
 			var money = document.getElementById("money").value;
 			if (money == null || money == "") {
 				return;
