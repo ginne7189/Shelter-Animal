@@ -131,7 +131,7 @@ public class AnimalController {
 					animalDto.setWeight(getTagValue("weight", eElement));
 					list.add(animalDto);
 					out.print("<div class=\"col-lg-4 col-sm-6\" style=\"margin-top: 50px\">");
-					out.print("<div class=\"card h-100\">");
+					out.print("<div class=\"card h-80\">");
 					out.println(" <a href=\"/animalshelter/abandonedDetail.animal?index=" + temp
 							+ "\" onclick=\"window.open(this.href, '상세보기', 'width=1000px,height=1500px,toolbars=no,scrollbars=no'); return false;\" ><img class=\"card-img-top\" src=\""
 							+ animalDto.getPopfile() + "\"></a>");

@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@include file="common.jsp"%>
-
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 
 $(document).ready(function() {
@@ -13,6 +12,7 @@ $(document).ready(function() {
 	}else if("${sidebar}" == "attention"){
 		getList(1);
 	}else if("${sidebar}" == "articlelist"){
+		
 		getList(1);
 	}else if("${sidebar}" == "parcel"){
 		getList(1);
@@ -29,6 +29,7 @@ $(document).ready(function() {
 	}else if("${sidebar}" == "othervolunteer"){
 		getList1(1);
 	}else if("${sidebar}" == "othermissing"){
+
 		getList1(1);
 	}else{
 		//getList1(1);
@@ -141,6 +142,17 @@ $(document).ready(function() {
 		$(".acode").attr("value",$(this).attr("article-seq"));
 		$(".mvform").attr("action","${root}/parcel/"+view+".animal").submit();
 	});
+	
+	
+	
+// 	$(".page-item").click(function() {
+// 		if("${sidebar}" == "side"){
+// 			getList1(1);
+// 		}else{
+// 			getList(1);
+// 		}
+		
+// 	});
 });
 
 function getList(pg) {
@@ -150,7 +162,7 @@ function getList(pg) {
 	}else if("${sidebar}" == "attention"){
 		tsidebar="attention";
 	}else if("${sidebar}" == "articlelist"){
-		tsidebar="articlelist";
+		tsidebar="applylist";
 	}else if("${sidebar}" == "parcel"){
 		tsidebar="parcel";
 	}else if("${sidebar}" == "volunteer"){
@@ -165,21 +177,22 @@ function getList(pg) {
 		dataType : "json",
 		data : {"sidebar": "sidebar","pg":pg},
 		success : function(data) {
+		
 			if("${sidebar}" == "donation"){
 				makedonationList(data);
 			}else if("${sidebar}" == "attention"){
+				
 				makeattentionList(data);
 			}else if("${sidebar}" == "articlelist"){
+				
 				makearticleList(data);
 			}else if("${sidebar}" == "parcel"){
 				makeparcelList(data);
 			}else if("${sidebar}" == "volunteer"){
 				makevolunteerList(data);
-			}else if("${sidebar}" == "missinglist"){
+			}else if("${sidebar}" == "missing"){
 				makemissingList(data);
 			}
-			
-			
 		},
 		error : function(e) {
 			
@@ -193,13 +206,13 @@ function getList1(pg) {
 	}else if("${sidebar}" == "otherattention"){
 		tsidebar="attention";
 	}else if("${sidebar}" == "otherarticlelist"){
-		tsidebar="articlelist";
+		tsidebar="applylist";
 	}else if("${sidebar}" == "otherparcel"){
 		tsidebar="parcel";
 	}else if("${sidebar}" == "othervolunteer"){
 		tsidebar="volunteer";
-	}else if("${sidebar}" == "othermissinglist"){
-		tsidebar="missinglist";
+	}else if("${sidebar}" == "othermissing"){
+		tsidebar="missing";
 	}
 	
 	$.ajax({
@@ -235,6 +248,7 @@ function makedonationList(data){
 	$(".container-fluid").empty();
 	var view=$(".container-fluid");
 	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 
 	for(var i=0;i<members.length ;i++){
@@ -245,14 +259,14 @@ function makedonationList(data){
 			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
+			viewlist +=	"<p style='font-size:36px;'><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
 			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;'>";		
+			viewlist +=	"<p style='text-align: center;font-size:20px;'>";		
 			viewlist +=	 members[i].cdonationpurpose;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
 			viewlist +=			"</div>";
-			viewlist +=			"<p><strong>현재 모금액</strong></p>";
+			viewlist +=			"<p style='font-size:20px;'><strong>현재 모금액</strong></p>";
 			viewlist +=			"<div class='progress'>";
 			viewlist +=			"<div class='progress-bar progress-bar-striped progress-bar-animated' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
 			viewlist +=			"</div>";
@@ -276,14 +290,14 @@ function makedonationList(data){
 			viewlist +=	"<div class='col-md-5 info-big'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
+			viewlist +=	"<p style='font-size:36px;'><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
 			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;'>";		
+			viewlist +=	"<p style='text-align: center;font-size:20px;'>";		
 			viewlist +=	 members[i].cdonationpurpose;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
 			viewlist +=			"</div>";
-			viewlist +=			"<p><strong>현재 모금액</strong></p>";
+			viewlist +=			"<p style='font-size:20px;'><strong>현재 모금액</strong></p>";
 			viewlist +=			"<div class='progress'>";
 			viewlist +=			"<div class='progress-bar progress-bar-striped progress-bar-animated' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
 			viewlist +=			"</div>";
@@ -293,9 +307,14 @@ function makedonationList(data){
 			viewlist +="</div>";
 			viewlist +="<br>";	
 			viewlist +="<hr>";	
-			viewlist +="<br>";			 
+			viewlist +="<br>";
+			 
 		}
-	}	
+		
+      
+
+	}
+	
 	view.append(viewlist);
 }
 
@@ -303,6 +322,7 @@ function makemissingList(data){
 	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 	
 	for(var i=0;i<members.length ;i++){
@@ -318,17 +338,21 @@ function makemissingList(data){
 		viewlist +=   "</h4>";
 		viewlist +=    "<p class='card-text'>	 <b>품종 :</b> "+members[i].kind+"</p>";
 		viewlist +=    "<p class='card-text'>	 <b>나이 :</b> "+members[i].age+"	</p>";
-		viewlist +=    "<p class='card-text'>	 <b>체중 :</b> "+members[i].weight+"	</p>";
+		viewlist +=    "<p class='card-text'>	 <b>체중 :</b> "+members[i].petsize+"	</p>";
 		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
 		viewlist +=  "</div>";
 		viewlist += "</div>";
-	}	
+      
+
+	}
+	
 	view.append(viewlist);
 }
 function makeattentionList(data){
 	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 	
 	for(var i=0;i<members.length ;i++){
@@ -347,21 +371,22 @@ function makeattentionList(data){
 		viewlist +=  "</div>";
 		viewlist += "</div>";
 		viewlist +="</div>";
-	}	
+
+	}
+	
 	view.append(viewlist);
 }
 function makearticleList(data) {
+	
 	$("#listview").empty();
 	var view=$("#listview");
 	var members=data.members;//{"members" : [{}, {}, {} ...]}
 	for(var i=0;i<members.length;i++) {
-		var tr = $("<tr class='detail' article-seq='"+members[i].seq+"'></tr>").						
-						append($("<td></td>").text(members[i].email)).
-					   append($("<td></td>").text(members[i].seq)).
-					   append($("<td></td>").text(members[i].subject)).
-					   append($("<td></td>").text(members[i].boardtype)).
-					   append($("<td></td>").text(members[i].joindate)).
-					   append($("<td></td>").text(members[i].hit));
+		var tr = $("<tr class='detail' article-seq='"+members[i].seq+"'></tr>")	
+						.append($("<td></td>").text(members[i].applyemail))
+						.append($("<td></td>").text(members[i].tel))
+					   .append($("<td></td>").text(members[i].subject))
+					   .append($("<td></td>").text(members[i].location))
 		$("#listview").append(tr);
 	}
 }
@@ -369,7 +394,10 @@ function makeparcelList(data){
 	$("#main").empty();
 	var view=$("#main");
 	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
+// 	$("#main").empty();
+// 	var members = data.members;
 	for(var i=0;i<members.length ;i++){
 		viewlist +="<table>";	
 		viewlist +="</table>";
@@ -387,37 +415,42 @@ function makeparcelList(data){
 		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
 		viewlist +=  "</div>";
 		viewlist += "</div>";
-	}	
+      
+
+	}
+	
 	view.append(viewlist);
 }
 function makevolunteerList(data){
 	$(".container-fluid").empty();
 	var view=$(".container-fluid");
 	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 
 	for(var i=0;i<members.length ;i++){
 		if(i%2==0){
+
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
 			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p>"+ members[i].subject + "</p>";		
+			viewlist +=	"<p style='font-size:20px;'>"+ members[i].subject + "</p>";		
 			viewlist +=	"<hr>";		
-			viewlist +=	"<p>봉사종류 :";		
+			viewlist +=	"<p style='font-size:20px;'>봉사종류 :";		
 			viewlist +=	 members[i].volunteerkind;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
-			viewlist +=	"<p>";		
+			viewlist +=	"<p style='font-size:20px;'>";		
 			viewlist +=	 members[i].volunteerdate;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
-			viewlist +=	"<p>";		
+			viewlist +=	"<p style='font-size:20px;'>";		
 			viewlist +=	 members[i].centerlocation;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
-			viewlist +=	"<p'>";		
+			viewlist +=	"<p style='font-size:20px;'>";		
 			viewlist +=	 members[i].tel;	
 			viewlist +=  "</p>";
 			viewlist +=			"</div>";
@@ -438,25 +471,27 @@ function makevolunteerList(data){
 			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
 			viewlist +=	"</div>";
+			
+			
 			viewlist +=	"<div class='col-sm-2'></div>";
 			viewlist +=	"<div class='col-md-5 info-big'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p>"+ members[i].subject + "</p>";		
+			viewlist +=	"<p style='font-size:20px;'>"+ members[i].subject + "</p>";		
 			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;'>";		
+			viewlist +=	"<p style='font-size:20px;'>봉사종류 :";		
 			viewlist +=	 members[i].volunteerkind;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
-			viewlist +=	"<p>";		
+			viewlist +=	"<p style='font-size:20px;'>";		
 			viewlist +=	 members[i].volunteerdate;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
-			viewlist +=	"<p>";		
+			viewlist +=	"<p style='font-size:20px;'>";		
 			viewlist +=	 members[i].centerlocation;	
 			viewlist +=  "</p>";
 			viewlist +=		"<hr>";
-			viewlist +=	"<p>";		
+			viewlist +=	"<p style='font-size:20px;'>";		
 			viewlist +=	 members[i].tel;	
 			viewlist +=  "</p>";
 			viewlist +=			"</div>";
@@ -466,59 +501,72 @@ function makevolunteerList(data){
 			viewlist +="</div>";
 			viewlist +="<br>";	
 			viewlist +="<hr>";	
-			viewlist +="<br>";			 
+			viewlist +="<br>";
+			 
 		}
-	}	
+		
+      
+
+	}
+	
 	view.append(viewlist);
 }
 </script>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-ul.nav li.dropdown:hover>div.dropdown-menu {
-	display: block;
-	margin: 0;
+ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
+.loginset{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
 }
-</style>
+.titlecontainer{
+	font-family: 'Do Hyeon', sans-serif !important;
+	font-size: 24px;
+}
+.headermenu{
+	font-family: 'Sunflower', sans-serif ;
+	font-size: 20px;	
+}
+</style> 
 </head>
 <body>
 <form class="mvform" >
 <input type="hidden" class="acode" name="acode" value="sidebar" >
 </form>
-<!-- header1 -->
-<nav class="navbar navbar-expand-sm bg-yellow navbar-yellow" style="height:44px;">
-    <ul class="navbar-nav" style=" position: absolute;right: 3%;">
-    <c:if test="${empty sessionScope.user}" > 
-      <li class="nav-item">
-        <a class="nav-link" href="${root}/login.animal">로그인</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${root}/register.animal">회원가입</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link" href="${root}/pwdFind.animal">비밀번호 찾기</a>
-      </li>
-      </c:if>
-      <c:if test="${not empty sessionScope.user }"> 
-      <li class="nav-item">
-      		<a class="nav-link" href="${root}/mypage.animal">${sessionScope.user }님</a> 
-      </li>
-      <li class="nav-item">
-      <a class="nav-link" href="${root}/logout.animal">로그아웃</a>
-      </li>
-</c:if> 
-    </ul>
+<!-- 로그인 세트 -->
+<nav class="navbar navbar-expand-sm loginset" style="position: absolute;right: 3%;">
+	<ul class="navbar-nav">
+	<c:if test="${empty sessionScope.user}" > 
+		<li class="nav-item">
+			<a class="nav-link" href="${root}/login.animal">로그인</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="${root}/register.animal">회원가입</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="${root}/pwdFind.animal">비밀번호 찾기</a>
+		</li>
+		</c:if>
+		<c:if test="${not empty sessionScope.user }"> 
+		<li class="nav-item">
+			<a class="nav-link" href="${root}/mypage.animal">${sessionScope.user }님</a> 
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="${root}/logout.animal">로그아웃</a>
+		</li>
+	</c:if> 
+	</ul>
 </nav>
-<!-- img : logo -->
-<div class="imgcontainer" align="center"style="margin-bottom: 10px"> 
-<a href="${root}/index.jsp"><img src="https://images.unsplash.com/photo-1520038410233-7141be7e6f97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9af3b2bb5fbb37be767fbe40967c14b1&auto=format&fit=crop&w=1353&q=80" width="200px"height="100px"></a>
+<!-- 메인 타이틀 or 이미지 -->
+<div class="titlecontainer" align="center"style="margin-bottom: 50px"> 
+	<i class="fa fa-dog"></i>
+	<h1><a style="text-decoration:none;" href="${root }/index.jsp"><i class="fa fa-paw fa-fw"></i>  animore</a></h1>
 </div>
-<!--  -->
-<ul class="nav nav-tabs justify-content-center">
-     <li class="nav-item dropdown">
+<!-- 네비게이션 바 -->
+<ul class="nav nav-tabs justify-content-center headermenu">
+    <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">봉사활동</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/volunteerDetail.animal">봉사소개</a>
@@ -538,7 +586,7 @@ ul.nav li.dropdown:hover>div.dropdown-menu {
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">실종동물</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
-      <a class="dropdown-item" href="${root }/parcel/mwrite.animal">실종동물신청</a>
+      <a class="dropdown-item" href="${root }/parcel/pwrite.animal">실종동물신청</a>
       <a class="dropdown-item" value="othermissing">실종동물목록</a>
     </div>
   </li> 
@@ -558,6 +606,7 @@ ul.nav li.dropdown:hover>div.dropdown-menu {
         <a class="dropdown-item" value="otherdonation">후원목록</a>
     </div>
   </li> 
-  </ul>
+</ul>
+ 
 </body>
 </html>

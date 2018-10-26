@@ -6,12 +6,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- <link rel="style.css"> -->
 <style>
-.sidebartop{font-family: 'Yeon Sung', cursive;}
-.sidebarlist{font-family: 'Sunflower', sans-serif;}
+.sidebartop{font-family: 'Sunflower', sans-serif;}
+.sidebarlist{font-family: 'Noto Sans KR', sans-serif;}
 </style>
 <link rel="style.css">
 <script>
-
 $(document).ready(function() {
 		
 	if("${sidebar}" == "donation"){
@@ -56,7 +55,6 @@ $(document).ready(function() {
 		
 	});
 });
-
 function getList(pg) {
 	$.ajax({
 		type : "POST",
@@ -82,7 +80,6 @@ function getList(pg) {
 	});
 }
 function getList1(pg) {
-
 	$.ajax({
 		type : "POST",
 		url : "${root}/sidebar/attention.animal",
@@ -106,16 +103,12 @@ function getList1(pg) {
 		}
 	});
 }
-
-
 function makedonationList(data){
 	var view=$(".container-fluid");
 	var members = data.members;
 	var viewlist="";
-
 	for(var i=0;i<members.length ;i++){
 		if(i%2==0){
-
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
 			viewlist +=	"<div class='col-md-5 info-big'>";
@@ -174,8 +167,6 @@ function makedonationList(data){
 	}	
 	view.append(viewlist);
 }
-
-
 function makeattentionList(data){
 	$("#main").empty();
 	var view=$("#main");
@@ -247,10 +238,8 @@ function makevolunteerList(data){
 	var view=$(".container-fluid");
 	var members = data.members;
 	var viewlist="";
-
 	for(var i=0;i<members.length ;i++){
 		if(i%2==0){
-
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
 			viewlist +=	"<div class='col-md-5 info-big'>";
@@ -329,7 +318,7 @@ function makevolunteerList(data){
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-bar-block" style="z-index:3;width:250px;" id="mySidebar"><br>
   <div class="w3-container w3-display-container w3-padding-16 sidebartop">
-  	<h3 class="w3-wide"><i class="fa fa-paw fa-lg"></i><b> 도기도기</b></h3>
+  	<h3 class="w3-wide"><i class="fa fa-paw fa-lg"></i><b> animore</b></h3>
   	<br><br><br>
     <h4>
     <b>${sessionScope.user}님의 마이 메뉴</b>
