@@ -26,6 +26,7 @@
 				<value>classpath:com/animalshelter/config/mybatis/pboard.xml</value>
 				<value>classpath:com/animalshelter/config/mybatis/vboard.xml</value>
 				<value>classpath:com/animalshelter/config/mybatis/reply.xml</value>
+				<value>classpath:com/animalshelter/config/mybatis/donation.xml</value>
 				
 			</list>
 		</property>

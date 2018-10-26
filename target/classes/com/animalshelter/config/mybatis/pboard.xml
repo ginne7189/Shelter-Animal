@@ -30,7 +30,7 @@
 		WHERE b.seq=p.seq
 		AND p.seq=#{seq}
 	</select>
-
+	
 	<select id="dviewArticle" parameterType="int" resultType="dboardDto">
 		SELECT b.seq, b.subject, b.content, b.boardtype, b.hit, b.joindate, b.email,
 			   d.centername,d.cdonationfee,d.gatheringfee,d.cdonationpurpose

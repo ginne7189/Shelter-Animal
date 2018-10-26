@@ -100,6 +100,7 @@ public class PboardController {
 		int seq=Integer.parseInt(map.get("acode"));
 			DonationBoardDto pboardDto = pboardService.dviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
+			request.setAttribute("seq", pboardDto.getSeq());
 		return "parcel/dview";
 	}	
 

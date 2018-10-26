@@ -92,7 +92,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     
     <input type="number" id="money" value=""  placeholder="기부할 금액"/>원 기부하기<br><br>
 <!--// mode : development or production-->
+
+
 <button class="w3-button w3-green w3-third" style="background-color: white;" onclick="javascript:naverPay();">기부하기</button>
+
 <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 <script>
 		var oPay = Naver.Pay.create({
@@ -102,6 +105,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 		//직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요  
 		function naverPay() {
+			var seq = ${pboardDto.seq }
+			alert(seq);
 			var money = document.getElementById("money").value;
 			if (money == null || money == "") {
 				return;
@@ -113,7 +118,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 					"totalPayAmount" : money,
 					"taxScopeAmount" : money,
 					"taxExScopeAmount" : "0",
-					"returnUrl" : "http://${myIP}/animalshelter/payment.animal?money=" + money
+					"returnUrl" : "http://${myIP}/animalshelter/payment.animal?money=" + money+"&seq="+ seq
 			});
 		}
 	</script>

@@ -23,7 +23,7 @@
 					showTxt = "등록되지 않은 이메일 입니다.";
 				} else {
 					window.location
-							.replace("http://${myIP}/animal/pwdRequest.animal?email="
+							.replace("http://${myIP}/animalshelter/pwdRequest.animal?email="
 									+ userEmail);
 				}
 				document.getElementById("email_check").innerHTML = showTxt;
