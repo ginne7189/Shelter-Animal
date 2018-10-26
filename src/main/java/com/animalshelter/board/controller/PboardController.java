@@ -29,6 +29,11 @@ public class PboardController {
 	@Autowired
 	private ServletContext servletContext;
 	
+	@RequestMapping(value="/parcelDetail.animal")
+	public String mvdetail() {
+		return "parcel/parcelDetail";
+	}
+	
 	@RequestMapping(value="/pwrite.animal", method=RequestMethod.GET)
 	public String write(@RequestParam Map<String,String> map) {
 		return "parcel/pwrite";
