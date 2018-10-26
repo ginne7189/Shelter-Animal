@@ -6,9 +6,18 @@ public class MissingDto extends BoardDto{
 	private String location;
 	private String missingdate;
 	private String kind;
-	private int weight;
+	private String petsize;
 	private String feature;
 	private int age;
+	
+	
+	
+	public String getPetsize() {
+		return petsize;
+	}
+	public void setPetsize(String petsize) {
+		this.petsize = petsize;
+	}
 	public int getSeq() {
 		return seq;
 	}
@@ -39,12 +48,7 @@ public class MissingDto extends BoardDto{
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
+	
 	public String getFeature() {
 		return feature;
 	}

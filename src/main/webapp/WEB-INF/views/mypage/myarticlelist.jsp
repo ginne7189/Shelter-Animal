@@ -66,8 +66,9 @@ h2:after{
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
+<c:if test="${email != null }">
 	<%@include file="../common/sidebar.jsp"%>
-	
+</c:if>
 	<%@include file="../common/header.jsp"%>
 	
      <div class="jumbotron toplayout" style="text-align: center;">
@@ -99,12 +100,10 @@ h2:after{
 	  <table class="table">
 	    <thead>
 	      <tr>
-	        <th>작성자</th>
-	        <th>글번호</th>	         
-	         <th>제목</th>
-	         <th>${email }</th>
-	        <th>작성일시</th>
-	        <th>조회수</th>
+	        <th>신청자</th>
+	        <th>제목</th>	         
+	         <th>전화번호</th>
+	         <th>주소</th>
 	      </tr>
 	    </thead>
 	    <tbody>

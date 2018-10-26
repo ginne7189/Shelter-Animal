@@ -90,7 +90,7 @@ text-align:center;
 	<%@include file="../common/header.jsp"%>
    <div class="container-fluid hm_register">
       <br>
-      <div style="text-align:center"><h2><b>회원가입</b></h2>
+      <div style="text-align:center"><h2><b>회원정보수정</b></h2>
       <font color="#D5D5D5">―――――――――――――――――――――――――――――――――――――――</font><br><br></div>
       <form name="register_form" method="post" action="${root }/infolist.animal" id="register_form"
          onsubmit="return checkRegister()">
@@ -156,7 +156,7 @@ text-align:center;
                   <p class="register_advise" ></p></td>
                   </tr>   
                <tr style="height: 25px;">
-                  <td style="vertical-align:middle"><div
+                  <td style="vertical-align:middle"><div>
                         class="register_form_txt">
                         <div class="f_size">연락처</div>
                      </div></td>
@@ -168,7 +168,7 @@ text-align:center;
                </tr>
          </table>
          <div style="text-align:center;"><font color="#D5D5D5">―――――――――――――――――――――――――――――――――――――――</font><br><br>
-         <button class="form-control" type="submit" name="btn_register" style="margin-left:60px; width:450px; height:50px; margin:0 auto;"><font size="5"><b>회원가입</b></font></button></div>
+         <button class="form-control" type="submit" name="btn_register" style="margin-left:60px; width:450px; height:50px; margin:0 auto;"><font size="5"><b>수정하기</b></font></button></div>
       </form>
    </div>
 </body>

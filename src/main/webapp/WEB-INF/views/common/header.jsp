@@ -376,6 +376,8 @@ function makeattentionList(data){
 	
 	view.append(viewlist);
 }
+
+
 function makearticleList(data) {
 	
 	$("#listview").empty();
@@ -390,6 +392,7 @@ function makearticleList(data) {
 		$("#listview").append(tr);
 	}
 }
+
 function makeparcelList(data){
 	$("#main").empty();
 	var view=$("#main");
@@ -577,7 +580,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">유기동물</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="${root}/abandonedNotice.animal">유기동물소개</a>
+      <a class="dropdown-item" href="${root}/abandonDetail.animal">유기동물소개</a>
       <a class="dropdown-item" href="${root}/abandoned.animal">유기동물목록</a>
     </div>
   </li> 
@@ -586,7 +589,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">실종동물</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
-      <a class="dropdown-item" href="${root }/parcel/pwrite.animal">실종동물신청</a>
+      <a class="dropdown-item" href="${root }/parcel/mwrite.animal">실종동물신청</a>
       <a class="dropdown-item" value="othermissing">실종동물목록</a>
     </div>
   </li> 
@@ -594,7 +597,7 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
   <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">분양받기</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">분양소개</a>
+      <a class="dropdown-item" href="${root}/parcel/parcelDetail.animal">분양소개</a>
       <a class="dropdown-item" href="${root }/parcel/pwrite.animal">개인분양신청</a>
       <a class="dropdown-item" value="otherparcel">분양신청목록</a>
     </div>

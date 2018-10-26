@@ -1,212 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
+<%@include file="../common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script async="" src="//www.google-analytics.com/analytics.js"></script> 
+<link rel="stylesheet" href="main-min.css?v=1539290358437" type="text/css">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main-min.js?v=1539290358437" src="main-min.js?v=1539290358437"></script>
 <style>
-.sidebar {
-	position: fixed;
+.g-font-size-48{
+	font-family: 'Yeon Sung', cursive;
+	font-size: 48px;
 }
-
-.card-img-top {
-	width: 100%;
-	height: 300px;
+.g-color-white{
+	font-family: 'Jua', sans-serif;
 }
-
-.container-fluid {
-	width: 88%;
+ul{
+	font-family: 'Noto Serif KR', sans-serif;
 }
-
-h1:after {
-	content: "";
-	display: block;
-	width: 60px;
-	border-bottom: 2px solid #bcbcbc;
-	margin: 20px auto;
-}
-
-.button1 {
-	background-color: white;
-	color: black;
-	border: 2px solid #555555;
-}
-
-.button2 {
-	background-color: #008CBA;
-	color: white;
-	border: none;
-	padding: 12px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	-webkit-transition-duration: 0.4s;
-	transition-duration: 0.4s;
-	cursor: pointer;
-}
-
-.button {
-	background-color: #008CBA;
-	border: none;
-	color: white;
-	padding: 16px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	-webkit-transition-duration: 0.4s;
-	transition-duration: 0.4s;
-	cursor: pointer;
-}
-
-.form-control {
-	margin: auto;
-	width: 40%;
+li{
+	font-size: 20px;
 }
 </style>
+
 </head>
 <body style="background-color: #EEEEEE; padding: 0px; margin: 0px;">
+<c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
+</c:if>
 	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron toplayout" style="text-align: center;">
-		<h2>봉사신청 상세페이지</h2>
+		<h2>봉사신청 소개 페이지</h2>
 		<h4>도움의 손길이 필요합니다.</h4>
 	</div>
-	<!-- 동물 리스트 -->
-	<!-- Page Content -->
-	<div class="container-fluid" style="width: 48%; display: inline-block; text-align: center; margin-left: 26%; margin-top: 2%;">
-		<!-- 		<div class="col-sm-6" style="float:left;"> -->
-		<!-- Portfolio Item Heading -->
-		<h1 class="my-4">봉사신청 상세페이지</h1>
+<section class="container g-pb-30">   
+   <div class="row no-gutters">
+      <div class="col-sm-12" style="background: rgba(0,0,0,0.8) url(/front/img/patterns/gridtile.png) repeat;">      
+         <div class="row">      
+            <div class="col-lg-8 col-md-12">
+               <img src="https://images.unsplash.com/photo-1534844404100-27259dbdc22c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fda040c3629ca96c2454666241e24049&auto=format&fit=crop&w=1351&q=80" class="img-fluid">
+            </div>
+            <div class="col-lg-4 col-md-12 g-pa-20">
+               <p class="g-font-size-48 g-line-height-1_5 g-mt-10 g-mt-60--lg g-mb-30" style="color: #88d2f7;">바 로 여 기 ,<br> 당 신 이 <br> 필 요 합 니 다</p>
+               <br/><br/><br/>
+               <p class="g-color-white" style="color: #ffffff;">누구든지 돈을 주고 동물을 산다면<br>그 이면에는 죽을때까지 고통 받아야 하는<br> 또 다른 생명들이 존재해야 하는 것을<br> 기억해 주세요.</p>
+            </div>
+         </div>
+      </div>
+   </div>
 
-		<div style="margin-top: 10%">
-			<h3>봉사정보</h3>
-			<p style="text-align: left">2018-10-09 17.06.15 조회수 : 1</p>
-		</div>
-		<table class="table table-bordered" style="margin-left: 13%; margin-top: 2%; width: 80%; font-size: 15px;">
+   <ul class="nav nav-justified u-nav-v2-1 u-nav-primary g-mb-20" role="tablist" data-target="nav-2-1-primary-hor-justified" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block u-btn-outline-primary g-mb-20">
+      <li class="nav-item"><a class="nav-link g-brd-none" data-toggle="tab" href="#nav-2-1-primary-hor-justified--1" role="tab" aria-selected="false">준비 사항</a></li>
+      <li class="nav-item"><a class="nav-link g-brd-none active show" data-toggle="tab" href="#nav-2-1-primary-hor-justified--2" role="tab" aria-selected="true">주의사항</a></li>
+   </ul>
 
-			<tbody>
-				<tr>
-					<td>단체 및 시설이름</td>
-					<td>괴산보호소</td>
-				</tr>
-				<tr>
-					<td>담당자 이름</td>
-					<td>유금순</td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td>충청북도 괴산</td>
-				</tr>
-				<tr>
-					<td>봉사종류</td>
-					<td>산책봉사</td>
-				</tr>
-
-				<tr>
-					<td>봉사기간</td>
-					<td>2018/10/10~2018/10/12</td>
-				</tr>
-				<tr>
-					<td>담당자 전화번호</td>
-					<td>010-1341-1222</td>
-				</tr>
-
-			</tbody>
-		</table>
-		<button onclick="myFunction()">신청하기</button>
-
-		<script>
-			function myFunction() {
-				if (confirm("해당 기관에 본인정보가 넘어가도 괜찮겠습니까?")) {
-					alert("신청이 완료되었습니다!");
-				} else {
-				}
-			}
-		</script>
-		<div style="margin-left: 85%">
-
-			<div class="modal fade" id="dntModal" tabindex="-1" role="dialog" aria-labelledby="dntModalLabel">
-				<div class="modal-dialog" role="document">
-
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">봉사종류</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-							<button type="button" class="btn btn-primary">완료</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<img src="img/vol1.jpg" style="margin-top: 5%; margin-bottom: 5%; width: 60%;">
-		<p>괴산 보호소에는 연세 많으신 두 분께서 200여마리의 아이들을 돌보고 계십니다.</p>
-		<img src="img/vol2.jpg" style="margin-top: 5%; margin-bottom: 5%; width: 60%;">
-		<p>아픈아이들과 노령견, 소형견, 중형견, 대형견, 그리고 친한 아이들과 독립적인 아이들로 나눠 각자의 공간 또는 한 공간에서 최대한 자유롭게 살 수 있도록 돌봐주고자 노력하고 있습니다.</p>
-		<img src="img/vol3.jpg" style="margin-top: 5%; margin-bottom: 5%; width: 60%;">
-		<p>아픈 아이들과 소형견 아이들을 위한 아지피아, 야외활동 하는 대형견 아이들을 위한 특수견 플러스, 거실에서 활동하는 고양이들과, 소문 듣고 몰려온 동네 길냥이들을 위한 고양이 사료와 캔이 늘 필요합니다.</p>
-		<img src="img/vol4.jpg" style="margin-top: 5%; margin-bottom: 5%; width: 60%;">
-		<p>봉사를 원하시는 분들은 위의 전화번호로 아부지님과 일정 상의 후 방문해 주시면 되구요. 미용봉사, 목욕봉사, 청소봉사 ~ 그냥 아이들 만나러 오셔도~ 언제든 환영입니다.</p>
-
-		<hr>
-		<!-- 구글맵 -->
-		<h3 style="margin-top: 20px;">보호센터위치</h3>
-		<div style="margin: 5%;">
-			<div id="googleMap" style="width: 100%; height: 400px;"></div>
-
-			<script>
-				function myMap() {
-					var mapProp = {
-						center : new google.maps.LatLng(51.508742, -0.120850),
-						zoom : 5,
-					};
-					var map = new google.maps.Map(document
-							.getElementById("googleMap"), mapProp);
-				}
-			</script>
-
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-		</div>
-		<!-- -->
-		<hr>
-		<h3 style="margin-top: 20px;"></h3>
-		<div style="display: inline-block;">
-			<textarea rows="5" cols="118">
-		</textarea>
-			<br>
-			<div style="float: right;">
-				<button class="button2">댓글</button>
-			</div>
-		</div>
-		<div style="margin-top: 10px">
-			<hr>
-
-			<div style="text-align: left;">
-				<div>김주현 / 1일전</div>
-				<div>내용:contentcontentcontentcontentcontentcontent</div>
-			</div>
-			<hr>
-		</div>
-	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <div id="nav-2-1-primary-hor-justified" class="tab-content">
+      <div class="tab-pane fade" id="nav-2-1-primary-hor-justified--1" role="tabpanel">
+      <br>
+      	<p style="font-size:20px;">봉사 일정은 봉사 목록에서 확인하실 수 있습니다. 해당 게시글을 읽어보신 후 신청 버튼을 클릭 하시면 신청 완료!</p>
+         <ul>
+            <li>20세 이상의 신체 건강하신 분</li><br>
+            <li>동물보호에 관심이 있고 , 동물을 사랑하시는 분</li><br>
+            <li>파상풍 예방접종이 되신 분은 누구나 신청 가능합니다</li><br>
+            <li>파상풍 예방접종 확인증은 필수!!</li><br>
+            <li>파상풍은 화상을 입거나 흙이나 녹슨 못 , 나무조각등에 긁혀 상처부위를 통해 감염됩니다</li><br>
+            <li>파상풍 균은 흙이나 동물의 분변 속에 있으며 동물에게 물리는 경우에도 감염될 수 있습니다</li><br>
+            <li>파상풍은 사망률이 높은 질병입니다. 봉사대에 지원하기 전에 꼭 파상풍 예방접종을 맞아주세요</li><br>
+         </ul>
+      </div>
+      
+      <div class="tab-pane fade active show" id="nav-2-1-primary-hor-justified--2" role="tabpanel">
+      <br>
+         <p style="font-size:20px;">아래 주의사항을 꼭 숙지해주세요!!</p>
+         <ul>
+            <li>봉사 관리자의 지시사항을 따르고, 개인 활동은 최대한 자제해주세요</li><br>
+            <li>편한 복장으로 봉사에 참여해 주세요. 갈아입을 수 있는 여벌의 복장도 준비해 주세요</li><br>
+            <li>간식은 개체마다 알레르기 반응을 유발할 수 있고 보호소의 기준이 있을 수 있으니, 봉사대 관리자의 허락하에 주세요</li><br>
+            <li>정해진 구역에서만 활동을 해주세요</li><br>
+            <li>공격성이 있는 개체와의 접촉은 피해 주세요. 개인의 안전이 최우선! 사고가 있는 경우 바로 관리자에게 보고하여 즉각적인 조치를 받도록 해주세요</li><br>
+            <li>봉사가 끝이 나고 혹시 모를 질병의 전염을 막기 위해 사용한 옷과 신발은 단독세탁 해주세요</li><br>
+            <li>봉사 당일 취소는 앞으로 봉사참여에 제약이 있어요</li><br>
+         </ul>
+      </div>
+   </div>
+   
+   <hr class="g-mb-0">
+   
+</section>
 </body>
-<div class="jumbotron text-center" style="margin-bottom: 0">
-	<p>footer</p>
-</div>
-
 </html>
 
 

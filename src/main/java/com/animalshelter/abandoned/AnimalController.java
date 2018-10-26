@@ -25,6 +25,11 @@ public class AnimalController {
 	String pageNo = "&pageNo=";
 	String numOfRows = "&numOfRows=6";
 
+	@RequestMapping(value = "abandonDetail.animal")
+	public String showDetail() {
+		return "abandoned/abDetail";
+	}
+
 	@RequestMapping(value = "abandoned.animal", method = RequestMethod.GET)
 	public String showAbandonedAnimal() {
 		return "abandoned/show";

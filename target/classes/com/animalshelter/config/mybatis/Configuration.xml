@@ -9,6 +9,8 @@
 			type="com.animalshelter.member.model.MemberDto" />
 		<typeAlias alias="memberDetailDto"
 			type="com.animalshelter.member.model.MemberDetailDto" />
+		<typeAlias alias="applyDto"
+			type="com.animalshelter.sidebar.model.ApplyDto" />
 		<typeAlias alias="boardDto"
 			type="com.animalshelter.sidebar.model.BoardDto" />
 		<typeAlias alias="parcelDto"

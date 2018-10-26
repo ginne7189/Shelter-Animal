@@ -24,16 +24,16 @@ public class MemberController {
 
 	@RequestMapping(value = "/infolist.animal", method = RequestMethod.GET)
 	public String info(HttpSession session,@RequestParam Map<String, String> map,HttpServletRequest request) {
-		String email="kjhabc2002@naver.com";//(String) session.getAttribute("email");
+		String email=(String) session.getAttribute("email");
 		map.put("email", email);
 		MemberDto memberDto=memberService.getInfo(map);
 		request.setAttribute("info", memberDto);
-		return "register/info";
+		return "register/register_basic";
 	}
 
 	@RequestMapping(value = "/infolist.animal", method = RequestMethod.POST)
 	public String info(HttpSession session,@RequestParam Map<String, String> map) {
-		String email="kjhabc2002@naver.com";
+		String email=(String) session.getAttribute("email");
 		map.put("email", email);
 		MemberDto memberDto=memberService.updateInfo(map);
 		return "register/registertemp";
