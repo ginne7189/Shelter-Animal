@@ -24,10 +24,9 @@
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
 <c:set var="disk" value="dist"/>
-<%-- <c:if test="${email != null }"> --%>
-
+<c:if test="${email != null }">
 	<%@include file="../common/sidebar.jsp"%>
-<%-- </c:if> --%>
+</c:if>
 	<%@include file="../common/header.jsp"%>
 	
 <div class="jumbotron toplayout" style="text-align: center;">

@@ -9,10 +9,16 @@ public class MissingBoardDto extends BoardDto{
 	private String gender;
 	private String petsize;
 	private String feature;
-	private String date;
+	private String missingdate;
 	private int age;
 	
 	
+	public String getMissingdate() {
+		return missingdate;
+	}
+	public void setMissingdate(String missingdate) {
+		this.missingdate = missingdate;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -50,12 +56,7 @@ public class MissingBoardDto extends BoardDto{
 		this.location = location;
 	}
 	
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
+	
 	public String getKind() {
 		return kind;
 	}

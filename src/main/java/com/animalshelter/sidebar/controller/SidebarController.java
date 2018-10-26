@@ -36,8 +36,8 @@ public class SidebarController {
 	public String pparcel(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
 
 		String email;//(String) session.getAttribute("email");
-		
-		map.put("email", "kjhabc2002@naver.com");
+		email=(String) session.getAttribute("email");
+		map.put("email", email);
 		List<ParcelDto> list;
 		map.put("pg", "1");
 		
@@ -55,12 +55,13 @@ public class SidebarController {
 	
 	@RequestMapping(value = "/sidebar/pick.animal", method = RequestMethod.GET)
 	public String pick(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
-		String email;//(String) session.getAttribute("email");
-		map.put("email", "kjhabc2002@naver.com");
+		
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
 		List<ParcelDto> list;
 		map.put("pg", "1");
-		list = sidebarService.picklist(map);
-
+		list = sidebarService.pick(map);
+		System.out.println("ll");
 		PageNavigation navigator = commonService.makePageNavigation(map);
 		navigator.setRoot(request.getContextPath());
 		navigator.setKey(map.get("key"));
@@ -93,23 +94,24 @@ public class SidebarController {
 
 	@RequestMapping(value = "/sidebar/missing.animal", method = RequestMethod.POST)
 	@ResponseBody
-	public String missing(@RequestParam Map<String, String> map,HttpServletRequest request) {
+	public String missing(@RequestParam Map<String, String> map,HttpServletRequest request,HttpSession session,Model model) {
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
 		List<MissingDto> list;
 		String ee = map.get("sidebar");
-		map.put("email", "taehong88@gmail.com");
+		email=(String) session.getAttribute("email");
 		list = sidebarService.missingList(map);
 
 		JSONObject json = new JSONObject();
 		JSONArray jarray = new JSONArray();
 		for (MissingDto dto : list) {
 			JSONObject article = new JSONObject();
-			article.put("subject", dto.getSubject());
+			article.put("kind", dto.getKind());
 			article.put("seq", dto.getSeq());
-			article.put("content", dto.getContent());
-			article.put("boardtype", dto.getBoardtype());
-			article.put("hit", dto.getHit());
-			article.put("joindate", dto.getJoindate());
-			article.put("email", dto.getEmail());
+			article.put("age", dto.getAge());
+			article.put("petsize", dto.getPetsize());
+			article.put("location", dto.getLocation());
+			article.put("subject", dto.getSubject());
 			jarray.put(article);
 		}
 		PageNavigation navigator = commonService.makePageNavigation(map);
@@ -143,14 +145,58 @@ public class SidebarController {
 		return "mypage/myarticlelist";
 	}
 
-	
+	@RequestMapping(value = "/sidebar/applylist.animal", method = RequestMethod.GET)
+	public String applylist(@RequestParam Map<String, String> map, HttpServletRequest request) {
 
+		map.put("pg", "1");
+		request.setAttribute("sidebar", map.get("acode"));
+		
+		PageNavigation navigator = commonService.makePageNavigation(map);
+		navigator.setRoot(request.getContextPath());
+		navigator.setKey(map.get("key"));
+		navigator.setWord(map.get("word"));
+		navigator.setNavigator();
+		request.setAttribute("navigator", navigator);
+		return "mypage/myarticlelist";
+	}
+
+	@RequestMapping(value = "/sidebar/applylist.animal", method = RequestMethod.POST)
+	@ResponseBody
+	public String articlelist(@RequestParam Map<String, String> map,HttpServletRequest request,HttpSession session) {
+		List<ApplyDto> list;
+		String ee = map.get("apply");
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
+		list = sidebarService.applyList(map);
+	
+		JSONObject json = new JSONObject();
+		JSONArray jarray = new JSONArray();
+		for (ApplyDto dto : list) {
+			
+			JSONObject article = new JSONObject();
+			article.put("seq", dto.getSeq());
+			article.put("subject", dto.getSubject());
+			article.put("tel", dto.getTel());
+			article.put("location", dto.getAddr1());
+			article.put("applyemail", dto.getApplyemail());
+			System.out.println(dto.getSeq()+dto.getSubject()+dto.getTel()+dto.getAddr1()+dto.getApplyemail());
+			jarray.put(article);
+			
+		}
+		
+		json.put("members", jarray);
+		return json.toString();
+
+	}
+	
+	
 	@RequestMapping(value = "/sidebar/articlelist.animal", method = RequestMethod.POST)
 	@ResponseBody
-	public String articlelist(@RequestParam Map<String, String> map) {
+	public String articlelist(@RequestParam Map<String, String> map,HttpSession session) {
 		List<BoardDto> list;
 		String ee = map.get("sidebar");
-		map.put("email", "taehong88@gmail.com");
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
 		list = sidebarService.articleList(map);
 
 		JSONObject json = new JSONObject();
@@ -172,7 +218,7 @@ public class SidebarController {
 	}
 
 	@RequestMapping(value = "/sidebar/attention.animal", method = RequestMethod.GET)
-	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request, HttpSession session) {
+	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request) {
 		request.setAttribute("sidebar", map.get("acode"));		
 		map.put("pg", "1");
 
@@ -187,9 +233,10 @@ public class SidebarController {
 
 	@RequestMapping(value = "/sidebar/attention.animal", method = RequestMethod.POST)
 	@ResponseBody
-	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request) {
+	public String attention(@RequestParam Map<String, String> map, HttpServletRequest request,HttpSession session) {
 		List<ParcelDto> list;
-		map.put("email", "kjhabc2002@naver.com");
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
 			list = sidebarService.picklist(map);
@@ -235,9 +282,10 @@ public class SidebarController {
 
 	@RequestMapping(value = "/sidebar/donation.animal", method = RequestMethod.POST)
 	@ResponseBody
-	public String donation(@RequestParam Map<String, String> map) {
+	public String donation(@RequestParam Map<String, String> map,HttpSession session) {
 		List<DonationDto> list;
-		map.put("email", "kjhabc2002@naver.com");
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
 			list = sidebarService.mydonation(map);
@@ -282,11 +330,10 @@ public class SidebarController {
 
 	@RequestMapping(value = "/sidebar/volunteer.animal", method = RequestMethod.POST)
 	@ResponseBody
-	public String volunteer(@RequestParam Map<String, String> map) {
-		// String email=(String) session.getAttribute("email");
-
-		List<VolunteerDto> list;
-		map.put("email", "kjhabc2002@naver.com");
+	public String volunteer(@RequestParam Map<String, String> map,HttpSession session) {
+		 String email=(String) session.getAttribute("email");
+		 map.put("email", email);
+		List<VolunteerDto> list;	
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
 			list = sidebarService.myvolunteer(map);
@@ -332,9 +379,10 @@ public class SidebarController {
 
 	@RequestMapping(value = "/sidebar/parcel.animal", method = RequestMethod.POST)
 	@ResponseBody
-	public String parcel(@RequestParam Map<String, String> map, Model model) {
+	public String parcel(@RequestParam Map<String, String> map, Model model,HttpSession session) {
 		List<ParcelDto> list;
-		map.put("email", "kjhabc2002@naver.com");
+		String email=(String) session.getAttribute("email");
+		map.put("email", email);
 		String ee = map.get("sidebar");
 		if (ee.equals("sidebar")) {
 			list = sidebarService.myparcel(map);

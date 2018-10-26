@@ -57,7 +57,7 @@
 	  
 	  <div class="w3-half">
 	    <label>체중</label>
-	    <input class="w3-input" type="text" id="weight" name="weight" placeholder="실종된 동물의 체중을 입력해주세요">
+	    <input class="w3-input" type="text" id="weight" name="petsize" placeholder="실종된 동물의 체중을 입력해주세요">
 	  </div>
 	  <div class="w3-half">
 	    <label>특징</label>
@@ -69,7 +69,7 @@
 	  </div>
 	   <div class="w3-half">
 	    <label>실종날짜</label>
-	    <input class="w3-input" type="text" id="date" name="date" placeholder="실종된 날짜를 입력해주세요">
+	    <input class="w3-input" type="text" id="date" name="missingdate" placeholder="실종된 날짜를 입력해주세요">
 	  </div>
 	</div>
 	<br>

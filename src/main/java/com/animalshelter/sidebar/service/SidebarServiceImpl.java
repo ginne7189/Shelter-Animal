@@ -117,6 +117,16 @@ public class SidebarServiceImpl implements SidebarService{
 		map.put("end", end + "");
 		return sqlSession.getMapper(SidebarDao.class).myparcel(map);
 	}
+	
+	@Override
+	public List<ApplyDto> applyList(Map<String, String> map) {
+		int pg = Integer.parseInt(map.get("pg"));
+		int end = 9 * pg;
+		int start = end - 9;
+		map.put("start", start + "");
+		map.put("end", end + "");
+		return sqlSession.getMapper(SidebarDao.class).applyList(map);
+	}
 	@Override
 	public List<ParcelDto> pick(Map<String, String> map) {
 		return sqlSession.getMapper(SidebarDao.class).pick(map);

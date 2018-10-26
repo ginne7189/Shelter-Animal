@@ -11,8 +11,12 @@
 			type="com.animalshelter.member.model.MemberDetailDto" />
 		<typeAlias alias="boardDto" 
 			type="com.animalshelter.sidebar.model.BoardDto"/>
+		<typeAlias alias="missingDto" 
+			type="com.animalshelter.sidebar.model.MissingDto"/>
 		<typeAlias alias="parcelDto" 
 			type="com.animalshelter.sidebar.model.ParcelDto"/>
+		<typeAlias alias="applyDto" 
+			type="com.animalshelter.sidebar.model.ApplyDto"/>
 		<typeAlias alias="donationDto" 
 			type="com.animalshelter.sidebar.model.DonationDto"/>
 		<typeAlias alias="volunteerDto" 

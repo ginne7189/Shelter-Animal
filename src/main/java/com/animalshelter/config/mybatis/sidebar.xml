@@ -110,8 +110,43 @@
 	and m.${key} = #{word}
 	</if> -->
 	</select>
-
+<select id="missingList" parameterType="map"   resultType="missingDto">
+	select t.*
+	from(
+		select rownum rn, a.*
+		from(
+			select b.seq,b.content,m.age,m.kind,m.petsize,m.location,b.subject
+			from board b,missingboard m
+			where b.seq=m.seq 
+		) a
+		where rownum &lt;= #{end}
+		) t
+	where t.rn &gt; #{start}
+<!-- 	select seq -->
+<!-- 	from pparcelboard -->
+	<!-- <if test="word != null and word != ''">
+	and m.${key} = #{word}
+	</if> -->
+	</select>
 	
+	<select id="applyList" parameterType="map"   resultType="applyDto">
+	select t.*
+	from(
+		select rownum rn, a.*
+		from(
+			select a.seq,a.writeremail,a.applyemail,a.subject,m.tel,m.addr1
+			from applyboard a,member m
+			where a.writeremail=#{email} and a.applyemail=m.email
+		) a
+		where rownum &lt;= #{end}
+		) t
+	where t.rn &gt; #{start}
+<!-- 	select seq -->
+<!-- 	from pparcelboard -->
+	<!-- <if test="word != null and word != ''">
+	and m.${key} = #{word}
+	</if> -->
+	</select>
 	<select id="myattention" parameterType="map"   resultType="parcelDto">
 <!-- 	select p.age,p.kind,p.weight,p.location,b.subject -->
 <!-- 	from board b,pparcelboard p -->
