@@ -20,9 +20,9 @@
   <div class="w3-display-middle w3-margin-top w3-center">
     <h1 class="w3-xxlarge w3-text-darkgrey">
 	    <span class="w3-padding w3-opacity-min">
-		<b>이메일로 비밀번호 변경 관련 안내 메일을 발송했습니다.</b>
-		<br>
-		<b>메일 서버 환경에 따라 5분정도 걸릴 수 있습니다.</b>
+		<b>이메일로 비밀번호 변경 관련 안내 메일을<br> 발송했습니다.</b>
+		<br><br>
+		<b>메일 서버 환경에 따라<br> 5분정도 걸릴 수 있습니다.</b>
 	    </span>
     </h1>
   </div>

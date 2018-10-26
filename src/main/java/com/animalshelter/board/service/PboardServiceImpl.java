@@ -38,6 +38,7 @@ public class PboardServiceImpl implements PboardService {
 	@Override
 	public MissingBoardDto mviewArticle(int seq) {
 		// TODO Auto-generated method stub
+		System.out.println("-------------------------------");
 		return sqlSession.getMapper(PboardDao.class).mviewArticle(seq);
 	}
 	@Override

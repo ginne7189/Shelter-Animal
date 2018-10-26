@@ -171,9 +171,10 @@ $(document).ready(function() {
 </div>
    
     <c:if test="${not empty sessionScope.user}" >
-    <p><textarea id="reply_content" name="reply_content" rows="4" cols="95"></textarea> </p>
+    <p><textarea id="reply_content" name="reply_content" rows="4" cols="95" style="margin-top:20px;"></textarea> </p>
 	 <p>	<button class="w3-button w3-block w3-green"><span id="registerBtn" >댓글등록</span></button></p>
 	  </c:if>
+
   </div>
   <hr>
 <!-- 댓글창 끝 -->

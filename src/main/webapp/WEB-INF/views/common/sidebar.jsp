@@ -326,13 +326,15 @@ function makevolunteerList(data){
   </div>
   <hr>
   <div class="w3-padding-64 w3-large w3-text-grey sidebarlist" style="font-weight:bold">
-  <c:if test="${not empty sessionScope.user}" >
+   <c:if test="${not empty sessionScope.user}" > 
+  <c:if test="${sessionScope.usercode eq '2000' }">
   	관리자 메뉴<br>
   	<hr>
     <a href="${root}/admin/statistics.animal">통계보기</a><br>
     <a href="${root}/admin/sendEmail.animal">이메일 보내기</a>
     <hr>
     </c:if>
+  </c:if> 
   
     <a value="infolist"  class="w3-bar-item w3-button w3-padding ">내 정보보기</a> 
     <a value="attention"  class="w3-bar-item w3-button w3-padding " pg="1">관심동물보기</a> 

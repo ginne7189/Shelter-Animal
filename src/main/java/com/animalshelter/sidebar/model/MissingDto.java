@@ -4,7 +4,8 @@ public class MissingDto extends BoardDto{
 	private int seq;
 	private String tel;
 	private String location;
-	private String missingdate;
+	private String date;
+	private String gender;
 	private String kind;
 	private String petsize;
 	private String feature;
@@ -12,6 +13,12 @@ public class MissingDto extends BoardDto{
 	
 	
 	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public String getPetsize() {
 		return petsize;
 	}
@@ -36,11 +43,12 @@ public class MissingDto extends BoardDto{
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getMissingdate() {
-		return missingdate;
+	
+	public String getDate() {
+		return date;
 	}
-	public void setMissingdate(String missingdate) {
-		this.missingdate = missingdate;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getKind() {
 		return kind;

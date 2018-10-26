@@ -71,9 +71,7 @@ public class PboardController {
 						,HttpServletRequest request) {
 		mboardDto.setEmail((String)session.getAttribute("email"));
 		
-		System.out.println(mboardDto.getMissingdate());
-		
-		System.out.println(mboardDto.getPetsize());
+	
 		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
 			int seq = pboardService.mwriteArticle(mboardDto);
 			
@@ -102,6 +100,7 @@ public class PboardController {
 		int seq=Integer.parseInt(map.get("acode"));
 			DonationBoardDto pboardDto = pboardService.dviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
+			request.setAttribute("seq", pboardDto.getSeq());
 		return "parcel/dview";
 	}	
 
@@ -109,6 +108,7 @@ public class PboardController {
 	public String mview(@RequestParam Map<String, String> map,HttpServletRequest request) {
 		
 		int seq=Integer.parseInt(map.get("acode"));
+		System.out.println(seq);
 			MissingBoardDto pboardDto = pboardService.mviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
 			pboardService.mwriteArticle(pboardDto);

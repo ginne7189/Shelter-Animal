@@ -153,11 +153,17 @@ $(document).ready(function() {
     <h4><strong>${pboardDto.subject }</strong></h4>
     <br>
     <p>${pboardDto.content }</p>
+     <c:if test="${not empty sessionScope.user }">
     <div class="w3-half">
      <p><button class=" w3-green w3-button w3-block" value="pparcel">분양신청</button></p>
-    </div>
+  	</div>
+     </c:if>
+   
+     <c:if test="${not empty sessionScope.user }">
     <div class="w3-half">
     <p><button style="padding-left:50px;" class="w3-button w3-green w3-block" value="pick"> 찜하기</button></p>
+    </div>
+    </c:if>
     </div>
     <br>
     <hr>
@@ -172,10 +178,9 @@ $(document).ready(function() {
 <tr></tr>
 </table>
 <br>
-</div>
-   
+</div>   
     <c:if test="${not empty sessionScope.user}" >
-    <p><textarea id="reply_content" name="reply_content" rows="4" cols="95"></textarea> </p>
+    <p><textarea id="reply_content" name="reply_content" rows="4" cols="95" style="margin-top:20px;"></textarea> </p>
 	 <p>	<button class="w3-button w3-block w3-green"><span id="registerBtn" >댓글등록</span></button></p>
 	  </c:if>
   </div>
