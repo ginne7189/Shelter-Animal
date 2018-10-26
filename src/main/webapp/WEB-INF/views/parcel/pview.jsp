@@ -188,10 +188,14 @@ $(document).ready(function() {
     <br>
     <p>${pboardDto.content }</p>
     <div>
+     <c:if test="${not empty sessionScope.user }">
      <p><button class=" w3-green w3-button w3-third" value="pparcel">분양신청</button></p>
+     </c:if>
     </div>
     <div >
+     <c:if test="${not empty sessionScope.user }">
     <p><button style="padding-left:50px;" class="w3-button w3-green w3-third" value="pick"> 찜하기</button></p>
+    </c:if>
     </div>
     <br>
     <hr>
@@ -210,10 +214,10 @@ $(document).ready(function() {
 <br>
 </div>
     <hr>
-    <c:if test="${not empty sessionScope.user}" >
+    
     <p><textarea id="reply_content" name="reply_content" rows="4" cols="50"></textarea> </p>
 	 <p><button class="w3-button w3-green w3-third" value="reply">댓글등록</button></p>
-	  </c:if>
+	 
   </div>
   <hr>
 <!-- 댓글창 끝 -->

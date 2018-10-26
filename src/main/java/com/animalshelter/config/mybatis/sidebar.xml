@@ -5,7 +5,7 @@
   
 <mapper namespace="com.animalshelter.sidebar.dao.SidebarDao">
 
-   <select id="articleList" parameterType="map"   resultType="boardDto">
+  <select id="articleList" parameterType="map" resultType="boardDto">
    select seq,subject,content,email,boardtype,joindate,hit
    from board
    where email='${email}'
@@ -63,6 +63,29 @@
    and m.${key} = #{word}
    </if> -->
    </select>
+   
+    <select id="missingList" parameterType="map"   resultType="missingDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.subject,b.content,m.age,m.kind,m.petsize,m.location
+         from board b,missingboard m
+         where b.seq=m.seq 
+         order by b.seq desc
+         ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
+   
+   
    
    <select id="volunteer" parameterType="map"   resultType="volunteerDto">
    select t.*

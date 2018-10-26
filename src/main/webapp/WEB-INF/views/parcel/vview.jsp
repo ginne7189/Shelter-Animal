@@ -90,7 +90,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <p>댓글목록</p>
     <hr>
     <p>댓글창 삽입</p>
+     <c:if test="${not empty sessionScope.user }">
 	 <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">댓글등록</button></p>
+ 	</c:if>
+  
   </div>
   <hr>
 <!-- 댓글창 끝 -->

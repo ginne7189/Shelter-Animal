@@ -93,9 +93,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <input type="number" id="money" value=""  placeholder="기부할 금액"/>원 기부하기<br><br>
 <!--// mode : development or production-->
 
-
+ <c:if test="${not empty sessionScope.user }">
 <button class="w3-button w3-green w3-third" style="background-color: white;" onclick="javascript:naverPay();">기부하기</button>
-
+</c:if>
 <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 <script>
 		var oPay = Naver.Pay.create({
@@ -128,11 +128,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <br>
     
 <!-- 댓글창 시작 -->    
+<div>
     <h4><strong>댓글창</strong></h4>
-    <p>댓글목록</p>
+    <table id="viewReply" cellspacing="3" style="float: left; width: 600px;">
+  
+  <tbody></tbody>
+</table>
+<table id="command" cellspacing="3"  style="float: left;">
+  
+  <tbody></tbody>
+</table>
+<br>
+</div>
     <hr>
-    <p>댓글창 삽입</p>
-	 <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">댓글등록</button></p>
+    
+    <p><textarea id="reply_content" name="reply_content" rows="4" cols="50"></textarea> </p>
+	 <p><button class="w3-button w3-green w3-third" value="reply">댓글등록</button></p>
+	 
   </div>
   <hr>
 <!-- 댓글창 끝 -->
