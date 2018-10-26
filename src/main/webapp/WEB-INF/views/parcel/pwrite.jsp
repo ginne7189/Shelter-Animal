@@ -70,9 +70,7 @@
 	<br>
 	  <textarea id="summernote" name="content"></textarea>
 	  <br>
-	  <label  id="registerBtn" >
-	  <button class="w3-button w3-block" type="button">등록하기</button>
-	  </label>
+	<button class="w3-button w3-block w3-teal"><span id="registerBtn" >등록하기</span></button>
 	</form>
 	</div>
 </div>

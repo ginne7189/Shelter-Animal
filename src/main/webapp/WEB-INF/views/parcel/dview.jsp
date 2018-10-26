@@ -28,9 +28,77 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </head>
 <script>
 
+var idx=0;
+
+$(document).ready(function() {		
+	showReply();
+
+	function showReply(){
+		$.ajax({
+			type : "POST",
+			url : "http://${myIP}${root}/reply/show.animal",
+			data : {
+				c_code : "1",
+				seq : "${pboardDto.seq}",
+			},
+			dataType : "json",
+			success : function(data) {
+				$.each(data.replyValue, function(key, value) {
+					var writer = value.writer;
+					var reg_date = value.reg_date;
+					var cmnt_content = value.cmnt_content;
+					/* $('#viewReply > tbody:last').append('<tr><td>'+ writer +' </td><td>' + cmnt_content + '</td><td>'+ reg_date + 
+							'</td><td><span id="modifyReply" onclick="#">수정</span></td><td><a href="javascript:deleteReply('+writer+');" >삭제</a></td></tr>'); */
+					 $('#viewReply > tbody:last').append('<tr><td style="width:8%;">'+ writer +' </td><td class="reply" style="width:69%;" reply='+reg_date+'>' + cmnt_content + '</td><td>'+ reg_date + 
+							'</td><tr></tr>');
+					 
+					 idx++;
+				});
+			},
+			error : function(e) {
+				
+			}
+		});
+	}
+	
+	 
+	
+	$(".w3-button").click(function() {
+		$(".pviewhidden").attr("value","${pboardDto.seq}");
+		if($(this).attr("value")!="reply"){
+			$(".pview").attr("action","${root}/sidebar/"+$(this).attr("value")+".animal").submit();
+		}else{
+			var comment = $("#reply_content").val();
+			$.ajax({
+				type : "POST",
+				url : "http://${myIP}${root}/reply/insert.animal",
+				data : {
+					c_code : "1",
+					seq : "${pboardDto.seq}",
+					cmnt_content : comment,
+					writer : "${sessionScope.user }", 
+				},
+				success : function(data) {
+					//$('#viewReply > tbody:last').append(data);
+					$( '#viewReply> tbody:last').empty();
+					$("#reply_content").val('');
+					showReply();
+				},
+				error : function(e) {
+					alert(e);
+				}
+			});
+		}		
+	});
+	
+	
+	
+	
+});
 
 
 </script>
+
 <body class="w3-content w3-border-left w3-border-right">
 <!-- 분양글 디브 -->
 <div class="w3-main w3-white" style="padding:80px">
@@ -93,9 +161,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <input type="number" id="money" value=""  placeholder="기부할 금액"/>원 기부하기<br><br>
 <!--// mode : development or production-->
 
-
+ <c:if test="${not empty sessionScope.user }">
 <button class="w3-button w3-green w3-third" style="background-color: white;" onclick="javascript:naverPay();">기부하기</button>
-
+</c:if>
 <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 <script>
 		var oPay = Naver.Pay.create({
@@ -123,16 +191,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 		}
 	</script>
     
-    
-    <hr>
-    <br>
-    
+    <br><br>
 <!-- 댓글창 시작 -->    
+<div>
     <h4><strong>댓글창</strong></h4>
-    <p>댓글목록</p>
-    <hr>
-    <p>댓글창 삽입</p>
-	 <p><button class="w3-button w3-green w3-third" onclick="document.getElementById('subscribe').style.display='block'">댓글등록</button></p>
+    <table id="viewReply" cellspacing="10" style="float: left; width: 100%;">
+
+  <tbody></tbody>
+<tr></tr>
+<tr></tr>
+</table>
+<br>
+</div>
+   
+    <c:if test="${not empty sessionScope.user}" >
+    <p><textarea id="reply_content" name="reply_content" rows="4" cols="95" style="margin-top:20px;"></textarea> </p>
+	 <p>	<button class="w3-button w3-block w3-green"><span id="registerBtn" >댓글등록</span></button></p>
+	  </c:if>
+
   </div>
   <hr>
 <!-- 댓글창 끝 -->

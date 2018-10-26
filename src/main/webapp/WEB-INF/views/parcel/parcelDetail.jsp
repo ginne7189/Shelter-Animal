@@ -11,12 +11,16 @@
 <link rel="stylesheet" href="main-min.css?v=1539290358437" type="text/css">
 <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main-min.js?v=1539290358437" src="main-min.js?v=1539290358437"></script>
 <style>
+.jumbotron{
+	color: white;
+}
 .g-font-size-48{
 	font-family: 'Yeon Sung', cursive;
 	font-size: 48px;
 }
 .g-color-white{
 	font-family: 'Jua', sans-serif;
+	font-size: 20px;
 }
 ul{
 	font-family: 'Noto Serif KR', sans-serif;
@@ -64,8 +68,7 @@ li{
             <li>입양신청 시 animore 입양원칙에 동의 하셔야 합니다.</li><br>
             <li>[입양신청하기]게시판의 입양신청서를 제출해주셔야 등록이 됩니다.</li><br>
             <li>입양동의서를 꼼꼼히 확인해주시고 모든 항목들에 동의하신다면 입양신청서를 작성해주세요.</li><br>
-            <li>맞음비는 유기동물 치료비, 동물보호소 후원금으로 전액 사용됩니다.</li><br>
-            <li>animore에서는 개인간의 입양만 할 수 있습니다.</li><br>
+            <li>animore에서는 유기견과 개인간의 입양만 할 수 있습니다.</li><br>
             <li>내용을 확인하시고, 원하시는 입양하는 사람에게 연락을해주세요.</li><br>
             <li>맞음비는 유기동물 치료비, 동물보호소 후원금으로 전액 사용됩니다.</li><br>
          </ul>
