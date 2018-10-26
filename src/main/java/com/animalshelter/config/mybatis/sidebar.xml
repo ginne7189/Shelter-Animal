@@ -5,212 +5,233 @@
   
 <mapper namespace="com.animalshelter.sidebar.dao.SidebarDao">
 
-	<select id="articleList" parameterType="map"   resultType="boardDto">
-	select seq,subject,content,email,boardtype,joindate,hit
-	from board
-	where email='${email}'
-	<if test="word != null and word != ''">
-	and ${key} like '%' ||  #{word} || '%'
-	</if>
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
-	
-	
-	<select id="attention" parameterType="map"   resultType="parcelDto">
-	
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select p.seq,p.age,p.kind,p.weight,p.location,b.subject,b.content
-			from board b, pparcelboard p
-			where b.seq = p.seq
-			order by b.seq desc
-				) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
+   <select id="articleList" parameterType="map"   resultType="boardDto">
+   select seq,subject,content,email,boardtype,joindate,hit
+   from board
+   where email='${email}'
+   <if test="word != null and word != ''">
+   and ${key} like '%' ||  #{word} || '%'
+   </if>
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
+   
+   
+   <select id="attention" parameterType="map"   resultType="parcelDto">
+   
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select p.seq,p.age,p.kind,p.weight,p.location,b.subject,b.content
+         from board b, pparcelboard p
+         where b.seq = p.seq
+         order by b.seq desc
+            ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
 
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
-	
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
+   
 
 
 
-	<select id="donation" parameterType="map"   resultType="donationDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.subject,b.content,d.centername,d.gatheringfee,d.cdonationfee,d.cdonationpurpose
-			from board b,donationboard d
-			where b.seq=d.seq 
-			order by b.seq desc
-			) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-	
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
-	
-	<select id="volunteer" parameterType="map"   resultType="volunteerDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.subject,b.content,v.tel,v.centername,v.volunteerkind,v.volunteerdate,v.centerlocation
-			from board b,volunteerboard v
-			where b.seq=v.seq 
-			) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-	
-	</select>
-<!-- 	<select id="pparcel" parameterType="map"   resultType="parcelDto"> -->
-<!-- 	insert into picklist -->
-<!-- 	from  -->
-<!-- 	</select> -->
-	<select id="pick" parameterType="map"   resultType="parcelDto">
-	insert 
-	into picklist 
-	values (#{seq},#{email})
-	</select>
-	<select id="pparcel" parameterType="map"   resultType="parcelDto">
-	insert 
-	into parcellist
-	values (#{email},#{seq})
-	</select>
-	<select id="parcel" parameterType="map"   resultType="parcelDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.content,p.age,p.kind,p.weight,p.location,b.subject
-			from board b,pparcelboard p
-			where b.seq=p.seq 
-		) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
+   <select id="donation" parameterType="map"   resultType="donationDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.subject,b.content,d.centername,d.gatheringfee,d.cdonationfee,d.cdonationpurpose
+         from board b,donationboard d
+         where b.seq=d.seq 
+         order by b.seq desc
+         ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
+   
+   <select id="volunteer" parameterType="map"   resultType="volunteerDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.subject,b.content,v.tel,v.centername,v.volunteerkind,v.volunteerdate,v.centerlocation
+         from board b,volunteerboard v
+         where b.seq=v.seq 
+         ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   
+   </select>
+<!--    <select id="pparcel" parameterType="map"   resultType="parcelDto"> -->
+<!--    insert into picklist -->
+<!--    from  -->
+<!--    </select> -->
+   <select id="pick" parameterType="map"   resultType="parcelDto">
+   insert 
+   into picklist 
+   values (#{seq},#{email})
+   </select>
+   <select id="pparcel" parameterType="map"   resultType="parcelDto">
+   
+   
+   insert all
+   into parcellist 
+   values (#{email},#{seq})
+   into applyboard
+   values (#{writeremail},#{email},#{seq},#{subject})
+   SELECT * FROM dual   
+   </select>
+   
+   <select id="applyList" parameterType="map"   resultType="applyDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select a.seq,a.writeremail,a.applyemail,a.subject,m.tel,m.addr1
+         from applyboard a,member m
+         where a.writeremail='kjhabc2002@naver.com' and a.applyemail=m.email
+      ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}  
+   </select>
+   
+   
+   <select id="parcel" parameterType="map"   resultType="parcelDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.content,p.age,p.kind,p.weight,p.location,b.subject
+         from board b,pparcelboard p
+         where b.seq=p.seq 
+      ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
 
-	
-	<select id="myattention" parameterType="map"   resultType="parcelDto">
-<!-- 	select p.age,p.kind,p.weight,p.location,b.subject -->
-<!-- 	from board b,pparcelboard p -->
-<!-- 	where b.seq=p.seq  -->
-<!-- 	and b.email='${email}' -->
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select p.seq,p.age,p.kind,p.weight,p.location,b.subject
-			from board b, pparcelboard p
-			where b.seq = p.seq
-			and email='${email}'
-			order by b.seq desc
-				) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-	</select>
-	
-	<select id="mydonation" parameterType="map"   resultType="donationDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.subject,b.content,d.centername,d.gatheringfee,d.cdonationfee,d.cdonationpurpose
-			from board b,donationboard d
-			where b.seq=d.seq 
-			and b.email='${email}'
-			) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
-	
-	<select id="myvolunteer" parameterType="map"   resultType="volunteerDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.content,b.subject,v.tel,v.centername,v.volunteerkind,v.volunteerdate,v.centerlocation
-			from board b,volunteerboard v
-			where b.seq=v.seq 
-			and b.email='${email}'
-		) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-	</select>
-	
-	<select id="myparcel" parameterType="map"   resultType="parcelDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location
-			from board b,pparcelboard p
-			where b.seq=p.seq 
-			and b.seq in(select seq from parcellist where email='${email}')
-	) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-	
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
-	
-	<select id="picklist" parameterType="map"   resultType="parcelDto">
-	select t.*
-	from(
-		select rownum rn, a.*
-		from(
-			select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location
-			from board b,pparcelboard p
-			where b.seq=p.seq 
-			and b.seq in(select seq from picklist where email='${email}')
-	) a
-		where rownum &lt;= #{end}
-		) t
-	where t.rn &gt; #{start}
-	
-<!-- 	select seq -->
-<!-- 	from pparcelboard -->
-	<!-- <if test="word != null and word != ''">
-	and m.${key} = #{word}
-	</if> -->
-	</select>
+   
+   <select id="myattention" parameterType="map"   resultType="parcelDto">
+<!--    select p.age,p.kind,p.weight,p.location,b.subject -->
+<!--    from board b,pparcelboard p -->
+<!--    where b.seq=p.seq  -->
+<!--    and b.email='${email}' -->
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select p.seq,p.age,p.kind,p.weight,p.location,b.subject
+         from board b, pparcelboard p
+         where b.seq = p.seq
+         and email='${email}'
+         order by b.seq desc
+            ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   </select>
+   
+   <select id="mydonation" parameterType="map"   resultType="donationDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.subject,b.content,d.centername,d.gatheringfee,d.cdonationfee,d.cdonationpurpose
+         from board b,donationboard d
+         where b.seq=d.seq 
+         and b.email='${email}'
+         ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
+   
+   <select id="myvolunteer" parameterType="map"   resultType="volunteerDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.content,b.subject,v.tel,v.centername,v.volunteerkind,v.volunteerdate,v.centerlocation
+         from board b,volunteerboard v
+         where b.seq=v.seq 
+         and b.email='${email}'
+      ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   </select>
+   
+   <select id="myparcel" parameterType="map"   resultType="parcelDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location
+         from board b,pparcelboard p
+         where b.seq=p.seq 
+         and b.seq in(select seq from parcellist where email='${email}')
+   ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
+   
+   <select id="picklist" parameterType="map"   resultType="parcelDto">
+   select t.*
+   from(
+      select rownum rn, a.*
+      from(
+         select b.seq,b.subject,b.content,p.age,p.kind,p.weight,p.location
+         from board b,pparcelboard p
+         where b.seq=p.seq 
+         and b.seq in(select seq from picklist where email='${email}')
+   ) a
+      where rownum &lt;= #{end}
+      ) t
+   where t.rn &gt; #{start}
+   
+<!--    select seq -->
+<!--    from pparcelboard -->
+   <!-- <if test="word != null and word != ''">
+   and m.${key} = #{word}
+   </if> -->
+   </select>
 </mapper>  

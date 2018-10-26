@@ -376,6 +376,8 @@ function makeattentionList(data){
 	
 	view.append(viewlist);
 }
+
+
 function makearticleList(data) {
 	
 	$("#listview").empty();
@@ -390,6 +392,7 @@ function makearticleList(data) {
 		$("#listview").append(tr);
 	}
 }
+
 function makeparcelList(data){
 	$("#main").empty();
 	var view=$("#main");

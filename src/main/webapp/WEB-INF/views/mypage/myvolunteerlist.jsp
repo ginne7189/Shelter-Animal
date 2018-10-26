@@ -24,7 +24,7 @@
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-<c:if test="${email != null }">
+<c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>
 	<%@include file="../common/header.jsp"%>

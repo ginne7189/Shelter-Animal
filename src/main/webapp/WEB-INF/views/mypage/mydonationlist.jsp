@@ -25,7 +25,7 @@
 </head>
 <body>
 <c:set var="disk" value="dist"/>
-<c:if test="${email != null }">
+<c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>	
 	<%@include file="../common/header.jsp"%>

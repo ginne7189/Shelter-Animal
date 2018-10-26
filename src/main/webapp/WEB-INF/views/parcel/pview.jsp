@@ -188,7 +188,7 @@ $(document).ready(function() {
     <br>
     <p>${pboardDto.content }</p>
     <div>
-     <p><button class="w3-button w3-green w3-third" value="pparcel">분양신청</button></p>
+     <p><button class=" w3-green w3-button w3-third" value="pparcel">분양신청</button></p>
     </div>
     <div >
     <p><button style="padding-left:50px;" class="w3-button w3-green w3-third" value="pick"> 찜하기</button></p>

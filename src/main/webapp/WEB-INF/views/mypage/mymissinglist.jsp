@@ -38,7 +38,10 @@ body{
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-<%@include file="../common/sidebar.jsp" %>
+
+<c:if test="${email != null }">
+	<%@include file="../common/sidebar.jsp"%>
+</c:if>
 <%@include file="../common/header.jsp" %>  
 	<div class="jumbotron toplayout">
 	    <h2>마이페이지</h2>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import com.animalshelter.board.model.*;
 import com.animalshelter.board.service.PboardService;
 import com.animalshelter.member.model.MemberDto;
+import com.animalshelter.sidebar.model.MissingDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -68,14 +69,12 @@ public class PboardController {
 	@RequestMapping(value="/mwrite.animal", method=RequestMethod.POST)
 	public String mwrite(MissingBoardDto mboardDto, Model model, HttpSession session 
 						,HttpServletRequest request) {
+		mboardDto.setEmail((String)session.getAttribute("email"));
 		
-		MemberDto memberDto2 = new MemberDto();
-		memberDto2.setEmail("kjhabc2002@naver.com");
-		session.setAttribute("userInfo", memberDto2);
+		System.out.println(mboardDto.getMissingdate());
 		
+		System.out.println(mboardDto.getPetsize());
 		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
-		if(memberDto != null) {
-			mboardDto.setEmail(memberDto2.getEmail());
 			int seq = pboardService.mwriteArticle(mboardDto);
 			
 			if(seq != 0) {
@@ -84,9 +83,7 @@ public class PboardController {
 			}else {
 				model.addAttribute("errorMsg", "서버에 문제가 있습니다. 잠시 후 다시 이용해주세요");
 			}
-		}else {
-			model.addAttribute("errorMsg", "로그인 후 글 작성해주세요");
-		}
+	
 		
 		return "parcel/mview";		
 	}
@@ -114,6 +111,8 @@ public class PboardController {
 		int seq=Integer.parseInt(map.get("acode"));
 			MissingBoardDto pboardDto = pboardService.mviewArticle(seq);
 			request.setAttribute("pboardDto", pboardDto);
+			pboardService.mwriteArticle(pboardDto);
+			
 		return "parcel/mview";
 	}	
 
@@ -126,7 +125,7 @@ public class PboardController {
 		return "parcel/vview";
 	}	
 	@RequestMapping(value = "photoUpload.animal", method = RequestMethod.POST)
-	   public void test(HttpServletRequest request, HttpServletResponse response) {
+	   public void test(HttpServletRequest request, HttpServletResponse response,Map<String, String> map) {
 	      response.setContentType("text/plain; charset=UTF-8");
 	      String uploadPath = servletContext.getRealPath("/upload/img");
 	      int size = 10 * 1024 * 1024; // 업로드 사이즈 제한 10M 이하
@@ -154,7 +153,7 @@ public class PboardController {
 
 	         response.setContentType("application/json"); // 데이터 타입을 json으로 설정하기 위한 세팅
 	         out.print(jobj.toString());
-
+	       // pboardService.saveimgPath(map);
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
