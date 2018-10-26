@@ -25,16 +25,24 @@ font-family: 'Yeon Sung', cursive;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
-
+a{text-decoration: none;color:#333333;}
 /* 슬라이드 버튼 hover 백그라운드 컬러 이펙트 */
 .w3-left:hover, .w3-right:hover {
   background-color: rgb(224, 224, 235);
 }
 </style>
+<script>
+$(document).ready(function() {
+	$("#abandonedanim").click(function() {
+		$("#linkForm").attr("action", "${root}/sidebar/missing.animal").submit();
+	});
+});
+</script>
 </head>
 <body>
 <header class="w3-display-container w3-content w3-wide mainheader" style="max-width:1500px;" id="home">
 <div class="w3-display-container-fluid">
+<form id="linkForm" name="linkForm" method="get">
 <!-- 1번 슬라이드 -->
   <img class="w3-image" src="https://images.unsplash.com/photo-1518815068914-038920b6f0c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38f02f628dfcc539764a05b5bc42a419&auto=format&fit=crop&w=1012&q=80" alt="Architecture" width="1500" height="800">
   <div class="w3-display-middle w3-margin-top w3-center mySlides">
@@ -44,8 +52,6 @@ font-family: 'Yeon Sung', cursive;
     <i class="fa fa-quote-right"></i>
     </span>
     <br><br>
-    <a class="dropdown-item" href="${root}/abandoned.animal"><button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="document.getElementById('subscribe').style.display='block'">
-    <span>유기견 목록 보러가기</span></button></a>
     </h1>    
     <div class="w3-display-topleft w3-container w3-padding-32"></div>  
   </div>
@@ -53,12 +59,10 @@ font-family: 'Yeon Sung', cursive;
   <div class="w3-display-middle w3-margin-top w3-center mySlides">
     <h1 class="w3-xxlarge w3-text-grey"><span class="w3-padding w3-black w3-opacity-min">
     <i class="fa fa-quote-left"></i>
-    바로 여기 당신을 기다리는 당신의 식구가 있습니다
+    바로 여기 <br>당신을 기다리는 당신의 식구가 있습니다
     <i class="fa fa-quote-right"></i>
     </span>
     <br><br>
-    <button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="document.getElementById('subscribe').style.display='block'">
-    <span>실종신고 목록 보러가기</span></button>
     </h1>    
     <div class="w3-display-topleft w3-container w3-padding-32"></div>  
   </div>
@@ -70,8 +74,6 @@ font-family: 'Yeon Sung', cursive;
     <i class="fa fa-quote-right"></i>
     </span>
     <br><br>
-    <button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="document.getElementById('subscribe').style.display='block'">
-    <span>분양 목록 보러가기</span></button>
     </h1>    
     <div class="w3-display-topleft w3-container w3-padding-32"></div>  
   </div>
@@ -83,11 +85,10 @@ font-family: 'Yeon Sung', cursive;
     <i class="fa fa-quote-right"></i>
     </span>
     <br><br>
-    <button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="document.getElementById('subscribe').style.display='block'">
-    <span>animore</span></button>
     </h1>    
     <div class="w3-display-topleft w3-container w3-padding-32"></div>  
   </div>  
+</form>  
 <!-- 슬라이드 버튼 -->
   <div class="w3-left w3-padding w3-display-left w3-xlarge" onclick="plusDivs(-1)"><i class="fa fa-arrow-left"></i></div>
   <div class="w3-right w3-padding w3-display-right w3-xlarge" onclick="plusDivs(1)"><i class="fa fa-arrow-right"></i></div>

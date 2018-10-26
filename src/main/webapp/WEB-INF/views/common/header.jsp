@@ -12,7 +12,6 @@ $(document).ready(function() {
 	}else if("${sidebar}" == "attention"){
 		getList(1);
 	}else if("${sidebar}" == "articlelist"){
-		
 		getList(1);
 	}else if("${sidebar}" == "parcel"){
 		getList(1);
@@ -532,9 +531,13 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
 	font-family: 'Sunflower', sans-serif ;
 	font-size: 20px;	
 }
+.header{
+	color: 
+}
 </style> 
 </head>
 <body>
+<div class="header">
 <form class="mvform" >
 <input type="hidden" class="acode" name="acode" value="sidebar" >
 </form>
@@ -580,7 +583,6 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">유기동물</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="${root}/abandonDetail.animal">유기동물소개</a>
       <a class="dropdown-item" href="${root}/abandoned.animal">유기동물목록</a>
     </div>
   </li> 
@@ -588,7 +590,6 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">실종동물</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="${root}/missingDetail.animal">실종동물소개</a>
       <a class="dropdown-item" href="${root }/parcel/mwrite.animal">실종동물신청</a>
       <a class="dropdown-item" value="othermissing">실종동물목록</a>
     </div>
@@ -605,11 +606,10 @@ ul.nav li.dropdown:hover > div.dropdown-menu{display:block;margin:0;}
   <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="drowdown" href="#">후원</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="${root}/donation.animal">후원소개</a>
         <a class="dropdown-item" value="otherdonation">후원목록</a>
     </div>
   </li> 
 </ul>
- 
+</div> 
 </body>
 </html>

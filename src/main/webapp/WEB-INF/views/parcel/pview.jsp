@@ -26,40 +26,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 var idx=0;
 
-function deleteReply(idx){
- 	alert(idx);
- 	 $.ajax({
- 		type : "POST",
- 		url : "http://${myIP}${root}/reply/delete.animal",
- 		data : {
- 			c_code : "1",
- 			seq : "${pboardDto.seq}",
- 		},
- 		success : function(data) {
- 			
- 		},
- 		error : function(e) {
- 			
- 		} 
- 	});	
-}  
-var tdArr = new Array();
-var arrWriter = new Array();
-var arrDate = new Array();
-function modifyReply(idx){
-	$('#viewReply tr').each(function() {
-		 var customerId = $(this).find("td").eq(idx).html(); 
-		 tdArr.push(customerId);
-	});	 
-	
-	alert(tdArr);
-}
-
-$(document).ready(function() {	
-	$(document).on("click", ".reply", function() {
-		alert($(this).attr("reply"));
-	 });
-	
+$(document).ready(function() {		
 	showReply();
 
 	function showReply(){
@@ -78,9 +45,9 @@ $(document).ready(function() {
 					var cmnt_content = value.cmnt_content;
 					/* $('#viewReply > tbody:last').append('<tr><td>'+ writer +' </td><td>' + cmnt_content + '</td><td>'+ reg_date + 
 							'</td><td><span id="modifyReply" onclick="#">수정</span></td><td><a href="javascript:deleteReply('+writer+');" >삭제</a></td></tr>'); */
-					 $('#viewReply > tbody:last').append('<tr><td>'+ writer +' </td><td class="reply" reply='+reg_date+'>' + cmnt_content + '</td><td>'+ reg_date + 
-							'</td><tr>');
-					 $('#command > tbody:last').append('<tr><td><a href="javascript:modifyReply('+idx+');" >수정</a></td><td><a href="javascript:deleteReply('+idx+');" >삭제</a></td></tr>');
+					 $('#viewReply > tbody:last').append('<tr><td style="width:8%;">'+ writer +' </td><td class="reply" style="width:69%;" reply='+reg_date+'>' + cmnt_content + '</td><td>'+ reg_date + 
+							'</td><tr></tr>');
+					 
 					 idx++;
 				});
 			},
@@ -110,7 +77,6 @@ $(document).ready(function() {
 				success : function(data) {
 					//$('#viewReply > tbody:last').append(data);
 					$( '#viewReply> tbody:last').empty();
-					$( '#command> tbody:last').empty();
 					$("#reply_content").val('');
 					showReply();
 				},
@@ -187,11 +153,11 @@ $(document).ready(function() {
     <h4><strong>${pboardDto.subject }</strong></h4>
     <br>
     <p>${pboardDto.content }</p>
-    <div>
-     <p><button class=" w3-green w3-button w3-third" value="pparcel">분양신청</button></p>
+    <div class="w3-half">
+     <p><button class=" w3-green w3-button w3-block" value="pparcel">분양신청</button></p>
     </div>
-    <div >
-    <p><button style="padding-left:50px;" class="w3-button w3-green w3-third" value="pick"> 찜하기</button></p>
+    <div class="w3-half">
+    <p><button style="padding-left:50px;" class="w3-button w3-green w3-block" value="pick"> 찜하기</button></p>
     </div>
     <br>
     <hr>
@@ -199,20 +165,18 @@ $(document).ready(function() {
 <!-- 댓글창 시작 -->    
 <div>
     <h4><strong>댓글창</strong></h4>
-    <table id="viewReply" cellspacing="3" style="float: left; width: 600px;">
-  
+    <table id="viewReply" cellspacing="10" style="float: left; width: 100%;">
+
   <tbody></tbody>
-</table>
-<table id="command" cellspacing="3"  style="float: left;">
-  
-  <tbody></tbody>
+<tr></tr>
+<tr></tr>
 </table>
 <br>
 </div>
-    <hr>
+   
     <c:if test="${not empty sessionScope.user}" >
-    <p><textarea id="reply_content" name="reply_content" rows="4" cols="50"></textarea> </p>
-	 <p><button class="w3-button w3-green w3-third" value="reply">댓글등록</button></p>
+    <p><textarea id="reply_content" name="reply_content" rows="4" cols="95"></textarea> </p>
+	 <p>	<button class="w3-button w3-block w3-green"><span id="registerBtn" >댓글등록</span></button></p>
 	  </c:if>
   </div>
   <hr>
