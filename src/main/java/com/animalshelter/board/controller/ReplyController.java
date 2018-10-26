@@ -25,7 +25,6 @@ public class ReplyController {
 		String str = "";
 		if (cnt == 1) {
 			str = "'<tr><td>'"+ replyDto.getWriter() +"' </td><td>' "+ replyDto.getCmnt_content() + "'</td><td>'방금'</td></tr>'";
-		} else {
 			str = "댓글을 등록할 수 없었습니다.";
 		}
 
@@ -57,8 +56,9 @@ public class ReplyController {
 	@ResponseBody
 	@RequestMapping(value = "/reply/delete.animal", method = RequestMethod.POST)
 	public String delete(ReplyDto replyDto) {
+		
 		System.out.println("hi");
-		//int cnt = replyService.deleteReply(replyDto);
+		int cnt = replyService.deleteReply(replyDto);
 		String str="";
 		/*if(cnt==1) {
 			str = "good";

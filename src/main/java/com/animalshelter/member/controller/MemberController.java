@@ -58,15 +58,15 @@ public class MemberController {
 			int cnt = memberService.register(memberDto);
 			if (cnt != 0) {
 				//////////////////////// send email
-				String subject = memberDto.getName() + "님, Animal Shelter 에 가입하신걸 축하드립니다.";
+				String subject = memberDto.getName() + "님, Animore 에 가입하신걸 축하드립니다.";
 				String contents = "가입을 하신 적이 없으시다면, master@nipa0711.net 으로 문의해주세요.<br>";
 				contents += "본 이메일은 발신전용 이메일입니다.<br>";
 				String secretCode = security.getHash(memberDto.getEmail() + memberDto.getName() + memberDto.getTel(),
 						salt);
 				contents += "<a href=\"http://192.168.14.12/animalshelter/register_complete.animal?email="
 						+ memberDto.getEmail() + "&secretCode=" + secretCode + "\">인증하기</a>";
-				String from = "animalshelter@nipa0711.net";
-				String fromName = "AnimalShelter";
+				String from = "animore@nipa0711.net";
+				String fromName = "Animore";
 
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("email", memberDto.getEmail());
