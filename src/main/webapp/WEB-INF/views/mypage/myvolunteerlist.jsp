@@ -19,90 +19,22 @@
 }
 .container-fluid{
 	width : 88%;
+	font-family: 'Do Hyeon', sans-serif;
 }
 </style>
 </head>
 <body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
-<c:if test="${email != null }">
+<c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>
 	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron" style="text-align: center;">
 	    <h2>마이페이지</h2>
-	    <h4>봉사활동 신청내역</h4>
+	    <h4>회원님의 봉사활동 신청내역입니다</h4>
 	</div>
 
 <!-- 총 컨테이너 -->	
 <div class="container-fluid"  style="margin-top: 150px">
-<!-- 봉사 신청 리스트 -->
-<!-- 	<!-- 첫번째 섹션 --> -->
-<!-- 	<div class="container"> -->
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-md-5 info-big"> -->
-<!-- 				<h2>유기견 보호센터<br><strong>봉사자 급구</strong></h2> -->
-<!-- 					<p>봉사활동 내용</p> -->
-<!-- 					<p><strong>보호소 위치</strong><br>지도 이미지</p> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-sm-2"></div> -->
-<!-- 			<div class="col-md-5"> -->
-<!-- 				<img class="view-img" src="https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80"> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- <br>	 -->
-<!-- <hr>	 -->
-<!-- <br> -->
-<!-- 	<!-- 두번째 섹션 --> -->
-<!-- 	 <div class="container"> -->
-<!-- 		 <div class="row"> -->
-<!-- 			<div class="col-md-5"> -->
-<!-- 				<img class="view-img" src="https://images.unsplash.com/photo-1471874276752-65e2d717604a?ixlib=rb-0.3.5&s=0b402784efed68390520aaac62175c73&auto=format&fit=crop&w=1350&q=80"> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-sm-2"></div>				 -->
-<!-- 			<div class="col-md-5 info-big"> -->
-<!-- 				<h2>영덕 동물보호 센터<br><strong>대게 되게 많이 제공</strong></h2> -->
-<!-- 				<p>야옹이 먹일 대게 삶으실 분</p> -->
-<!-- 				<p><strong>보호소 위치</strong><br> 지도 이미지</p>				 -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- <br>	 -->
-<!-- <hr>	 -->
-<!-- <br> -->
-<!-- 	<!-- 세번째 섹션 --> -->
-<!-- 	<div class="container"> -->
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-md-5 info-big"> -->
-<!-- 				<h2>서울 노원 동물병원<br><strong>강아지들 똥 치우실 분</strong></h2> -->
-<!-- 				<p>봉사활동 내용</p> -->
-<!-- 				<p><strong>보호소 위치</strong><br>지도 이미지</p> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-sm-2"></div> -->
-<!-- 			<div class="col-md-5"> -->
-<!-- 				<img class="view-img" src="https://images.unsplash.com/photo-1518914781460-a3ada465edec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4ef5d25894ba45b504a8335e1faf50ca&auto=format&fit=crop&w=1350&q=80"> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- <br>	 -->
-<!-- <hr>	 -->
-<!-- <br> -->
-<!-- 	<!-- 네번째 섹션 --> -->
-<!-- 	 <div class="container"> -->
-<!-- 		 <div class="row"> -->
-<!-- 			<div class="col-md-5"> -->
-<!-- 				<img class="view-img" src="https://images.unsplash.com/photo-1528460672446-1e4bc2efe804?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ee23eb0a3169907d71704d22edd42b9&auto=format&fit=crop&w=1350&q=80"> -->
-<!-- 			</div> -->
-<!-- 			<div class="col-sm-2"></div>				 -->
-<!-- 			<div class="col-md-5 info-big"> -->
-<!-- 				<h2>삼척 동물 목욕탕<br><strong>동물들 잘 씻겨주실 분</strong></h2> -->
-<!-- 				<p>자기 몸은 안 씻어도 댕댕이들은 꼭 씻겨야 하는 분</p> -->
-<!-- 				<p><strong>보호소 위치</strong><br> 지도 이미지</p>				 -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- <br>	 -->
-<!-- <hr>	 -->
-<!-- <br>	 -->
 </div>
 <!-- 총 컨테이너 끝 -->	
 

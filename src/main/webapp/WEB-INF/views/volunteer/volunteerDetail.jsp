@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@include file="../common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +71,9 @@ h1:after {
 </style>
 </head>
 <body style="background-color: #EEEEEE; padding: 0px; margin: 0px;">
+<c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
+</c:if>
 	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron toplayout" style="text-align: center;">
 		<h2>봉사신청 상세페이지</h2>

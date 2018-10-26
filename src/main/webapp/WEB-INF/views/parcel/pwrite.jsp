@@ -23,6 +23,8 @@
 .allDiv{
 	width:100%;
 	margin-top: 50px;
+	font-family: 'Yeon Sung', cursive;
+	font-size: 20px;
 }
 .sumDiv, .inpDiv{
 	width:80%;

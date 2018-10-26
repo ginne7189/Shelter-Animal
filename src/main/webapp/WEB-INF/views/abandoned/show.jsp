@@ -196,52 +196,68 @@
 		});
 	});
 </script>
+<style>
+.jumbotron{
+	font-family: 'Noto Serif KR', sans-serif;
+	font-size: medium;
+}
+.abandshow{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
 </head>
 <body onload="recentAnimal(1)">
-
-	<div class="jumbotron toplayout" style="text-align: center;">
-		<h2>유기동물 리스트페이지</h2>
-		<h4>유기동물 리스트가 나오는 페이지입니다</h4>
-		<h5>검색 옵션창은 어디로..?</h5>
-		<b>공고중</b> : 등록날짜로부터 일주일간 공고하며, 최초 공고 이후 10일이 지난 이후로는 해당 시,도지사 또는 시장,군수,구청장이 그 동물의 소유권을 취득하게 됩니다. <br> 그 이후 보호 단계로 넘어가게 됩니다. <br> <br> <b>보호중</b> : 보호중의 경우, 최초 등록일로부터 10일이 지난 이후이며, 이 경우 새로운 주인을 찾거나 혹은 경우에 따라 안락사가 진행되게 됩니다. <br> 보호중인 동물들은 새로운 주인을 간절하게 기다리고 있습니다. <br>
-		<div class="SearchDate">
-			등록날짜
-			<input type="date" id="searchStartDate" name="searchStartDate" value="<%=searchStartDate%>" max="<%=searchEndDate%>" required style="border: 1px solid gray;">
-			~
-			<input type="date" id="searchEndDate" name="searchEndDate" value="<%=searchEndDate%>" max="<%=searchEndDate%>" required style="border: 1px solid gray;">
-		</div>
-		<div class="SearchByLocation">
-			시도
-			<select id="city" name="city">
-				<option value="">전체</option>
-			</select>
-			구군
-			<select id="district" name="district">
-				<option value="">전체</option>
-			</select>
-			보호센터
-			<select id="shelterList" name="shelterList">
-				<option value="">전체</option>
-			</select>
-		</div>
-		<div class="SearchByKind">
-			품종
-			<select id="animalKind" name="animalKind">
-				<option value="">전체</option>
-				<option value="417000">개</option>
-				<option value="422400">고양이</option>
-				<option value="429900">기타</option>
-			</select>
-			상세
-			<select id="kindDetail" name="kindDetail">
-				<option value="">전체</option>
-			</select>
-		</div>
-		<input type="button" id="btnSearch" value="검색" onclick="javascript:recentAnimal(1)">
-	</div>
-	<!-- Page Content -->
-	<div class="container">
-		<div class="row" id="result"></div>
-	</div>
+<div class="jumbotron toplayout" style="text-align: center;">
+<h4>상세검색 기능을 이용하여 원하는 날짜, 지역, 품종의 유기 동물을 검색해보세요</h4>
+<!-- <b>공고중</b> : 등록날짜로부터 일주일간 공고하며, 최초 공고 이후 10일이 지난 이후로는 해당 시,도지사 또는 -->
+<!-- 시장,군수,구청장이 그 동물의 소유권을 취득하게 됩니다. <br> 그 이후 보호 단계로 넘어가게 됩니다. <br> -->
+<!-- <br> <b>보호중</b> : 보호중의 경우, 최초 등록일로부터 10일이 지난 이후이며, 이 경우 새로운 주인을 -->
+<!-- 찾거나 혹은 경우에 따라 안락사가 진행되게 됩니다. <br> 보호중인 동물들은 새로운 주인을 간절하게 기다리고 -->
+<!-- 있습니다. <br> -->
+<br>
+<div class="SearchDate">
+	등록날짜 
+	<input type="date" id="searchStartDate" name="searchStartDate"
+	value="<%=searchStartDate%>" max="<%=searchEndDate%>" required
+	style="border: 1px solid gray;"> ~ <input type="date"
+	id="searchEndDate" name="searchEndDate" value="<%=searchEndDate%>"
+	max="<%=searchEndDate%>" required style="border: 1px solid gray;">
+</div>
+<br>
+<div class="SearchByLocation">
+	시도 
+	<select id="city" name="city">
+		<option value="">전체</option>
+	</select> 
+	구군 
+	<select id="district" name ="district">
+		<option value="">전체</option>
+	</select> 
+	보호센터 
+	<select id= "shelterList" name = "shelterList">
+		<option value=""> 전체 </option>
+	</select>
+</div>
+<br>
+<div class="SearchByKind">
+	품종 
+	<select id="animalKind" name ="animalKind">
+		<option value="">전체</option>
+		<option value="417000">개</option>
+		<option value="422400">고양이</option>
+		<option value="429900">기타</option>
+	</select>
+	상세 
+	<select id="kindDetail" name ="kindDetail">
+		<option value="">전체</option>
+	</select>
+</div>
+<button class="w3-button w3-section w3-black w3-ripple w3-padding"><span id="btnSearch" onclick="javascript:recentAnimal(1)">검색</span></button>
+<!-- <input type="button" id="btnSearch" value="검색" onclick="javascript:recentAnimal(1)"> -->
+</div>
+<!-- Page Content -->
+<div class="container abandshow">
+<div class="row" id="result"></div>
+</div>
 </body>
 </html>

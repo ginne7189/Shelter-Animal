@@ -56,8 +56,8 @@ public class AdminController {
 			MemberDto memberDto = null;
 			memberDto = memberService.getMemberInfo(email);
 
-			String from = "animalshelter@nipa0711.net";
-			String fromName = "AnimalShelter";
+			String from = "animore@nipa0711.net";
+			String fromName = "Animore";
 
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("email", memberDto.getEmail());
