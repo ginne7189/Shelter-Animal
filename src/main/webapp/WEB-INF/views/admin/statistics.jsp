@@ -7,21 +7,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>유기동물 통계</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<style>
+.w3-row-padding{
+	margin-left: 340px;
+	font-family: 'Yeon Sung', cursive;
+	padding : 100 100 100 100;
+
+}
+</style>
 </head>
 <body>
+<%@include file="../common/sidebar.jsp"%>
+ <div class="w3-row-padding">
+ <div class="w3-half" style="margin-bottom: 50px;">
 	<h1>2018년</h1>
 	<h3>현재까지 유기동물 수</h3>
-	<div style="width: 60%; align-content: center;">
-		<canvas id="thisYearAbandoned" width="400" height="200"></canvas>
+	<div style="align-content: center;">
+		<canvas id="thisYearAbandoned" width="500" height="300"></canvas>
 		<br> 현재까지 구조된 총 동물 수 :
 		<span id="totalCount"></span>
 		마리
 	</div>
-	<hr>
-	<br>
+</div>	
+
+<div class="w3-half" style="margin-bottom: 50px;">
 	<h3>종별 유기동물 현황</h3>
-	<div style="width: 60%; align-content: center;">
-		<canvas id="pieChart" width="400" height="200"></canvas>
+	<div style="align-content: center;">
+		<canvas id="pieChart" width="500" height="300"></canvas>
 		<br>
 		<span id="dog"></span>
 		<br>
@@ -29,22 +41,23 @@
 		<br>
 		<span id="etc"></span>
 	</div>
-	<br>
-	<hr>
-	<br>
-	<br>
+</div>
+</div>
+ <div class="w3-row-padding" style="margin-bottom: 300px;">
+<div class="w3-half" style="margin-top: 15px;">
 	<h3>전년도 동월과 비교</h3>
-	<div style="width: 60%; align-content: center;">
-		<canvas id="compareAbandoned" width="400" height="200"></canvas>
+	<div style="align-content: center;">
+		<canvas id="compareAbandoned" width="500" height="300"></canvas>
 	</div>
-	<br>
-	<hr>
-	<br>
-	<br>
+</div>
+<div class="w3-half">
 	<h3>시도별 유기동물 현황</h3>
-	<div style="width: 60%; align-content: center;">
-		<canvas id="sidoChart" width="400" height="200"></canvas>
+	<div style="align-content: center;">
+		<canvas id="sidoChart" width="500" height="300"></canvas>
 	</div>
+</div>
+
+</div>	
 	<script>
 	var totalCount = 0;
 		var ctx = document.getElementById("thisYearAbandoned");

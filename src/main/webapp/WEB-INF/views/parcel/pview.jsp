@@ -107,31 +107,31 @@ $(document).ready(function() {
     <h2 class="w3-text-green">개인 분양 상세 페이지</h2>
 <!-- 사진 슬라이드 영역 -->    
     <div class="w3-display-container mySlides">
-    <img src="https://images.unsplash.com/photo-1518815068914-038920b6f0c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38f02f628dfcc539764a05b5bc42a419&auto=format&fit=crop&w=1012&q=80" style="width:100%;height:500px;margin-bottom:-6px">
+    <img src="${root }/resources/img/pp1.jpg" style="width:100%;height:500px;margin-bottom:-6px">
     </div>
     <div class="w3-display-container mySlides">
-    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6402d48f35584fbf36a874be1635374b&auto=format&fit=crop&w=1050&q=80" style="width:100%;height:500px;margin-bottom:-6px">
+    <img src="${root }/resources/img/pp2.jpg" style="width:100%;height:500px;margin-bottom:-6px">
     </div>
     <div class="w3-display-container mySlides">
-    <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1cf9c13e09f5f2ec5139b6475751b310&auto=format&fit=crop&w=1050&q=80" style="width:100%;height:500px;margin-bottom:-6px">
+    <img src="${root }/resources/img/pp3.jpg" style="width:100%;height:500px;margin-bottom:-6px">
     </div>
     <div class="w3-display-container mySlides">
-    <img src="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d812e1079e635c6fb59ded315f72316f&auto=format&fit=crop&w=634&q=80" style="width:100%;height:500px;margin-bottom:-6px">
+    <img src="${root }/resources/img/pp4.jpg" style="width:100%;height:500px;margin-bottom:-6px">
     </div>
   </div>
    
   <div class="w3-row-padding w3-section">
     <div class="w3-col s3">
-      <img class="petpic w3-opacity w3-hover-opacity-off" src="https://images.unsplash.com/photo-1518815068914-038920b6f0c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38f02f628dfcc539764a05b5bc42a419&auto=format&fit=crop&w=1012&q=80" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(1)">
+      <img class="petpic w3-opacity w3-hover-opacity-off" src="${root }/resources/img/pp1.jpg" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(1)">
     </div>
     <div class="w3-col s3">
-      <img class="petpic w3-opacity w3-hover-opacity-off" src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6402d48f35584fbf36a874be1635374b&auto=format&fit=crop&w=1050&q=80" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(2)">
+      <img class="petpic w3-opacity w3-hover-opacity-off" src="${root }/resources/img/pp2.jpg" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(2)">
     </div>
     <div class="w3-col s3">
-      <img class="petpic w3-opacity w3-hover-opacity-off" src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1cf9c13e09f5f2ec5139b6475751b310&auto=format&fit=crop&w=1050&q=80" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(3)">
+      <img class="petpic w3-opacity w3-hover-opacity-off" src="${root }/resources/img/pp3.jpg" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(3)">
     </div>
     <div class="w3-col s3">
-      <img class="petpic w3-opacity w3-hover-opacity-off" src="https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d812e1079e635c6fb59ded315f72316f&auto=format&fit=crop&w=634&q=80" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(4)">
+      <img class="petpic w3-opacity w3-hover-opacity-off" src="${root }/resources/img/pp4.jpg" style="width:100%;height:150px;cursor:pointer" onclick="currentDiv(4)">
     </div>
   </div>
 <form class="pview"><input type="hidden" class="pviewhidden" name="seq"></form>

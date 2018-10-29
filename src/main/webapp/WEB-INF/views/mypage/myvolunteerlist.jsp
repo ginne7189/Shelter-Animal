@@ -23,14 +23,13 @@
 }
 </style>
 </head>
-<body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
+<body>
 <c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>
 	<%@include file="../common/header.jsp"%>
-	<div class="jumbotron" style="text-align: center;">
-	    <h2>마이페이지</h2>
-	    <h4>회원님의 봉사활동 신청내역입니다</h4>
+	<div class="jumbotron" style="text-align: center;background-color: #ffffff">
+	    <h2>봉사활동 리스트 페이지입니다</h2>
 	</div>
 
 <!-- 총 컨테이너 -->	

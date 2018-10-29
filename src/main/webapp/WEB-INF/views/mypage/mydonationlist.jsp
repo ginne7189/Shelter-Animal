@@ -29,11 +29,6 @@
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>	
 	<%@include file="../common/header.jsp"%>
-	
-<div class="jumbotron toplayout" style="text-align: center;">
-	    <h2>마이페이지</h2>
-	    <h4>회원님께서 후원하신 내역입니다</h4>
-	</div>
 <!-- 총 컨테이너 -->	
 <div class="container-fluid"  style="margin-top: 150px">	
 </div>

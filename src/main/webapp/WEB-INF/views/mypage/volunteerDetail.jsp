@@ -84,7 +84,7 @@ h1:after {
 }
 </style>
 </head>
-<body style="background-color: #EEEEEE; padding: 0px; margin: 0px;">
+<body>
 <c:if test="${email != null }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>	

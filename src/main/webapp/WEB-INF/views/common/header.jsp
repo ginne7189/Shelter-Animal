@@ -242,81 +242,8 @@ function getList1(pg) {
 	});
 }
 
-
-function makedonationList(data){
-	$(".container-fluid").empty();
-	var view=$(".container-fluid");
-	var members = data.members;
-	//alert(member.length);	//회원수 출력 :120
-	var viewlist="";
-
-	for(var i=0;i<members.length ;i++){
-		if(i%2==0){
-
-			viewlist += "<div class='container' article-seq='"+members[i].seq+ "'>";
-			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
-			viewlist +=	"<h2>"+members[i].centername +"</h2>";
-			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p style='font-size:36px;'><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
-			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;font-size:20px;'>";		
-			viewlist +=	 members[i].cdonationpurpose;	
-			viewlist +=  "</p>";
-			viewlist +=		"<hr>";
-			viewlist +=			"</div>";
-			viewlist +=			"<p style='font-size:20px;'><strong>현재 모금액</strong></p>";
-			viewlist +=			"<div class='progress'>";
-			viewlist +=			"<div class='progress-bar progress-bar-striped progress-bar-animated' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
-			viewlist +=			"</div>";
-			viewlist +=	"</div>";
-			viewlist +=	"<div class='col-sm-2'></div>";
-			viewlist +=	"<div class='col-md-5'>";
-			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
-			viewlist +=	"</div>";
-			viewlist += "</div>";
-			viewlist +="</div>";
-			viewlist +="<br>";	
-			viewlist +="<hr>";	
-			viewlist +="<br>";
-		}else{
-			viewlist += "<div class='container'>";
-			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
-			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
-			viewlist +=	"</div>";
-			viewlist += "<div class='col-sm-2'></div>";
-			viewlist +=	"<div class='col-md-5 info-big'>";
-			viewlist +=	"<h2>"+members[i].centername +"</h2>";
-			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p style='font-size:36px;'><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
-			viewlist +=	"<hr>";		
-			viewlist +=	"<p style='text-align: center;font-size:20px;'>";		
-			viewlist +=	 members[i].cdonationpurpose;	
-			viewlist +=  "</p>";
-			viewlist +=		"<hr>";
-			viewlist +=			"</div>";
-			viewlist +=			"<p style='font-size:20px;'><strong>현재 모금액</strong></p>";
-			viewlist +=			"<div class='progress'>";
-			viewlist +=			"<div class='progress-bar progress-bar-striped progress-bar-animated' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
-			viewlist +=			"</div>";
-			viewlist +=	"</div>";
-			viewlist +=	"</div>";			
-			viewlist += "</div>";
-			viewlist +="</div>";
-			viewlist +="<br>";	
-			viewlist +="<hr>";	
-			viewlist +="<br>";
-			 
-		}
-		
-      
-
-	}
-	
-	view.append(viewlist);
-}
-
+//실종 이미지 완료
+//=============================================================================================================
 function makemissingList(data){
 	$("#main").empty();
 	var view=$("#main");
@@ -324,13 +251,13 @@ function makemissingList(data){
 	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 	
-	for(var i=0;i<members.length ;i++){
+	for(var i=1;i<5 ;i++){
 		viewlist +="<table>";	
 		viewlist +="</table>";
 		viewlist +="</div>";
 		viewlist += "<div class='detail col-lg-4 col-sm-6' article-seq='"+members[i].seq+"' style='padding: 10px; padding-left: 0px;' >";
 		viewlist += "<div class='card h-100'>";
-		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
+		viewlist +=  "<a href='#'><img class='card-img-top' src='${root}/resources/img/miss"+[i]+".jpg'></a>";
 		viewlist +=  "<div class='card-body'>";
 		viewlist +=   "<h4 class='card-title'>"; 
 		viewlist +=      "<a href='#'>"+members[i].subject+"</a>";
@@ -347,6 +274,9 @@ function makemissingList(data){
 	
 	view.append(viewlist);
 }
+//=============================================================================================================
+	
+	
 function makeattentionList(data){
 	$("#main").empty();
 	var view=$("#main");
@@ -391,7 +321,8 @@ function makearticleList(data) {
 		$("#listview").append(tr);
 	}
 }
-
+//분양목록
+//========================================================================================
 function makeparcelList(data){
 	$("#main").empty();
 	var view=$("#main");
@@ -400,21 +331,21 @@ function makeparcelList(data){
 	var viewlist="";
 // 	$("#main").empty();
 // 	var members = data.members;
-	for(var i=0;i<members.length ;i++){
+	for(var i=1;i<7 ;i++){
 		viewlist +="<table>";	
 		viewlist +="</table>";
 		viewlist +="</div>";
-		viewlist += "<div class='detail col-lg-4 col-sm-6' article-seq='"+members[i].seq+"' style='padding: 10px; padding-left: 0px;' >";
+		viewlist += "<div class='detail col-lg-4 col-sm-6' article-seq='"+members[i-1].seq+"' style='padding: 10px; padding-left: 0px;' >";
 		viewlist += "<div class='card h-100'>";
-		viewlist +=  "<a href='#'><img class='card-img-top' src='https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3d173da6e6d69a0d8a77fbc3707088c9&auto=format&fit=crop&w=1114&q=80'></a>";
+		viewlist +=  "<a href='#'><img class='card-img-top' src='${root}/resources/img/parcel"+[i]+".jpg'></a>";
 		viewlist +=  "<div class='card-body'>";
 		viewlist +=   "<h4 class='card-title'>"; 
-		viewlist +=      "<a href='#'>"+members[i].subject+"</a>";
+		viewlist +=      "<a href='#'>"+members[i-1].subject+"</a>";
 		viewlist +=   "</h4>";
-		viewlist +=    "<p class='card-text'>	 <b>품종 :</b> "+members[i].kind+"</p>";
-		viewlist +=    "<p class='card-text'>	 <b>나이 :</b> "+members[i].age+"	</p>";
-		viewlist +=    "<p class='card-text'>	 <b>체중 :</b> "+members[i].weight+"	</p>";
-		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i].location+"	</p>";
+		viewlist +=    "<p class='card-text'>	 <b>품종 :</b> "+members[i-1].kind+"</p>";
+		viewlist +=    "<p class='card-text'>	 <b>나이 :</b> "+members[i-1].age+"	</p>";
+		viewlist +=    "<p class='card-text'>	 <b>체중 :</b> "+members[i-1].weight+"	</p>";
+		viewlist +=    "<p class='card-text'>	 <b>위치 :</b> "+members[i-1].location+"	</p>";
 		viewlist +=  "</div>";
 		viewlist += "</div>";
       
@@ -423,6 +354,86 @@ function makeparcelList(data){
 	
 	view.append(viewlist);
 }
+
+//==========================================================================
+	
+//후원목록
+//==========================================================================================================
+function makedonationList(data){
+	$(".container-fluid").empty();
+	var view=$(".container-fluid");
+	var members = data.members;
+	//alert(member.length);	//회원수 출력 :120
+	var viewlist="";
+
+	for(var i=0;i<5 ;i++){
+		if(i%2==0){
+
+			viewlist += "<div class='container' article-seq='"+members[i].seq+ "'>";
+			viewlist += "<div class='row'>";
+			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
+			viewlist +=	"<h2>"+members[i].centername +"</h2>";
+			viewlist +=	"<div class='dntContent'>";		
+			viewlist +=	"<p style='font-size:36px;'><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
+			viewlist +=	"<hr>";		
+			viewlist +=	"<p style='text-align: center;font-size:20px;'>";		
+			viewlist +=	 members[i].cdonationpurpose;	
+			viewlist +=  "</p>";
+			viewlist +=		"<hr>";
+			viewlist +=			"</div>";
+			viewlist +=			"<p style='font-size:20px;'><strong>현재 모금액</strong></p>";
+			viewlist +=			"<div class='progress'>";
+			viewlist +=			"<div class='progress-bar ' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
+			viewlist +=			"</div>";
+			viewlist +=	"</div>";
+			viewlist +=	"<div class='col-sm-2'></div>";
+			viewlist +=	"<div class='col-md-5'>";
+			viewlist +=	"<img class='view-img' src='${root}/resources/img/dona"+[i]+".jpg'>";	
+			viewlist +=	"</div>";
+			viewlist += "</div>";
+			viewlist +="</div>";
+			viewlist +="<br>";	
+			viewlist +="<hr>";	
+			viewlist +="<br>";
+		}else{
+			viewlist += "<div class='container'>";
+			viewlist += "<div class='row'>";
+			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
+			viewlist +=	"<img class='view-img' src='${root}/resources/img/dona"+[i]+".jpg'>";	
+			viewlist +=	"</div>";
+			viewlist += "<div class='col-sm-2'></div>";
+			viewlist +=	"<div class='col-md-5 info-big'>";
+			viewlist +=	"<h2>"+members[i].centername +"</h2>";
+			viewlist +=	"<div class='dntContent'>";		
+			viewlist +=	"<p style='font-size:36px;'><b> 목표 후원 금액 </b> : "+ members[i].cdonationfee + "</p>";		
+			viewlist +=	"<hr>";		
+			viewlist +=	"<p style='text-align: center;font-size:20px;'>";		
+			viewlist +=	 members[i].cdonationpurpose;	
+			viewlist +=  "</p>";
+			viewlist +=		"<hr>";
+			viewlist +=			"</div>";
+			viewlist +=			"<p style='font-size:20px;'><strong>현재 모금액</strong></p>";
+			viewlist +=			"<div class='progress'>";
+			viewlist +=			"<div class='progress-bar' style='width:"+members[i].gatheringfee/members[i].cdonationfee*100 +"%'>"+members[i].gatheringfee +"</div>";	
+			viewlist +=			"</div>";
+			viewlist +=	"</div>";
+			viewlist +=	"</div>";			
+			viewlist += "</div>";
+			viewlist +="</div>";
+			viewlist +="<br>";	
+			viewlist +="<hr>";	
+			viewlist +="<br>";
+			 
+		}
+		
+      
+
+	}
+	
+	view.append(viewlist);
+}
+// 센터 이미지 완료
+//-------------------------------------------------------------------------------------------------------------
 function makevolunteerList(data){
 	$(".container-fluid").empty();
 	var view=$(".container-fluid");
@@ -430,7 +441,7 @@ function makevolunteerList(data){
 	//alert(member.length);	//회원수 출력 :120
 	var viewlist="";
 
-	for(var i=0;i<members.length ;i++){
+	for(var i=1;i<5 ;i++){
 		if(i%2==0){
 
 			viewlist += "<div class='container'>";
@@ -438,7 +449,7 @@ function makevolunteerList(data){
 			viewlist +=	"<div class='detail col-md-5 info-big' article-seq='"+members[i].seq+"'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p style='font-size:20px;'>"+ members[i].subject + "</p>";		
+// 			viewlist +=	"<p style='font-size:20px;'>"+ members[i].subject + "</p>";		
 			viewlist +=	"<hr>";		
 			viewlist +=	"<p style='font-size:20px;'>봉사종류 :";		
 			viewlist +=	 members[i].volunteerkind;	
@@ -456,11 +467,11 @@ function makevolunteerList(data){
 			viewlist +=	 members[i].tel;	
 			viewlist +=  "</p>";
 			viewlist +=			"</div>";
-			viewlist +=			"</div>";
+			viewlist +=			"</div>"; 
 			viewlist +=			"<p></p>";
 			viewlist +=	"<div class='col-sm-2'></div>";
 			viewlist +=	"<div class='col-md-5'>";
-			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
+			viewlist +=	"<img class='view-img' src='${root}/resources/img/center"+[i]+".jpg'>";	
 			viewlist +=	"</div>";
 			viewlist += "</div>";
 			viewlist +="</div>";
@@ -470,8 +481,8 @@ function makevolunteerList(data){
 		}else{
 			viewlist += "<div class='container'>";
 			viewlist += "<div class='row'>";
-			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+"'>";
-			viewlist +=	"<img class='view-img' src='https://images.unsplash.com/photo-1538318514451-db4272ee0fc8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9645b44503489a0d6832693f91e1d48b&auto=format&fit=crop&w=1350&q=80'>";	
+			viewlist +=	"<div class='detail col-md-5' article-seq='"+members[i].seq+".jpg'>";
+			viewlist +=	"<img class='view-img' src='${root}/resources/img/center"+[i]+".jpg'>";	
 			viewlist +=	"</div>";
 			
 			
@@ -479,7 +490,7 @@ function makevolunteerList(data){
 			viewlist +=	"<div class='col-md-5 info-big'>";
 			viewlist +=	"<h2>"+members[i].centername +"</h2>";
 			viewlist +=	"<div class='dntContent'>";		
-			viewlist +=	"<p style='font-size:20px;'>"+ members[i].subject + "</p>";		
+// 			viewlist +=	"<p style='font-size:20px;'>"+ members[i].subject + "</p>";		
 			viewlist +=	"<hr>";		
 			viewlist +=	"<p style='font-size:20px;'>봉사종류 :";		
 			viewlist +=	 members[i].volunteerkind;	

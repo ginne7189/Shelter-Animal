@@ -36,7 +36,7 @@ li{
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>	
 	<%@include file="../common/header.jsp"%>
-	<div class="jumbotron toplayout" style="text-align: center;">
+	<div class="jumbotron toplayout" style="text-align: center;background-color: #ffffff">
 		<h2>분양신청 소개 페이지</h2>
 		<h4>당신의 온도를 필요합니다.</h4>
 	</div>

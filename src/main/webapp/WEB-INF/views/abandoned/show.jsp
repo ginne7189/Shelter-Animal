@@ -207,7 +207,7 @@
 </style>
 </head>
 <body onload="recentAnimal(1)">
-<div class="jumbotron toplayout" style="text-align: center;">
+<div class="jumbotron toplayout" style="text-align: center;background-color: #ffffff;">
 <h4>상세검색 기능을 이용하여 원하는 날짜, 지역, 품종의 유기 동물을 검색해보세요</h4>
 <!-- <b>공고중</b> : 등록날짜로부터 일주일간 공고하며, 최초 공고 이후 10일이 지난 이후로는 해당 시,도지사 또는 -->
 <!-- 시장,군수,구청장이 그 동물의 소유권을 취득하게 됩니다. <br> 그 이후 보호 단계로 넘어가게 됩니다. <br> -->

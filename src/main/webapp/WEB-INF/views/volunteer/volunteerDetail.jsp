@@ -28,16 +28,18 @@ li{
 </style>
 
 </head>
-<body style="background-color: #EEEEEE; padding: 0px; margin: 0px;">
+<body>
 <c:if test="${not empty sessionScope.user }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>
 	<%@include file="../common/header.jsp"%>
-	<div class="jumbotron toplayout" style="text-align: center;">
-		<h2>봉사신청 소개 페이지</h2>
-		<h4>도움의 손길이 필요합니다.</h4>
-	</div>
-<section class="container g-pb-30">   
+<!-- 	<div class="jumbotron toplayout" style="text-align: center;background-color: #ffffff;"> -->
+<!-- 		<h2>봉사신청 소개 페이지</h2> -->
+<!-- 		<h4>도움의 손길이 필요합니다.</h4> -->
+<!-- 	</div> -->
+<br>
+<br><br><br><br><br><br><br><br>
+<section class="container g-pb-30" style="magin-top:250px;">   
    <div class="row no-gutters">
       <div class="col-sm-12" style="background: rgba(0,0,0,0.8) url(/front/img/patterns/gridtile.png) repeat;">      
          <div class="row">      

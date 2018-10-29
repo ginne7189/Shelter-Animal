@@ -38,14 +38,14 @@ body{
 }
 </style>
 </head>
-<body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
+<body>
 <c:if test="${email != null }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>
 	<%@include file="../common/header.jsp"%>
 	<div class="jumbotron toplayout" style="text-align: center;">
-	    <h2>마이페이지</h2>
-	    <h4>분양신청내역</h4>
+
+	    <h4>분양신청 페이지입니다</h4>
 	</div>
 <!-- 동물 리스트 -->
     <!-- Page Content -->

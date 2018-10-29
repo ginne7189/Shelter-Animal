@@ -37,16 +37,16 @@ body{
 }
 </style>
 </head>
-<body style="background-color:#EEEEEE;  padding:0px; margin:0px;">
+<body>
 
 <c:if test="${email != null }">
 	<%@include file="../common/sidebar.jsp"%>
 </c:if>
 <%@include file="../common/header.jsp" %>  
-	<div class="jumbotron toplayout">
-	    <h2>마이페이지</h2>
-	    <h4>실종동물내역</h4>
+	<div class="jumbotron" style="text-align: center;background-color: #ffffff">
+	    <h2>실종동물 리스트 페이지입니다</h2>
 	</div>
+
 <!-- 동물 리스트 -->
     <!-- Page Content -->
        <div class="container">
